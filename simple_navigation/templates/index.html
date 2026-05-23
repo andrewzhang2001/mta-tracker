@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MTA Tracker</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <span class="subway-icon">🚇</span>
+        <div>
+          <div class="header-title">MTA Tracker</div>
+          <div class="header-route" id="header-route">Loading…</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="clock" id="clock">--:-- --</div>
+        <div class="refresh-info">
+          Updates in <span id="countdown">30</span>s
+          <button class="refresh-btn" id="refresh-btn" title="Refresh now">⟳</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="main" id="main">
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Fetching real-time train data…</p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      Last updated: <span id="updated-at">—</span>
+      &nbsp;·&nbsp;
+      <a href="/api/debug" target="_blank" class="debug-link">debug stops</a>
+    </footer>
+
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
