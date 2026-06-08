@@ -5,8 +5,18 @@ __pycache__/
 .venv/
 *.egg-info/
 
+# Node
+node_modules/
+dist/
+dist-ssr/
+
+# Vite
+*.local
+
 # Secrets
 .env
+.env.*
+!.env.example
 
 # Generated / cached data
 .cache/
