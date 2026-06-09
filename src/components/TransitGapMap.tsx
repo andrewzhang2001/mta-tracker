@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { scaleSequential } from 'd3-scale'
@@ -159,6 +160,9 @@ export default function TransitGapMap() {
     <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
       <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
 
+      {/* Back link */}
+      <Link to="/" style={styles.backLink}>← All maps</Link>
+
       {/* Title + legend */}
       <div style={styles.panel}>
         <h2 style={styles.title}>NYC Transit Access Gap</h2>
@@ -263,5 +267,19 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: 6,
     fontSize: 14,
     color: '#333',
+  },
+  backLink: {
+    position: 'absolute',
+    top: 16,
+    right: 52,
+    background: 'rgba(255,255,255,0.95)',
+    color: '#1a1a2e',
+    textDecoration: 'none',
+    fontSize: 12,
+    fontWeight: 500,
+    padding: '6px 12px',
+    borderRadius: 6,
+    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+    zIndex: 10,
   },
 }
