@@ -8,6 +8,7 @@ import type { GeoJSONSource } from 'maplibre-gl'
 interface TractProps {
   geoid: string
   population: number | null
+  density: number | null
   nearest_stop: string
   distance_km: number
   headway_min: number
@@ -72,13 +73,13 @@ export default function TransitGapMap() {
       const stops: Stop[] = await stopsRes.json()
 
       // Pre-compute color + opacity and embed as properties for MapLibre
-      const maxPop = Math.max(...tracts.features.map(
-        (f: { properties: TractProps }) => f.properties.population ?? 0
+      const maxDensity = Math.max(...tracts.features.map(
+        (f: { properties: TractProps }) => f.properties.density ?? 0
       ))
       for (const f of tracts.features) {
         const score: number = f.properties.access_min ?? MAX_SCORE
         f.properties._color   = scoreToColor(score)
-        f.properties._opacity = popToOpacity(f.properties.population, maxPop)
+        f.properties._opacity = popToOpacity(f.properties.density, maxDensity)
       }
 
       // Census tract fill layer

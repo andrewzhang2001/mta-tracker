@@ -109,9 +109,16 @@ async function main() {
     const waitMin   = stop.headway_min / 2
     const accessMin = Math.round((walkMin + waitMin) * 10) / 10
 
+    const population = popByGeoid.get(geoid) ?? null
+    const areaSqFt   = parseFloat(p.shape_area) || 0
+    const density    = (population != null && areaSqFt > 0)
+      ? population / areaSqFt
+      : null
+
     feature.properties = {
       geoid,
-      population:      popByGeoid.get(geoid) ?? null,
+      population,
+      density,
       nearest_stop:    stop.name,
       nearest_stop_id: stop.id,
       distance_km:     Math.round(distanceKm * 1000) / 1000,
