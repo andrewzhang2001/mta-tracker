@@ -6,14 +6,12 @@ const cards = [
     title: 'Transit Access Gap',
     description: 'How long does it take to board a subway from anywhere in NYC? Color shows access time, opacity shows population density.',
     accent: 'linear-gradient(135deg, #006837 0%, #ffffbf 50%, #a50026 100%)',
-    status: 'live' as const,
   },
   {
     to: '/ridership',
     title: '24h Ridership',
     description: 'Watch subway ridership pulse through the city over the course of a day. See the morning wave, the evening reversal, the late-night collapse.',
     accent: 'linear-gradient(135deg, #0d47a1 0%, #42a5f5 50%, #e1f5fe 100%)',
-    status: 'soon' as const,
   },
 ]
 
@@ -29,38 +27,22 @@ export default function Home() {
 
       <div style={s.grid}>
         {cards.map(card => (
-          card.status === 'live'
-            ? (
-              <Link key={card.to} to={card.to} style={s.cardLink}>
-                <Card {...card} />
-              </Link>
-            ) : (
-              <div key={card.to} style={{ ...s.cardLink, cursor: 'default' }}>
-                <Card {...card} />
+          <Link key={card.to} to={card.to} style={s.cardLink}>
+            <div style={s.card}>
+              <div style={{ ...s.cardAccent, background: card.accent }} />
+              <div style={s.cardBody}>
+                <h2 style={s.cardTitle}>{card.title}</h2>
+                <p style={s.cardDesc}>{card.description}</p>
+                <span style={s.cardCta}>View map →</span>
               </div>
-            )
+            </div>
+          </Link>
         ))}
       </div>
 
       <footer style={s.footer}>
         Data: MTA GTFS · US Census ACS · NYC Open Data
       </footer>
-    </div>
-  )
-}
-
-function Card({ title, description, accent, status }: typeof cards[number]) {
-  return (
-    <div style={s.card}>
-      <div style={{ ...s.cardAccent, background: accent }} />
-      <div style={s.cardBody}>
-        <div style={s.cardTitleRow}>
-          <h2 style={s.cardTitle}>{title}</h2>
-          {status === 'soon' && <span style={s.badge}>soon</span>}
-        </div>
-        <p style={s.cardDesc}>{description}</p>
-        {status === 'live' && <span style={s.cardCta}>View map →</span>}
-      </div>
     </div>
   )
 }
@@ -110,7 +92,6 @@ const s: Record<string, React.CSSProperties> = {
     borderRadius: 12,
     overflow: 'hidden',
     border: '1px solid #2a2a40',
-    transition: 'border-color 0.15s, transform 0.15s',
   },
   cardAccent: {
     height: 6,
@@ -118,26 +99,10 @@ const s: Record<string, React.CSSProperties> = {
   cardBody: {
     padding: '20px 22px 24px',
   },
-  cardTitleRow: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 10,
-    marginBottom: 10,
-  },
   cardTitle: {
     fontSize: 18,
     fontWeight: 600,
-    margin: 0,
-  },
-  badge: {
-    fontSize: 10,
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    letterSpacing: '0.05em',
-    background: '#2a2a40',
-    color: '#7070a0',
-    padding: '2px 7px',
-    borderRadius: 4,
+    margin: '0 0 10px',
   },
   cardDesc: {
     fontSize: 13,
