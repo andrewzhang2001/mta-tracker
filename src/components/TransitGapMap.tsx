@@ -7,6 +7,7 @@ import type { GeoJSONSource } from 'maplibre-gl'
 
 interface TractProps {
   geoid: string
+  population: number | null
   nearest_stop: string
   distance_km: number
   headway_min: number
@@ -29,6 +30,13 @@ const colorScale = scaleSequential(interpolateRdYlGn).domain([MAX_SCORE, MIN_SCO
 
 function scoreToColor(score: number): string {
   return colorScale(Math.min(score, MAX_SCORE))
+}
+
+// Opacity scales with sqrt(population) so dense tracts stand out.
+// Parks/airports (pop≈0) fade to near-invisible; busy tracts are fully visible.
+function popToOpacity(pop: number | null, maxPop: number): number {
+  if (!pop || maxPop === 0) return 0.08
+  return 0.15 + 0.7 * Math.sqrt(pop / maxPop)
 }
 
 export default function TransitGapMap() {
@@ -63,10 +71,14 @@ export default function TransitGapMap() {
       const tracts = await tractsRes.json()
       const stops: Stop[] = await stopsRes.json()
 
-      // Pre-compute fill colors and embed as a property so MapLibre can use them
+      // Pre-compute color + opacity and embed as properties for MapLibre
+      const maxPop = Math.max(...tracts.features.map(
+        (f: { properties: TractProps }) => f.properties.population ?? 0
+      ))
       for (const f of tracts.features) {
         const score: number = f.properties.access_min ?? MAX_SCORE
-        f.properties._color = scoreToColor(score)
+        f.properties._color   = scoreToColor(score)
+        f.properties._opacity = popToOpacity(f.properties.population, maxPop)
       }
 
       // Census tract fill layer
@@ -77,7 +89,7 @@ export default function TransitGapMap() {
         source: 'tracts',
         paint: {
           'fill-color': ['get', '_color'],
-          'fill-opacity': 0.65,
+          'fill-opacity': ['get', '_opacity'],
         },
       })
       map.current!.addLayer({
@@ -150,7 +162,7 @@ export default function TransitGapMap() {
       <div style={styles.panel}>
         <h2 style={styles.title}>NYC Transit Access Gap</h2>
         <p style={styles.subtitle}>
-          Expected minutes to board a subway train from each census tract
+          Expected minutes to board a subway train · opacity = population
         </p>
         <div style={styles.legend}>
           <div style={styles.legendBar} />
@@ -169,6 +181,7 @@ export default function TransitGapMap() {
           <div>{hovered.access_min} min to board</div>
           <div style={styles.tooltipSub}>
             {hovered.distance_km} km walk · {hovered.headway_min} min headway
+            {hovered.population != null && ` · pop. ${hovered.population.toLocaleString()}`}
           </div>
         </div>
       )}
