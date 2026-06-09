@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "process-gtfs": "node scripts/process-gtfs.js",
-    "process-tracts": "node scripts/process-tracts.js",
+    "process-tracts": "node --env-file=.env scripts/process-tracts.js",
     "process-data": "npm run process-gtfs && npm run process-tracts"
   },
   "dependencies": {

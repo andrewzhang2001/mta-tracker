@@ -14,8 +14,17 @@ const DATA_DIR  = join(__dirname, '../public/data')
 // NYC Open Data — 2020 census tract boundaries as GeoJSON
 const TRACTS_URL = 'https://data.cityofnewyork.us/api/views/63ge-mke6/rows.geojson'
 
-// NOTE: Census ACS population data requires a free API key (census.gov/data/developers).
-// Population is currently omitted; access_min scores are still fully computed.
+// Census ACS 5-year — total population (B01003_001E) for all NYC tracts
+// County codes: 005=Bronx, 047=Brooklyn, 061=Manhattan, 081=Queens, 085=Staten Island
+function censusUrl(key) {
+  return (
+    'https://api.census.gov/data/2023/acs/acs5' +
+    '?get=B01003_001E' +
+    '&for=tract:*' +
+    '&in=state:36%20county:005,047,061,081,085' +
+    `&key=${key}`
+  )
+}
 
 const WALK_SPEED_KM_PER_MIN = 5 / 60  // 5 km/h
 
@@ -58,23 +67,37 @@ function nearestStop(lat, lng, stops) {
 }
 
 async function main() {
+  const censusKey = process.env.CENSUS_API_KEY
+  if (!censusKey) throw new Error('CENSUS_API_KEY not set in environment')
+
   // Load pre-processed stops
   const stops = JSON.parse(readFileSync(join(DATA_DIR, 'stops.json'), 'utf8'))
   console.log(`Loaded ${stops.length} subway stations`)
 
-  // Download tract GeoJSON
-  console.log('Downloading census tract boundaries...')
-  const tractsRes = await fetch(TRACTS_URL)
+  // Download tract GeoJSON and ACS population in parallel
+  console.log('Downloading census tract boundaries + ACS population...')
+  const [tractsRes, censusRes] = await Promise.all([
+    fetch(TRACTS_URL),
+    fetch(censusUrl(censusKey)),
+  ])
   if (!tractsRes.ok) throw new Error(`Tracts HTTP ${tractsRes.status}`)
+  if (!censusRes.ok) throw new Error(`Census HTTP ${censusRes.status}`)
+
   const tracts = await tractsRes.json()
-  console.log(`  ${tracts.features.length} tracts`)
+  const censusRows = await censusRes.json()
+  console.log(`  ${tracts.features.length} tracts, ${censusRows.length - 1} census records`)
+
+  // Build population lookup: geoid → population
+  // Census returns rows: [B01003_001E, state, county, tract]
+  const popByGeoid = new Map()
+  for (const [pop, state, county, tract] of censusRows.slice(1)) {
+    popByGeoid.set(`${state}${county}${tract}`, parseInt(pop, 10) || 0)
+  }
 
   // Annotate each tract feature
   let matched = 0, skipped = 0
   for (const feature of tracts.features) {
     const p = feature.properties
-
-    // NYC Open Data uses lowercase "geoid" matching Census API format exactly
     const geoid = p.geoid ?? ''
 
     const { lat, lng } = centroid(feature.geometry)
@@ -88,7 +111,7 @@ async function main() {
 
     feature.properties = {
       geoid,
-      population:      null,
+      population:      popByGeoid.get(geoid) ?? null,
       nearest_stop:    stop.name,
       nearest_stop_id: stop.id,
       distance_km:     Math.round(distanceKm * 1000) / 1000,
