@@ -2,7 +2,8 @@
 // public/data/ridership.json.
 //
 // Output format: [{id, name, lat, lng, lineColors, byDayHour: {weekday, friday, saturday, sunday}}]
-// Values are total ridership summed across the matching days in Sep 2024.
+// Values are average ridership per day (sum / number of matching days in Sep 2024),
+// so all day types are directly comparable.
 import { writeFileSync, mkdirSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -39,15 +40,30 @@ function parseLineColors(stationComplex) {
 // wujg-7c2s = MTA Subway Hourly Ridership 2020-2024
 const BASE = 'https://data.ny.gov/resource/wujg-7c2s.json'
 
-// Socrata dow: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
-const DAY_FILTERS = {
-  weekday: 'date_extract_dow(transit_timestamp) between 1 and 4',
-  friday:  'date_extract_dow(transit_timestamp) = 5',
-  saturday:'date_extract_dow(transit_timestamp) = 6',
-  sunday:  'date_extract_dow(transit_timestamp) = 0',
+const RANGE_START = new Date('2024-09-01')
+const RANGE_END   = new Date('2024-10-01')
+
+// Count how many days in [start, end) match the given JS getDay() values (0=Sun … 6=Sat)
+function countDays(start, end, jsDows) {
+  const dowSet = new Set(jsDows)
+  let count = 0
+  const d = new Date(start)
+  while (d < end) {
+    if (dowSet.has(d.getDay())) count++
+    d.setDate(d.getDate() + 1)
+  }
+  return count
 }
 
-async function fetchDayType(key, dowWhere) {
+// Socrata dow: 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat  (same as JS getDay)
+const DAY_FILTERS = {
+  weekday:  { where: 'date_extract_dow(transit_timestamp) between 1 and 4', dows: [1,2,3,4] },
+  friday:   { where: 'date_extract_dow(transit_timestamp) = 5',             dows: [5] },
+  saturday: { where: 'date_extract_dow(transit_timestamp) = 6',             dows: [6] },
+  sunday:   { where: 'date_extract_dow(transit_timestamp) = 0',             dows: [0] },
+}
+
+async function fetchDayType(key, dowWhere, dayCount) {
   const params = new URLSearchParams({
     $select: [
       'station_complex_id',
@@ -89,16 +105,18 @@ async function fetchDayType(key, dowWhere) {
       })
     }
     const hour = parseInt(row.hour, 10)
-    stationMap.get(id).byHour[hour] = Math.round(parseFloat(row.total))
+    // Divide by day count so values represent average ridership per day
+    stationMap.get(id).byHour[hour] = Math.round(parseFloat(row.total) / dayCount)
   }
   return stationMap
 }
 
 async function main() {
   const results = {}
-  for (const [key, filter] of Object.entries(DAY_FILTERS)) {
-    console.log(`Fetching ${key}...`)
-    results[key] = await fetchDayType(key, filter)
+  for (const [key, { where, dows }] of Object.entries(DAY_FILTERS)) {
+    const dayCount = countDays(RANGE_START, RANGE_END, dows)
+    console.log(`Fetching ${key} (${dayCount} days)...`)
+    results[key] = await fetchDayType(key, where, dayCount)
   }
 
   // Merge: use weekday station list as the base
