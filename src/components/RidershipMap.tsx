@@ -105,6 +105,7 @@ export default function RidershipMap() {
   const hourlyTotalsByDay = useRef<Record<DayType, number[]>>({
     weekday: [], friday: [], saturday: [], sunday: [],
   })
+  const globalPeakTotal = useRef<number>(1)
 
   const [stations, setStations] = useState<Station[]>([])
   const [hour, setHour] = useState(8)
@@ -174,6 +175,9 @@ export default function RidershipMap() {
         globalMaxByDay.current[day] = gMax
         hourlyTotalsByDay.current[day] = totals
       }
+      globalPeakTotal.current = Math.max(
+        ...Object.values(hourlyTotalsByDay.current).flat()
+      )
 
       // Create one HTML marker per station
       const initDay: DayType = 'weekday'
@@ -236,12 +240,11 @@ export default function RidershipMap() {
     map.current.setLayoutProperty('subway-lines', 'visibility', showLines ? 'visible' : 'none')
   }, [showLines])
 
-  // Usage: current hour system ridership as % of this day type's peak hour
+  // Usage: current hour system ridership as % of the all-time peak (across all day types)
   const usage = useMemo(() => {
     const totals = hourlyTotalsByDay.current[dayType]
-    if (!totals.length) return null
-    const peak = Math.max(...totals)
-    if (!peak) return null
+    const peak = globalPeakTotal.current
+    if (!totals.length || !peak) return null
     return Math.round((totals[hour] ?? 0) / peak * 100)
   }, [hour, dayType, stations])
 
