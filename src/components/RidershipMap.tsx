@@ -112,6 +112,7 @@ export default function RidershipMap() {
   const [playing, setPlaying] = useState(false)
   const [loading, setLoading] = useState(true)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
+  const [showLines, setShowLines] = useState(true)
   const playRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const tick = useCallback(() => setHour(h => (h + 1) % 24), [])
@@ -137,9 +138,26 @@ export default function RidershipMap() {
     map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
 
     map.current.on('load', async () => {
-      const res = await fetch('/data/ridership.json')
-      const raw = await res.json()
+      const [ridershipRes, linesRes] = await Promise.all([
+        fetch('/data/ridership.json'),
+        fetch('/data/subway-lines.geojson'),
+      ])
+      const [raw, linesGeoJSON] = await Promise.all([ridershipRes.json(), linesRes.json()])
       const data = normalize(raw)
+
+      // Subway line geometry — added first so it renders below the station markers
+      map.current!.addSource('subway-lines', { type: 'geojson', data: linesGeoJSON })
+      map.current!.addLayer({
+        id: 'subway-lines',
+        type: 'line',
+        source: 'subway-lines',
+        layout: { 'line-join': 'round', 'line-cap': 'round' },
+        paint: {
+          'line-color': ['get', 'color'],
+          'line-width': 2,
+          'line-opacity': 0.65,
+        },
+      })
 
       // Compute global max and hourly totals per day type
       for (const day of DAY_ORDER) {
@@ -212,6 +230,12 @@ export default function RidershipMap() {
     }
   }, [hour, dayType, stations])
 
+  // Toggle subway line layer visibility
+  useEffect(() => {
+    if (!map.current?.getLayer('subway-lines')) return
+    map.current.setLayoutProperty('subway-lines', 'visibility', showLines ? 'visible' : 'none')
+  }, [showLines])
+
   // Usage: current hour system ridership as % of this day type's peak hour
   const usage = useMemo(() => {
     const totals = hourlyTotalsByDay.current[dayType]
@@ -262,6 +286,16 @@ export default function RidershipMap() {
         <button onClick={() => setPlaying(p => !p)} style={s.playBtn}>
           {playing ? '⏸ Pause' : '▶ Play'}
         </button>
+
+        <label style={s.toggleRow}>
+          <input
+            type="checkbox"
+            checked={showLines}
+            onChange={e => setShowLines(e.target.checked)}
+            style={{ marginRight: 6, cursor: 'pointer' }}
+          />
+          <span style={s.toggleLabel}>Show routes</span>
+        </label>
 
         {usage !== null && (
           <div style={s.usageRow}>
@@ -358,6 +392,16 @@ const s: Record<string, React.CSSProperties> = {
     fontSize: 13,
     fontWeight: 600,
     cursor: 'pointer',
+  },
+  toggleRow: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: 10,
+    cursor: 'pointer',
+  },
+  toggleLabel: {
+    fontSize: 12,
+    color: '#555',
   },
   usageRow: {
     display: 'flex',

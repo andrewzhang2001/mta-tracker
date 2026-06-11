@@ -11,7 +11,8 @@
     "process-gtfs": "node scripts/process-gtfs.js",
     "process-tracts": "node --env-file=.env scripts/process-tracts.js",
     "process-ridership": "node scripts/process-ridership.js",
-    "process-data": "npm run process-gtfs && npm run process-tracts && npm run process-ridership"
+    "process-shapes": "node scripts/process-shapes.js",
+    "process-data": "npm run process-gtfs && npm run process-tracts && npm run process-ridership && npm run process-shapes"
   },
   "dependencies": {
     "adm-zip": "^0.5.17",
