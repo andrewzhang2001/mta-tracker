@@ -12,7 +12,9 @@
     "process-tracts": "node --env-file=.env scripts/process-tracts.js",
     "process-ridership": "node scripts/process-ridership.js",
     "process-shapes": "node scripts/process-shapes.js",
-    "process-data": "npm run process-gtfs && npm run process-tracts && npm run process-ridership && npm run process-shapes"
+    "process-bike-safety": "node scripts/process-bike-safety.js",
+    "process-bike-network": "node scripts/process-bike-network.js",
+    "process-data": "npm run process-gtfs && npm run process-tracts && npm run process-ridership && npm run process-shapes && npm run process-bike-safety && npm run process-bike-network"
   },
   "dependencies": {
     "adm-zip": "^0.5.17",

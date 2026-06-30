@@ -13,6 +13,18 @@ const cards = [
     description: 'Watch subway ridership pulse through the city over the course of a day. See the morning wave, the evening reversal, the late-night collapse.',
     accent: 'linear-gradient(135deg, #0d47a1 0%, #42a5f5 50%, #e1f5fe 100%)',
   },
+  {
+    to: '/bike-safety',
+    title: 'Streetfight',
+    description: 'Did protected bike lanes make NYC streets safer? Crash injuries before vs. after the redesign of four corridors — measured against the citywide trend.',
+    accent: 'linear-gradient(135deg, #f59e0b 0%, #94d8b0 50%, #0ea5e9 100%)',
+  },
+  {
+    to: '/bike-network',
+    title: 'Bike Network Growth',
+    description: 'Watch NYC\'s bike lanes grow from 1997 to today — 178 to 1,276 lane miles — and the rise of protected lanes after 2007.',
+    accent: 'linear-gradient(135deg, #14b8a6 0%, #2563eb 50%, #15803d 100%)',
+  },
 ]
 
 export default function Home() {
