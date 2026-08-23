@@ -30,6 +30,8 @@ const cards = [
 export default function Home() {
   return (
     <div style={s.page}>
+      <Link to="/archive" style={s.archiveButton}>Archive</Link>
+
       <header style={s.header}>
         <h1 style={s.title}>NYC Transit Explorer</h1>
         <p style={s.subtitle}>
@@ -69,6 +71,19 @@ const s: Record<string, React.CSSProperties> = {
     flexDirection: 'column',
     alignItems: 'center',
     padding: '64px 24px 40px',
+  },
+  archiveButton: {
+    position: 'fixed',
+    top: 20,
+    right: 24,
+    fontSize: 13,
+    fontWeight: 500,
+    color: '#9090aa',
+    textDecoration: 'none',
+    background: '#1a1a2e',
+    border: '1px solid #2a2a40',
+    borderRadius: 8,
+    padding: '7px 14px',
   },
   header: {
     textAlign: 'center',

@@ -33,7 +33,7 @@ Everything else:
 |---|---|
 | `src/` | App shell only — router, landing page, global CSS |
 | `shared/` | Code used by more than one feature (currently GTFS download + CSV parsing) |
-| [simple_navigation/](simple_navigation/) | Standalone: real-time door-to-door trip tracker (Python · Flask · GTFS-RT) |
+| [archive/](archive/) | The `/archive` route and the retired projects it lists — still runnable, no longer developed |
 | [density_heatmap/](density_heatmap/) | Standalone: bus + subway route density over population (not started) |
 
 ## Running
@@ -69,6 +69,7 @@ fixed path.
 - **MTA GTFS static** — full schedule as a ZIP of CSVs. Stop headways and subway
   line geometry both come from here; shared loader in `shared/gtfs.js`.
 - **MTA GTFS-RT** — live protobuf feed, ~15–30 s refresh. Used by
-  `simple_navigation/` only. Free key at <https://api.mta.info/>.
+  `archive/simple-navigation/` only. No API key needed — the feeds are public
+  and CORS-enabled, so the browser reads them directly.
 - **US Census** — TIGER tract boundaries + ACS 5-year population.
 - **NYC Open Data** — motor-vehicle collisions, bike routes, hourly ridership.
