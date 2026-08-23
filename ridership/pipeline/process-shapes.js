@@ -1,53 +1,18 @@
 // Extracts subway line geometry from MTA GTFS shapes.txt and outputs
-// public/data/subway-lines.geojson — one LineString feature per unique shape,
+// ridership/data/subway-lines.geojson — one LineString feature per unique shape,
 // colored by the official MTA route color from routes.txt.
-import AdmZip from 'adm-zip'
 import { writeFileSync, mkdirSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { fetchGtfs, parseCSV, parseCSVLine } from '../../shared/gtfs.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const OUT_DIR = join(__dirname, '../public/data')
-const GTFS_URL = 'http://web.mta.info/developers/data/nyct/subway/google_transit.zip'
-
-function parseCSVLine(line) {
-  const out = []
-  let cur = '', inQ = false
-  for (let i = 0; i < line.length; i++) {
-    const ch = line[i]
-    if (ch === '"') {
-      if (inQ && line[i + 1] === '"') { cur += '"'; i++ }
-      else inQ = !inQ
-    } else if (ch === ',' && !inQ) {
-      out.push(cur); cur = ''
-    } else {
-      cur += ch
-    }
-  }
-  out.push(cur)
-  return out
-}
-
-function parseCSV(text) {
-  const lines = text.replace(/\r/g, '').split('\n').filter(l => l.trim())
-  const headers = parseCSVLine(lines[0])
-  return lines.slice(1).map(line => {
-    const vals = parseCSVLine(line)
-    return Object.fromEntries(headers.map((h, i) => [h, vals[i] ?? '']))
-  })
-}
+const OUT_DIR = join(__dirname, '../data')
 
 function r5(n) { return Math.round(n * 1e5) / 1e5 }
 
 async function main() {
-  console.log('Downloading GTFS ZIP...')
-  const res = await fetch(GTFS_URL)
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const buf = Buffer.from(await res.arrayBuffer())
-  console.log(`  ${(buf.length / 1024 / 1024).toFixed(1)} MB`)
-
-  const zip = new AdmZip(buf)
-  const getText = name => zip.getEntry(name)?.getData().toString('utf8') ?? ''
+  const getText = await fetchGtfs()
 
   // routes.txt → route_id to hex color
   console.log('Parsing routes.txt...')
@@ -122,7 +87,7 @@ async function main() {
   const outPath = join(OUT_DIR, 'subway-lines.geojson')
   writeFileSync(outPath, JSON.stringify(geojson))
   const kb = (JSON.stringify(geojson).length / 1024).toFixed(0)
-  console.log(`Wrote public/data/subway-lines.geojson (${kb} KB)`)
+  console.log(`Wrote ridership/data/subway-lines.geojson (${kb} KB)`)
 }
 
 main().catch(err => { console.error(err); process.exit(1) })

@@ -1,4 +1,4 @@
-// Builds public/data/bike-corridors.json: before/after traffic-crash injury data
+// Builds bike-safety/data/bike-corridors.json: before/after traffic-crash injury data
 // for NYC streets that received protected bike lanes / road diets — the kind of
 // redesigns argued for in Janette Sadik-Khan's "Streetfight".
 //
@@ -20,7 +20,7 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const OUT_DIR = join(__dirname, '../public/data')
+const OUT_DIR = join(__dirname, '../data')
 const CRASHES = 'https://data.cityofnewyork.us/resource/h9gi-nx95.json'
 const BIKELANES = 'https://data.cityofnewyork.us/resource/mzxg-pwib.json'
 
@@ -298,7 +298,7 @@ async function main() {
   mkdirSync(OUT_DIR, { recursive: true })
   const path = join(OUT_DIR, 'bike-corridors.json')
   writeFileSync(path, JSON.stringify(out))
-  console.log(`\nWrote public/data/bike-corridors.json (${(JSON.stringify(out).length / 1024).toFixed(0)} KB)`)
+  console.log(`\nWrote bike-safety/data/bike-corridors.json (${(JSON.stringify(out).length / 1024).toFixed(0)} KB)`)
 }
 
 main().catch((err) => { console.error(err); process.exit(1) })

@@ -1,5 +1,5 @@
 // Fetches MTA hourly ridership for Sep 2024, split by day type, and outputs
-// public/data/ridership.json.
+// ridership/data/ridership.json.
 //
 // Output format: [{id, name, lat, lng, lineColors, byDayHour: {weekday, friday, saturday, sunday}}]
 // Values are average ridership per day (sum / number of matching days in Sep 2024),
@@ -9,7 +9,7 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const OUT_DIR = join(__dirname, '../public/data')
+const OUT_DIR = join(__dirname, '../data')
 
 const LINE_COLORS = {
   '1': '#EE352E', '2': '#EE352E', '3': '#EE352E',
@@ -148,7 +148,7 @@ async function main() {
 
   mkdirSync(OUT_DIR, { recursive: true })
   writeFileSync(join(OUT_DIR, 'ridership.json'), JSON.stringify(stations))
-  console.log('Wrote public/data/ridership.json')
+  console.log('Wrote ridership/data/ridership.json')
 }
 
 main().catch(err => { console.error(err); process.exit(1) })

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+import corridorsUrl from './data/bike-corridors.json?url'
 
 interface YearStat {
   inj: number
@@ -175,7 +176,7 @@ export default function CorridorSafetyMap() {
     map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
 
     map.current.on('load', async () => {
-      const res = await fetch('/data/bike-corridors.json')
+      const res = await fetch(corridorsUrl)
       const json: Dataset = await res.json()
 
       map.current!.addSource('lane', {

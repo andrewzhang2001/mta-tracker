@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+import bikeNetworkUrl from './data/bike-network.geojson?url'
 
 type Klass = 'protected' | 'painted' | 'greenway'
 
@@ -76,7 +77,7 @@ export default function BikeNetworkMap() {
     map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
 
     map.current.on('load', async () => {
-      const geo = await (await fetch('/data/bike-network.geojson')).json()
+      const geo = await (await fetch(bikeNetworkUrl)).json()
       setSummary(geo.summary)
       setYear(geo.summary.maxYear)
 

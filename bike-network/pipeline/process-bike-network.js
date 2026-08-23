@@ -1,4 +1,4 @@
-// Builds public/data/bike-network.geojson: every NYC bike-route segment, tagged
+// Builds bike-network/data/bike-network.geojson: every NYC bike-route segment, tagged
 // with its install year and facility class, so the frontend can animate the
 // network growing over time and tally lane miles.
 //
@@ -12,7 +12,7 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const OUT_DIR = join(__dirname, '../public/data')
+const OUT_DIR = join(__dirname, '../data')
 const BIKELANES = 'https://data.cityofnewyork.us/resource/mzxg-pwib.json'
 
 // Network dates before this are mostly DOT placeholders (segments stamped 1900,
@@ -138,7 +138,7 @@ async function main() {
   console.log(`Animated range ${FLOOR_YEAR}–${maxYear} · base (≤${FLOOR_YEAR}): ${fc.summary.baseMiles} mi`)
   const last = summary[summary.length - 1]
   console.log(`Cumulative by ${last.year}: protected ${last.protected}, painted ${last.painted}, greenway ${last.greenway} (total ${last.total} mi)`)
-  console.log(`Wrote public/data/bike-network.geojson (${(json.length / 1024 / 1024).toFixed(1)} MB)`)
+  console.log(`Wrote bike-network/data/bike-network.geojson (${(json.length / 1024 / 1024).toFixed(1)} MB)`)
 }
 
 main().catch((err) => { console.error(err); process.exit(1) })

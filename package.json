@@ -8,13 +8,11 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "process-gtfs": "node scripts/process-gtfs.js",
-    "process-tracts": "node --env-file=.env scripts/process-tracts.js",
-    "process-ridership": "node scripts/process-ridership.js",
-    "process-shapes": "node scripts/process-shapes.js",
-    "process-bike-safety": "node scripts/process-bike-safety.js",
-    "process-bike-network": "node scripts/process-bike-network.js",
-    "process-data": "npm run process-gtfs && npm run process-tracts && npm run process-ridership && npm run process-shapes && npm run process-bike-safety && npm run process-bike-network"
+    "data:transit-gap": "node transit-gap/pipeline/process-gtfs.js && node --env-file=.env transit-gap/pipeline/process-tracts.js",
+    "data:ridership": "node ridership/pipeline/process-ridership.js && node ridership/pipeline/process-shapes.js",
+    "data:bike-safety": "node bike-safety/pipeline/process-bike-safety.js",
+    "data:bike-network": "node bike-network/pipeline/process-bike-network.js",
+    "data:all": "npm run data:transit-gap && npm run data:ridership && npm run data:bike-safety && npm run data:bike-network"
   },
   "dependencies": {
     "adm-zip": "^0.5.17",

@@ -5,6 +5,8 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import { scaleSequential } from 'd3-scale'
 import { interpolateRdYlGn } from 'd3-scale-chromatic'
 import type { GeoJSONSource } from 'maplibre-gl'
+import tractsUrl from './data/tracts.geojson?url'
+import stopsUrl from './data/stops.json?url'
 
 interface TractProps {
   geoid: string
@@ -67,8 +69,8 @@ export default function TransitGapMap() {
 
     map.current.on('load', async () => {
       const [tractsRes, stopsRes] = await Promise.all([
-        fetch('/data/tracts.geojson'),
-        fetch('/data/stops.json'),
+        fetch(tractsUrl),
+        fetch(stopsUrl),
       ])
       const tracts = await tractsRes.json()
       const stops: Stop[] = await stopsRes.json()

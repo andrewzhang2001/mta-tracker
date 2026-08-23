@@ -1,5 +1,5 @@
 // Downloads NYC census tract GeoJSON + ACS population, joins with stops.json,
-// and outputs public/data/tracts.geojson with per-tract access scores.
+// and outputs transit-gap/data/tracts.geojson with per-tract access scores.
 //
 // Access score = expected minutes to board a train from the tract centroid:
 //   walking_min (centroid → nearest station at 5 km/h) + headway_min / 2
@@ -9,7 +9,7 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const DATA_DIR  = join(__dirname, '../public/data')
+const DATA_DIR  = join(__dirname, '../data')
 
 // NYC Open Data — 2020 census tract boundaries as GeoJSON
 const TRACTS_URL = 'https://data.cityofnewyork.us/api/views/63ge-mke6/rows.geojson'
@@ -133,7 +133,7 @@ async function main() {
 
   const outPath = join(DATA_DIR, 'tracts.geojson')
   writeFileSync(outPath, JSON.stringify(tracts))
-  console.log(`Wrote public/data/tracts.geojson`)
+  console.log(`Wrote transit-gap/data/tracts.geojson`)
 
   // Quick summary
   const scores = tracts.features.map(f => f.properties.access_min).filter(Boolean)

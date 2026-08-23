@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import TransitGapMap from './components/TransitGapMap'
-import RidershipMap from './components/RidershipMap'
-import CorridorSafetyMap from './components/CorridorSafetyMap'
-import BikeNetworkMap from './components/BikeNetworkMap'
+import TransitGapMap from '../transit-gap/TransitGapMap'
+import RidershipMap from '../ridership/RidershipMap'
+import CorridorSafetyMap from '../bike-safety/CorridorSafetyMap'
+import BikeNetworkMap from '../bike-network/BikeNetworkMap'
 
 export default function App() {
   return (

@@ -1,43 +1,15 @@
-// Downloads MTA subway GTFS static ZIP and outputs public/data/stops.json
+// Downloads MTA subway GTFS static ZIP and outputs transit-gap/data/stops.json
 // Each entry: { id, name, lat, lng, headway_min } for weekday AM peak (7–9 AM)
-import AdmZip from 'adm-zip'
 import { writeFileSync, mkdirSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { fetchGtfs, parseCSV } from '../../shared/gtfs.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const OUT_DIR = join(__dirname, '../public/data')
-const GTFS_URL = 'http://web.mta.info/developers/data/nyct/subway/google_transit.zip'
+const OUT_DIR = join(__dirname, '../data')
 
 const PEAK_START = 7 * 60  // minutes since midnight
 const PEAK_END   = 9 * 60
-
-function parseCSVLine(line) {
-  const out = []
-  let cur = '', inQ = false
-  for (let i = 0; i < line.length; i++) {
-    const ch = line[i]
-    if (ch === '"') {
-      if (inQ && line[i + 1] === '"') { cur += '"'; i++ }
-      else inQ = !inQ
-    } else if (ch === ',' && !inQ) {
-      out.push(cur); cur = ''
-    } else {
-      cur += ch
-    }
-  }
-  out.push(cur)
-  return out
-}
-
-function parseCSV(text) {
-  const lines = text.replace(/\r/g, '').split('\n').filter(l => l.trim())
-  const headers = parseCSVLine(lines[0])
-  return lines.slice(1).map(line => {
-    const vals = parseCSVLine(line)
-    return Object.fromEntries(headers.map((h, i) => [h, vals[i] ?? '']))
-  })
-}
 
 function toMinutes(time) {
   const [h, m] = time.split(':').map(Number)
@@ -51,14 +23,7 @@ function median(arr) {
 }
 
 async function main() {
-  console.log('Downloading GTFS ZIP...')
-  const res = await fetch(GTFS_URL)
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const buf = Buffer.from(await res.arrayBuffer())
-  console.log(`  ${(buf.length / 1024 / 1024).toFixed(1)} MB downloaded`)
-
-  const zip = new AdmZip(buf)
-  const getText = name => zip.getEntry(name)?.getData().toString('utf8') ?? ''
+  const getText = await fetchGtfs()
 
   // Weekday service IDs
   console.log('Parsing calendar...')
@@ -146,7 +111,7 @@ async function main() {
 
   mkdirSync(OUT_DIR, { recursive: true })
   writeFileSync(join(OUT_DIR, 'stops.json'), JSON.stringify(stops, null, 2))
-  console.log('Wrote public/data/stops.json')
+  console.log('Wrote transit-gap/data/stops.json')
 }
 
 main().catch(err => { console.error(err); process.exit(1) })

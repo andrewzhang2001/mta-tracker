@@ -2,6 +2,8 @@ import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
+import ridershipUrl from './data/ridership.json?url'
+import subwayLinesUrl from './data/subway-lines.geojson?url'
 
 type DayType = 'weekday' | 'friday' | 'saturday' | 'sunday'
 
@@ -140,8 +142,8 @@ export default function RidershipMap() {
 
     map.current.on('load', async () => {
       const [ridershipRes, linesRes] = await Promise.all([
-        fetch('/data/ridership.json'),
-        fetch('/data/subway-lines.geojson'),
+        fetch(ridershipUrl),
+        fetch(subwayLinesUrl),
       ])
       const [raw, linesGeoJSON] = await Promise.all([ridershipRes.json(), linesRes.json()])
       const data = normalize(raw)
