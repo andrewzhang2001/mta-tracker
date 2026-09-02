@@ -25,5 +25,18 @@ dist-ssr/
 .DS_Store
 
 # IDEs
-.vscode/
-.idea/
+# No trailing slash: the sandbox masks these as character devices, not directories.
+.vscode
+.idea
+
+# Local agent config
+.claude
+
+# Shell config the sandbox masks into the project directory
+.bashrc
+.bash_profile
+.zshrc
+.zprofile
+.profile
+.gitconfig
+.ripgreprc
