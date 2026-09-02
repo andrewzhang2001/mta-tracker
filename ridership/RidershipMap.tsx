@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
-import { Link } from 'react-router-dom'
 import maplibregl from 'maplibre-gl'
-import 'maplibre-gl/dist/maplibre-gl.css'
+import { useMapLibre } from '../shared/map/useMapLibre'
+import { BackLink, LoadingOverlay } from '../shared/map/MapChrome'
 import ridershipUrl from './data/ridership.json?url'
 import subwayLinesUrl from './data/subway-lines.geojson?url'
 
@@ -99,8 +99,6 @@ const HOURS = Array.from({ length: 24 }, (_, i) => {
 })
 
 export default function RidershipMap() {
-  const mapContainer = useRef<HTMLDivElement>(null)
-  const map = useRef<maplibregl.Map | null>(null)
   const markerEls = useRef<Map<string, HTMLDivElement>>(new Map())
   const markersArr = useRef<maplibregl.Marker[]>([])
   const globalMaxByDay = useRef<Record<DayType, number>>({ weekday: 1, friday: 1, saturday: 1, sunday: 1 })
@@ -129,18 +127,10 @@ export default function RidershipMap() {
     return () => { if (playRef.current) clearInterval(playRef.current) }
   }, [playing, tick])
 
-  // Init map
-  useEffect(() => {
-    if (!mapContainer.current || map.current) return
-    map.current = new maplibregl.Map({
-      container: mapContainer.current,
-      style: 'https://tiles.openfreemap.org/styles/positron',
-      center: [-73.97, 40.73],
-      zoom: 10,
-    })
-    map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
-
-    map.current.on('load', async () => {
+  const { containerRef, map } = useMapLibre({
+    center: [-73.97, 40.73],
+    zoom: 10,
+    onLoad: async (m) => {
       const [ridershipRes, linesRes] = await Promise.all([
         fetch(ridershipUrl),
         fetch(subwayLinesUrl),
@@ -149,8 +139,8 @@ export default function RidershipMap() {
       const data = normalize(raw)
 
       // Subway line geometry — added first so it renders below the station markers
-      map.current!.addSource('subway-lines', { type: 'geojson', data: linesGeoJSON })
-      map.current!.addLayer({
+      m.addSource('subway-lines', { type: 'geojson', data: linesGeoJSON })
+      m.addLayer({
         id: 'subway-lines',
         type: 'line',
         source: 'subway-lines',
@@ -204,22 +194,20 @@ export default function RidershipMap() {
         markerEls.current.set(station.id, el)
         const marker = new maplibregl.Marker({ element: el, anchor: 'center' })
           .setLngLat([station.lng, station.lat])
-          .addTo(map.current!)
+          .addTo(m)
         markersArr.current.push(marker)
       }
 
       setStations(data)
       setLoading(false)
-    })
-
-    return () => {
+    },
+    // Markers are attached to the map, so drop them before it is torn down.
+    onCleanup: () => {
       markersArr.current.forEach(m => m.remove())
       markersArr.current = []
       markerEls.current.clear()
-      map.current?.remove()
-      map.current = null
-    }
-  }, [])
+    },
+  })
 
   // Update marker sizes on hour or day type change
   useEffect(() => {
@@ -254,9 +242,9 @@ export default function RidershipMap() {
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-      <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
+      <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
 
-      <Link to="/" style={s.backLink}>← All maps</Link>
+      <BackLink />
 
       <div style={s.panel}>
         <h2 style={s.title}>24h Subway Ridership</h2>
@@ -319,7 +307,7 @@ export default function RidershipMap() {
         </div>
       )}
 
-      {loading && <div style={s.loading}>Loading ridership data…</div>}
+      {loading && <LoadingOverlay message="Loading ridership data…" />}
     </div>
   )
 }
@@ -425,20 +413,6 @@ const s: Record<string, React.CSSProperties> = {
     fontWeight: 700,
     color: '#1a1a2e',
   },
-  backLink: {
-    position: 'absolute',
-    top: 16,
-    right: 52,
-    background: 'rgba(255,255,255,0.95)',
-    color: '#1a1a2e',
-    textDecoration: 'none',
-    fontSize: 12,
-    fontWeight: 500,
-    padding: '6px 12px',
-    borderRadius: 6,
-    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-    zIndex: 10,
-  },
   tooltip: {
     position: 'absolute',
     bottom: 24,
@@ -457,16 +431,5 @@ const s: Record<string, React.CSSProperties> = {
     fontSize: 11,
     color: '#ccc',
     marginTop: 2,
-  },
-  loading: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%,-50%)',
-    background: 'rgba(255,255,255,0.9)',
-    padding: '12px 20px',
-    borderRadius: 6,
-    fontSize: 14,
-    color: '#333',
   },
 }

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
-import { Link } from 'react-router-dom'
-import maplibregl from 'maplibre-gl'
-import 'maplibre-gl/dist/maplibre-gl.css'
+import { useMapLibre } from '../shared/map/useMapLibre'
+import { BackLink, LoadingOverlay } from '../shared/map/MapChrome'
 import bikeNetworkUrl from './data/bike-network.geojson?url'
 
 type Klass = 'protected' | 'painted' | 'greenway'
@@ -37,8 +36,6 @@ const CLASS_LABEL: Record<Klass, string> = {
 const CLASS_ORDER: Klass[] = ['protected', 'painted', 'greenway']
 
 export default function BikeNetworkMap() {
-  const mapContainer = useRef<HTMLDivElement>(null)
-  const map = useRef<maplibregl.Map | null>(null)
   const playRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const [summary, setSummary] = useState<Summary | null>(null)
@@ -65,24 +62,16 @@ export default function BikeNetworkMap() {
     return () => { if (playRef.current) clearInterval(playRef.current) }
   }, [playing, tick])
 
-  // Init map
-  useEffect(() => {
-    if (!mapContainer.current || map.current) return
-    map.current = new maplibregl.Map({
-      container: mapContainer.current,
-      style: 'https://tiles.openfreemap.org/styles/positron',
-      center: [-73.95, 40.7],
-      zoom: 10.5,
-    })
-    map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
-
-    map.current.on('load', async () => {
+  const { containerRef, map } = useMapLibre({
+    center: [-73.95, 40.7],
+    zoom: 10.5,
+    onLoad: async (m) => {
       const geo = await (await fetch(bikeNetworkUrl)).json()
       setSummary(geo.summary)
       setYear(geo.summary.maxYear)
 
-      map.current!.addSource('bike-net', { type: 'geojson', data: geo })
-      map.current!.addLayer({
+      m.addSource('bike-net', { type: 'geojson', data: geo })
+      m.addLayer({
         id: 'bike-net',
         type: 'line',
         source: 'bike-net',
@@ -102,13 +91,8 @@ export default function BikeNetworkMap() {
         filter: ['<=', ['get', 'y'], geo.summary.maxYear],
       })
       setLoading(false)
-    })
-
-    return () => {
-      map.current?.remove()
-      map.current = null
-    }
-  }, [])
+    },
+  })
 
   // Filter the network to lanes installed on or before the current year
   useEffect(() => {
@@ -123,8 +107,8 @@ export default function BikeNetworkMap() {
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-      <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
-      <Link to="/" style={s.backLink}>← All maps</Link>
+      <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
+      <BackLink />
 
       <div style={s.panel}>
         <h2 style={s.title}>NYC Bike Network</h2>
@@ -180,7 +164,7 @@ export default function BikeNetworkMap() {
         )}
       </div>
 
-      {loading && <div style={s.loading}>Loading bike network…</div>}
+      {loading && <LoadingOverlay message="Loading bike network…" />}
     </div>
   )
 }
@@ -260,29 +244,4 @@ const s: Record<string, React.CSSProperties> = {
   bVal: { color: '#222', fontWeight: 600, fontVariantNumeric: 'tabular-nums' },
   swatch: { display: 'inline-block', width: 10, height: 3, borderRadius: 2, marginRight: 6 },
   source: { fontSize: 9, color: '#aaa', lineHeight: 1.4, margin: 0 },
-  backLink: {
-    position: 'absolute',
-    top: 16,
-    right: 52,
-    background: 'rgba(255,255,255,0.95)',
-    color: '#1a1a2e',
-    textDecoration: 'none',
-    fontSize: 12,
-    fontWeight: 500,
-    padding: '6px 12px',
-    borderRadius: 6,
-    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-    zIndex: 10,
-  },
-  loading: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%,-50%)',
-    background: 'rgba(255,255,255,0.9)',
-    padding: '12px 20px',
-    borderRadius: 6,
-    fontSize: 14,
-    color: '#333',
-  },
 }

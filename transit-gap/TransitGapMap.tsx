@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import maplibregl from 'maplibre-gl'
-import 'maplibre-gl/dist/maplibre-gl.css'
+import { useEffect, useState } from 'react'
 import { scaleSequential } from 'd3-scale'
 import { interpolateRdYlGn } from 'd3-scale-chromatic'
 import type { GeoJSONSource } from 'maplibre-gl'
+import { useMapLibre } from '../shared/map/useMapLibre'
+import { BackLink, LoadingOverlay } from '../shared/map/MapChrome'
 import tractsUrl from './data/tracts.geojson?url'
 import stopsUrl from './data/stops.json?url'
 
@@ -44,30 +43,13 @@ function popToOpacity(pop: number | null, maxPop: number): number {
 }
 
 export default function TransitGapMap() {
-  const mapContainer = useRef<HTMLDivElement>(null)
-  const map = useRef<maplibregl.Map | null>(null)
-  const popup = useRef<maplibregl.Popup | null>(null)
   const [loading, setLoading] = useState(true)
   const [hovered, setHovered] = useState<TractProps | null>(null)
 
-  useEffect(() => {
-    if (!mapContainer.current || map.current) return
-
-    map.current = new maplibregl.Map({
-      container: mapContainer.current,
-      style: 'https://tiles.openfreemap.org/styles/positron',
-      center: [-73.97, 40.73],
-      zoom: 10,
-    })
-
-    map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
-
-    popup.current = new maplibregl.Popup({
-      closeButton: false,
-      closeOnClick: false,
-    })
-
-    map.current.on('load', async () => {
+  const { containerRef, map } = useMapLibre({
+    center: [-73.97, 40.73],
+    zoom: 10,
+    onLoad: async (m) => {
       const [tractsRes, stopsRes] = await Promise.all([
         fetch(tractsUrl),
         fetch(stopsUrl),
@@ -86,8 +68,8 @@ export default function TransitGapMap() {
       }
 
       // Census tract fill layer
-      map.current!.addSource('tracts', { type: 'geojson', data: tracts })
-      map.current!.addLayer({
+      m.addSource('tracts', { type: 'geojson', data: tracts })
+      m.addLayer({
         id: 'tracts-fill',
         type: 'fill',
         source: 'tracts',
@@ -96,7 +78,7 @@ export default function TransitGapMap() {
           'fill-opacity': ['get', '_opacity'],
         },
       })
-      map.current!.addLayer({
+      m.addLayer({
         id: 'tracts-outline',
         type: 'line',
         source: 'tracts',
@@ -116,8 +98,8 @@ export default function TransitGapMap() {
           properties: s,
         })),
       }
-      map.current!.addSource('stops', { type: 'geojson', data: stopsGeoJSON })
-      map.current!.addLayer({
+      m.addSource('stops', { type: 'geojson', data: stopsGeoJSON })
+      m.addLayer({
         id: 'stops-circle',
         type: 'circle',
         source: 'stops',
@@ -134,22 +116,20 @@ export default function TransitGapMap() {
       })
 
       // Hover interaction on tracts
-      map.current!.on('mousemove', 'tracts-fill', (e) => {
+      m.on('mousemove', 'tracts-fill', (e) => {
         if (!e.features?.length) return
-        map.current!.getCanvas().style.cursor = 'crosshair'
+        m.getCanvas().style.cursor = 'crosshair'
         const props = e.features[0].properties as TractProps
         setHovered(props)
       })
-      map.current!.on('mouseleave', 'tracts-fill', () => {
-        map.current!.getCanvas().style.cursor = ''
+      m.on('mouseleave', 'tracts-fill', () => {
+        m.getCanvas().style.cursor = ''
         setHovered(null)
       })
 
       setLoading(false)
-    })
-
-    return () => { map.current?.remove(); map.current = null }
-  }, [])
+    },
+  })
 
   // Force GeoJSON source re-render when tracts layer updates (cleanup on unmount handled above)
   useEffect(() => {
@@ -160,10 +140,9 @@ export default function TransitGapMap() {
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-      <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
+      <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
 
-      {/* Back link */}
-      <Link to="/" style={styles.backLink}>← All maps</Link>
+      <BackLink />
 
       {/* Title + legend */}
       <div style={styles.panel}>
@@ -193,9 +172,7 @@ export default function TransitGapMap() {
         </div>
       )}
 
-      {loading && (
-        <div style={styles.loading}>Loading transit data…</div>
-      )}
+      {loading && <LoadingOverlay message="Loading transit data…" />}
     </div>
   )
 }
@@ -258,30 +235,5 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: 11,
     color: '#ccc',
     marginTop: 2,
-  },
-  loading: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%,-50%)',
-    background: 'rgba(255,255,255,0.9)',
-    padding: '12px 20px',
-    borderRadius: 6,
-    fontSize: 14,
-    color: '#333',
-  },
-  backLink: {
-    position: 'absolute',
-    top: 16,
-    right: 52,
-    background: 'rgba(255,255,255,0.95)',
-    color: '#1a1a2e',
-    textDecoration: 'none',
-    fontSize: 12,
-    fontWeight: 500,
-    padding: '6px 12px',
-    borderRadius: 6,
-    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-    zIndex: 10,
   },
 }

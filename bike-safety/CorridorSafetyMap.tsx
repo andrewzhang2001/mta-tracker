@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState, useMemo } from 'react'
-import { Link } from 'react-router-dom'
-import maplibregl from 'maplibre-gl'
-import 'maplibre-gl/dist/maplibre-gl.css'
+import { useEffect, useState, useMemo } from 'react'
+import type { GeoJSONSource, LngLatBoundsLike } from 'maplibre-gl'
+import { useMapLibre } from '../shared/map/useMapLibre'
+import { BackLink, LoadingOverlay } from '../shared/map/MapChrome'
 import corridorsUrl from './data/bike-corridors.json?url'
 
 interface YearStat {
@@ -63,7 +63,7 @@ const AFTER_COLOR = '#0ea5e9' // sky — after redesign
 const FATAL_COLOR = '#dc2626'
 const LANE_COLOR = '#15803d' // green — the protected bike lane
 
-function laneBBox(lanes: [number, number][][]): maplibregl.LngLatBoundsLike {
+function laneBBox(lanes: [number, number][][]): LngLatBoundsLike {
   let minLng = Infinity, minLat = Infinity, maxLng = -Infinity, maxLat = -Infinity
   for (const line of lanes) for (const [lng, lat] of line) {
     if (lng < minLng) minLng = lng
@@ -127,8 +127,6 @@ function pct(n: number | null) {
 }
 
 export default function CorridorSafetyMap() {
-  const mapContainer = useRef<HTMLDivElement>(null)
-  const map = useRef<maplibregl.Map | null>(null)
   const [data, setData] = useState<Dataset | null>(null)
   const [selectedId, setSelectedId] = useState<string>('queens-blvd')
   const [mode, setMode] = useState<Mode>('all')
@@ -164,27 +162,19 @@ export default function CorridorSafetyMap() {
     )
   }, [corridor, equalWindow, windowInfo])
 
-  // Init map
-  useEffect(() => {
-    if (!mapContainer.current || map.current) return
-    map.current = new maplibregl.Map({
-      container: mapContainer.current,
-      style: 'https://tiles.openfreemap.org/styles/positron',
-      center: [-73.895, 40.7395],
-      zoom: 13,
-    })
-    map.current.addControl(new maplibregl.NavigationControl(), 'top-right')
-
-    map.current.on('load', async () => {
+  const { containerRef, map } = useMapLibre({
+    center: [-73.895, 40.7395],
+    zoom: 13,
+    onLoad: async (m) => {
       const res = await fetch(corridorsUrl)
       const json: Dataset = await res.json()
 
-      map.current!.addSource('lane', {
+      m.addSource('lane', {
         type: 'geojson',
         data: { type: 'FeatureCollection', features: [] },
       })
       // Soft halo approximating the corridor band, then the crisp lane line.
-      map.current!.addLayer({
+      m.addLayer({
         id: 'lane-halo',
         type: 'line',
         source: 'lane',
@@ -195,7 +185,7 @@ export default function CorridorSafetyMap() {
           'line-width': ['interpolate', ['linear'], ['zoom'], 12, 6, 16, 22, 18, 40],
         },
       })
-      map.current!.addLayer({
+      m.addLayer({
         id: 'lane-line',
         type: 'line',
         source: 'lane',
@@ -203,11 +193,11 @@ export default function CorridorSafetyMap() {
         paint: { 'line-color': LANE_COLOR, 'line-width': 3, 'line-opacity': 0.9 },
       })
 
-      map.current!.addSource('crashes', {
+      m.addSource('crashes', {
         type: 'geojson',
         data: { type: 'FeatureCollection', features: [] },
       })
-      map.current!.addLayer({
+      m.addLayer({
         id: 'crashes',
         type: 'circle',
         source: 'crashes',
@@ -229,19 +219,14 @@ export default function CorridorSafetyMap() {
 
       setData(json)
       setLoading(false)
-    })
-
-    return () => {
-      map.current?.remove()
-      map.current = null
-    }
-  }, [])
+    },
+  })
 
   // Update lane geometry + crashes when corridor or mode changes
   useEffect(() => {
     if (!map.current || !corridor) return
-    const laneSrc = map.current.getSource('lane') as maplibregl.GeoJSONSource | undefined
-    const crashSrc = map.current.getSource('crashes') as maplibregl.GeoJSONSource | undefined
+    const laneSrc = map.current.getSource('lane') as GeoJSONSource | undefined
+    const crashSrc = map.current.getSource('crashes') as GeoJSONSource | undefined
     if (!laneSrc || !crashSrc) return
 
     laneSrc.setData({
@@ -281,8 +266,8 @@ export default function CorridorSafetyMap() {
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-      <div ref={mapContainer} style={{ width: '100%', height: '100%' }} />
-      <Link to="/" style={s.backLink}>← All maps</Link>
+      <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
+      <BackLink />
 
       {corridor && data && (
         <div style={s.panel}>
@@ -396,7 +381,7 @@ export default function CorridorSafetyMap() {
         </div>
       )}
 
-      {loading && <div style={s.loading}>Loading crash data…</div>}
+      {loading && <LoadingOverlay message="Loading crash data…" />}
     </div>
   )
 }
@@ -563,29 +548,4 @@ const s: Record<string, React.CSSProperties> = {
   toggleLabel: { fontSize: 11, color: '#555' },
   windowNote: { color: '#999', fontSize: 10 },
   source: { fontSize: 9, color: '#aaa', lineHeight: 1.4, margin: 0 },
-  backLink: {
-    position: 'absolute',
-    top: 16,
-    right: 52,
-    background: 'rgba(255,255,255,0.95)',
-    color: '#1a1a2e',
-    textDecoration: 'none',
-    fontSize: 12,
-    fontWeight: 500,
-    padding: '6px 12px',
-    borderRadius: 6,
-    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-    zIndex: 10,
-  },
-  loading: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%,-50%)',
-    background: 'rgba(255,255,255,0.9)',
-    padding: '12px 20px',
-    borderRadius: 6,
-    fontSize: 14,
-    color: '#333',
-  },
 }
