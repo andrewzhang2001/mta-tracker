@@ -12,6 +12,8 @@ const STATUS_LABEL: Record<Status, string> = {
 
 const ALL_FOCUS_AREAS = [...new Set(companies.flatMap(c => c.focusAreas))].sort()
 
+const bareDomain = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '')
+
 export default function CivicTechPage() {
   const [activeFocus, setActiveFocus] = useState<string | null>(null)
   const [activeStatus, setActiveStatus] = useState<Status | 'all'>('all')
@@ -65,34 +67,54 @@ export default function CivicTechPage() {
           </select>
         </div>
 
-        <ul style={s.list}>
-          {filtered.map(c => (
-            <li key={c.name} style={s.item}>
-              <div style={s.itemHead}>
-                <h2 style={s.itemTitle}>{c.name}</h2>
-                <span style={s.status}>{STATUS_LABEL[c.status]}</span>
-              </div>
-
-              <p style={s.desc}>{c.description}</p>
-
-              <div style={s.tagRow}>
-                {c.focusAreas.map(area => (
-                  <span key={area} style={s.tag}>{area}</span>
-                ))}
-                <span style={s.stage}>{c.stage}</span>
-              </div>
-
-              {c.notes && <p style={s.notes}>{c.notes}</p>}
-
-              <a href={c.website} target="_blank" rel="noreferrer" style={s.link}>
-                {c.website.replace(/^https?:\/\//, '')} →
-              </a>
-            </li>
-          ))}
-          {filtered.length === 0 && (
-            <li style={s.empty}>No companies match these filters.</li>
-          )}
-        </ul>
+        <div style={s.tableScroll}>
+          <table style={s.table}>
+            <thead>
+              <tr>
+                <th style={{ ...s.th, ...s.colCompany }}>Company</th>
+                <th style={{ ...s.th, ...s.colFocus }}>Focus</th>
+                <th style={{ ...s.th, ...s.colStage }}>Stage</th>
+                <th style={{ ...s.th, ...s.colStatus }}>Status</th>
+                <th style={{ ...s.th, ...s.colCareers }}>Careers</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map(c => (
+                <tr key={c.name}>
+                  <td style={s.td}>
+                    <a href={c.website} target="_blank" rel="noreferrer" style={s.companyLink}>
+                      {c.name}
+                    </a>
+                    <span style={s.domain}>{bareDomain(c.website)}</span>
+                    <p style={s.desc}>{c.description}</p>
+                    {c.notes && <p style={s.notes}>{c.notes}</p>}
+                  </td>
+                  <td style={s.td}>
+                    <div style={s.tagRow}>
+                      {c.focusAreas.map(area => (
+                        <span key={area} style={s.tag}>{area}</span>
+                      ))}
+                    </div>
+                  </td>
+                  <td style={{ ...s.td, ...s.stage }}>{c.stage}</td>
+                  <td style={{ ...s.td, ...s.status }}>{STATUS_LABEL[c.status]}</td>
+                  <td style={s.td}>
+                    <a href={c.careers} target="_blank" rel="noreferrer" style={s.careersLink}>
+                      Open roles →
+                    </a>
+                  </td>
+                </tr>
+              ))}
+              {filtered.length === 0 && (
+                <tr>
+                  <td style={{ ...s.td, ...s.empty }} colSpan={5}>
+                    No companies match these filters.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
 
         <footer style={s.footer}>
           Data lives in civic-tech/data/companies.ts — add a company by adding a row there.
@@ -111,7 +133,7 @@ const s: Record<string, React.CSSProperties> = {
     fontFamily: 'system-ui, sans-serif',
   },
   inner: {
-    maxWidth: 720,
+    maxWidth: 1040,
     margin: '0 auto',
     padding: '56px 24px 48px',
   },
@@ -136,6 +158,7 @@ const s: Record<string, React.CSSProperties> = {
     color: '#9090aa',
     lineHeight: 1.6,
     margin: 0,
+    maxWidth: 640,
   },
   filters: {
     display: 'flex',
@@ -169,48 +192,69 @@ const s: Record<string, React.CSSProperties> = {
     fontFamily: 'inherit',
     marginLeft: 'auto',
   },
-  list: {
-    listStyle: 'none',
-    display: 'grid',
-    gap: 16,
-    margin: 0,
-    padding: 0,
-  },
-  item: {
-    background: '#1a1a2e',
+  tableScroll: {
+    overflowX: 'auto',
     border: '1px solid #2a2a40',
     borderRadius: 12,
-    padding: '20px 22px 22px',
+    background: '#1a1a2e',
   },
-  itemHead: {
-    display: 'flex',
-    alignItems: 'baseline',
-    justifyContent: 'space-between',
-    gap: 12,
-    marginBottom: 6,
+  table: {
+    width: '100%',
+    minWidth: 760,
+    borderCollapse: 'collapse',
+    tableLayout: 'fixed',
   },
-  itemTitle: {
-    fontSize: 18,
+  th: {
+    textAlign: 'left',
+    fontSize: 11,
     fontWeight: 600,
-    margin: 0,
+    letterSpacing: '0.6px',
+    textTransform: 'uppercase',
+    color: '#6a6a88',
+    padding: '12px 16px',
+    borderBottom: '1px solid #2a2a40',
   },
-  status: {
+  colCompany: { width: '42%' },
+  colFocus: { width: '22%' },
+  colStage: { width: '14%' },
+  colStatus: { width: '11%' },
+  colCareers: { width: '11%' },
+  td: {
+    verticalAlign: 'top',
+    padding: '16px',
+    borderBottom: '1px solid #23233a',
+    fontSize: 13,
+  },
+  companyLink: {
+    fontSize: 15,
+    fontWeight: 600,
+    color: '#e8e8f0',
+    textDecoration: 'none',
+  },
+  domain: {
+    display: 'block',
     fontSize: 11,
     color: '#5a5a72',
-    whiteSpace: 'nowrap',
+    marginTop: 2,
   },
   desc: {
-    fontSize: 13,
+    fontSize: 12,
     color: '#a8a8c0',
-    lineHeight: 1.65,
-    margin: '0 0 14px',
+    lineHeight: 1.6,
+    margin: '8px 0 0',
+  },
+  notes: {
+    fontSize: 12,
+    color: '#70708c',
+    lineHeight: 1.6,
+    borderLeft: '2px solid #2f2f48',
+    paddingLeft: 10,
+    margin: '10px 0 0',
   },
   tagRow: {
     display: 'flex',
     flexWrap: 'wrap',
-    alignItems: 'center',
     gap: 6,
-    marginBottom: 14,
   },
   tag: {
     fontSize: 11,
@@ -221,27 +265,24 @@ const s: Record<string, React.CSSProperties> = {
     padding: '3px 9px',
   },
   stage: {
-    fontSize: 11,
-    color: '#70708c',
-    marginLeft: 4,
-  },
-  notes: {
+    color: '#9090aa',
     fontSize: 12,
-    color: '#70708c',
-    lineHeight: 1.6,
-    borderLeft: '2px solid #2f2f48',
-    paddingLeft: 12,
-    margin: '0 0 16px',
   },
-  link: {
-    fontSize: 13,
-    color: '#6b9fff',
+  status: {
+    color: '#70708c',
+    fontSize: 12,
+    whiteSpace: 'nowrap',
+  },
+  careersLink: {
+    fontSize: 12,
     fontWeight: 500,
+    color: '#6b9fff',
     textDecoration: 'none',
+    whiteSpace: 'nowrap',
   },
   empty: {
-    fontSize: 13,
     color: '#5a5a72',
+    borderBottom: 'none',
   },
   footer: {
     marginTop: 40,
