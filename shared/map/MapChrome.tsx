@@ -32,7 +32,7 @@ const loadingStyle: CSSProperties = {
 }
 
 export function BackLink() {
-  return <Link to="/" style={backLinkStyle}>← All maps</Link>
+  return <Link to="/transit" style={backLinkStyle}>← All maps</Link>
 }
 
 export function LoadingOverlay({ message }: { message: string }) {

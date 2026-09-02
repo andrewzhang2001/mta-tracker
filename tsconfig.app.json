@@ -18,5 +18,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "shared", "transit-gap", "ridership", "bike-safety", "bike-network", "archive"]
+  "include": ["src", "shared", "civic-tech", "transit-gap", "ridership", "bike-safety", "bike-network", "archive"]
 }

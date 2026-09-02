@@ -1,7 +1,14 @@
 # mta-tracker
 
-NYC transit and street-safety visualizations, plus a couple of standalone MTA
-experiments.
+NYC transit and street-safety visualizations, a civic tech company tracker, plus
+a couple of standalone MTA experiments.
+
+The root route `/` is a hub with two sections:
+
+| Route | What it is |
+|---|---|
+| `/transit` | NYC Transit Explorer — the four maps below |
+| [`/civic-tech`](civic-tech/) | Tracked list of civic tech companies, for a job search |
 
 ## Layout
 
@@ -31,8 +38,9 @@ Everything else:
 
 | Folder | What it is |
 |---|---|
-| `src/` | App shell only — router, landing page, global CSS |
-| `shared/` | Code used by more than one feature (currently GTFS download + CSV parsing) |
+| [civic-tech/](civic-tech/) | The `/civic-tech` route — hand-maintained company list, no pipeline |
+| `src/` | App shell only — router, the `/` and `/transit` hub pages, global CSS |
+| `shared/` | Code used by more than one feature (GTFS download + CSV parsing, MapLibre setup + map chrome) |
 | [archive/](archive/) | The `/archive` route and the retired projects it lists — still runnable, no longer developed |
 | [density_heatmap/](density_heatmap/) | Standalone: bus + subway route density over population (not started) |
 

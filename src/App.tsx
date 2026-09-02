@@ -1,6 +1,8 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
+import TransitExplorer from './pages/TransitExplorer'
+import CivicTechPage from '../civic-tech/CivicTechPage'
 import TransitGapMap from '../transit-gap/TransitGapMap'
 import RidershipMap from '../ridership/RidershipMap'
 import CorridorSafetyMap from '../bike-safety/CorridorSafetyMap'
@@ -16,6 +18,8 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/transit" element={<TransitExplorer />} />
+        <Route path="/civic-tech" element={<CivicTechPage />} />
         <Route path="/transit-gap" element={<TransitGapMap />} />
         <Route path="/ridership" element={<RidershipMap />} />
         <Route path="/bike-safety" element={<CorridorSafetyMap />} />
