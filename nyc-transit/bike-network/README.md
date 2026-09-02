@@ -1,6 +1,6 @@
 # Bike Network Growth
 
-Route: [`/bike-network`](../src/App.tsx) · Component: [`BikeNetworkMap.tsx`](BikeNetworkMap.tsx)
+Route: [`/nyc-transit/bike-network`](../../src/App.tsx) · Component: [`BikeNetworkMap.tsx`](BikeNetworkMap.tsx)
 
 NYC's bike lanes growing from 1997 to today — 178 to 1,276 lane miles — and the
 rise of protected lanes after 2007. Scrub the year to watch the network fill in.

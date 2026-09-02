@@ -1,6 +1,6 @@
 # Transit Access Gap
 
-Route: [`/transit-gap`](../src/App.tsx) · Component: [`TransitGapMap.tsx`](TransitGapMap.tsx)
+Route: [`/nyc-transit/transit-gap`](../../src/App.tsx) · Component: [`TransitGapMap.tsx`](TransitGapMap.tsx)
 
 How long does it take to board a subway from anywhere in NYC? Color shows access
 time, opacity shows population density — so the eye lands on the places where

@@ -1,4 +1,4 @@
-// Downloads MTA subway GTFS static ZIP and outputs transit-gap/data/stops.json
+// Downloads MTA subway GTFS static ZIP and outputs nyc-transit/transit-gap/data/stops.json
 // Each entry: { id, name, lat, lng, headway_min } for weekday AM peak (7–9 AM)
 import { writeFileSync, mkdirSync } from 'fs'
 import { join, dirname } from 'path'
@@ -111,7 +111,7 @@ async function main() {
 
   mkdirSync(OUT_DIR, { recursive: true })
   writeFileSync(join(OUT_DIR, 'stops.json'), JSON.stringify(stops, null, 2))
-  console.log('Wrote transit-gap/data/stops.json')
+  console.log('Wrote nyc-transit/transit-gap/data/stops.json')
 }
 
 main().catch(err => { console.error(err); process.exit(1) })

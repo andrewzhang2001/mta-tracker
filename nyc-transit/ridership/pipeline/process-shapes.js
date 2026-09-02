@@ -1,5 +1,5 @@
 // Extracts subway line geometry from MTA GTFS shapes.txt and outputs
-// ridership/data/subway-lines.geojson — one LineString feature per unique shape,
+// nyc-transit/ridership/data/subway-lines.geojson — one LineString feature per unique shape,
 // colored by the official MTA route color from routes.txt.
 import { writeFileSync, mkdirSync } from 'fs'
 import { join, dirname } from 'path'
@@ -87,7 +87,7 @@ async function main() {
   const outPath = join(OUT_DIR, 'subway-lines.geojson')
   writeFileSync(outPath, JSON.stringify(geojson))
   const kb = (JSON.stringify(geojson).length / 1024).toFixed(0)
-  console.log(`Wrote ridership/data/subway-lines.geojson (${kb} KB)`)
+  console.log(`Wrote nyc-transit/ridership/data/subway-lines.geojson (${kb} KB)`)
 }
 
 main().catch(err => { console.error(err); process.exit(1) })

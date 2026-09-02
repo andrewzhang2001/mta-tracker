@@ -1,6 +1,6 @@
 # Streetfight — Corridor Safety
 
-Route: [`/bike-safety`](../src/App.tsx) · Component: [`CorridorSafetyMap.tsx`](CorridorSafetyMap.tsx)
+Route: [`/nyc-transit/bike-safety`](../../src/App.tsx) · Component: [`CorridorSafetyMap.tsx`](CorridorSafetyMap.tsx)
 
 Did protected bike lanes make NYC streets safer? Crash injuries before vs. after
 the redesign of four corridors, measured against the citywide trend so a drop

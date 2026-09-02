@@ -1,12 +1,12 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import TransitExplorer from './pages/TransitExplorer'
 import CivicTechPage from '../civic-tech/CivicTechPage'
-import TransitGapMap from '../transit-gap/TransitGapMap'
-import RidershipMap from '../ridership/RidershipMap'
-import CorridorSafetyMap from '../bike-safety/CorridorSafetyMap'
-import BikeNetworkMap from '../bike-network/BikeNetworkMap'
+import TransitExplorer from '../nyc-transit/TransitExplorer'
+import TransitGapMap from '../nyc-transit/transit-gap/TransitGapMap'
+import RidershipMap from '../nyc-transit/ridership/RidershipMap'
+import CorridorSafetyMap from '../nyc-transit/bike-safety/CorridorSafetyMap'
+import BikeNetworkMap from '../nyc-transit/bike-network/BikeNetworkMap'
 
 // Archived projects are lazy-loaded: they're rarely visited, and simple-navigation
 // pulls in protobufjs (~200 kB) that the main visualizations have no use for.
@@ -18,12 +18,12 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/transit" element={<TransitExplorer />} />
         <Route path="/civic-tech" element={<CivicTechPage />} />
-        <Route path="/transit-gap" element={<TransitGapMap />} />
-        <Route path="/ridership" element={<RidershipMap />} />
-        <Route path="/bike-safety" element={<CorridorSafetyMap />} />
-        <Route path="/bike-network" element={<BikeNetworkMap />} />
+        <Route path="/nyc-transit" element={<TransitExplorer />} />
+        <Route path="/nyc-transit/transit-gap" element={<TransitGapMap />} />
+        <Route path="/nyc-transit/ridership" element={<RidershipMap />} />
+        <Route path="/nyc-transit/bike-safety" element={<CorridorSafetyMap />} />
+        <Route path="/nyc-transit/bike-network" element={<BikeNetworkMap />} />
         <Route
           path="/archive"
           element={<Suspense fallback={<Loading />}><ArchivePage /></Suspense>}

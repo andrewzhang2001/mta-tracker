@@ -8,10 +8,10 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "data:transit-gap": "node transit-gap/pipeline/process-gtfs.js && node --env-file=.env transit-gap/pipeline/process-tracts.js",
-    "data:ridership": "node ridership/pipeline/process-ridership.js && node ridership/pipeline/process-shapes.js",
-    "data:bike-safety": "node bike-safety/pipeline/process-bike-safety.js",
-    "data:bike-network": "node bike-network/pipeline/process-bike-network.js",
+    "data:transit-gap": "node nyc-transit/transit-gap/pipeline/process-gtfs.js && node --env-file=.env nyc-transit/transit-gap/pipeline/process-tracts.js",
+    "data:ridership": "node nyc-transit/ridership/pipeline/process-ridership.js && node nyc-transit/ridership/pipeline/process-shapes.js",
+    "data:bike-safety": "node nyc-transit/bike-safety/pipeline/process-bike-safety.js",
+    "data:bike-network": "node nyc-transit/bike-network/pipeline/process-bike-network.js",
     "data:all": "npm run data:transit-gap && npm run data:ridership && npm run data:bike-safety && npm run data:bike-network"
   },
   "dependencies": {

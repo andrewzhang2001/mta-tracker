@@ -3,46 +3,49 @@
 NYC transit and street-safety visualizations, a civic tech company tracker, plus
 a couple of standalone MTA experiments.
 
-The root route `/` is a hub with two sections:
-
-| Route | What it is |
-|---|---|
-| `/transit` | NYC Transit Explorer — the four maps below |
-| [`/civic-tech`](civic-tech/) | Tracked list of civic tech companies, for a job search |
-
 ## Layout
 
-The site is organized **by visualization, not by file type**. Each top-level
-folder is one thing you can look at on the site, and it holds everything that
+The repo is organized **by surface, not by file type**, and it nests the way the
+site nests. Every folder is a thing you can navigate to, holding everything that
 thing needs — the component, its data, and the pipeline that built the data:
 
 ```
-bike-network/
-├── BikeNetworkMap.tsx          UI
-├── data/bike-network.geojson   what it renders
-├── pipeline/                   how that data gets built
-└── README.md                   what it is, where the data came from
+nyc-transit/                    →  /nyc-transit
+├── TransitExplorer.tsx             the section's landing page
+├── bike-network/               →  /nyc-transit/bike-network
+│   ├── BikeNetworkMap.tsx          UI
+│   ├── data/bike-network.geojson   what it renders
+│   ├── pipeline/                   how that data gets built
+│   └── README.md                   what it is, where the data came from
+├── ridership/                  →  /nyc-transit/ridership
+├── transit-gap/                →  /nyc-transit/transit-gap
+├── bike-safety/                →  /nyc-transit/bike-safety
+└── shared/                         used by 2+ maps, by nothing outside
+
+civic-tech/                     →  /civic-tech
+archive/                        →  /archive
 ```
 
-So the repo navigates the way the site does. To change what `/bike-network`
-shows, everything you need is in `bike-network/`.
+So the folder path and the URL path are the same string. To change what
+`/nyc-transit/bike-network` shows, everything you need is in
+`nyc-transit/bike-network/`.
 
-| Folder | Route | What it shows |
+| Folder | Route | What it is |
 |---|---|---|
-| [transit-gap/](transit-gap/) | `/transit-gap` | Time to reach a subway from anywhere in NYC, weighted by density |
-| [ridership/](ridership/) | `/ridership` | Subway ridership over a 24h day, by day type |
-| [bike-safety/](bike-safety/) | `/bike-safety` | Crash injuries before vs. after four protected-lane redesigns |
-| [bike-network/](bike-network/) | `/bike-network` | Bike lane growth, 1997–today |
+| [nyc-transit/](nyc-transit/) | `/nyc-transit` | Four maps on transit access, ridership, and bike infrastructure |
+| [civic-tech/](civic-tech/) | `/civic-tech` | Hand-maintained list of civic tech companies, for a job search — no pipeline |
+| [archive/](archive/) | `/archive` | Retired projects — still runnable, no longer developed |
 
 Everything else:
 
 | Folder | What it is |
 |---|---|
-| [civic-tech/](civic-tech/) | The `/civic-tech` route — hand-maintained company list, no pipeline |
-| `src/` | App shell only — router, the `/` and `/transit` hub pages, global CSS |
-| `shared/` | Code used by more than one feature (GTFS download + CSV parsing, MapLibre setup + map chrome) |
-| [archive/](archive/) | The `/archive` route and the retired projects it lists — still runnable, no longer developed |
+| `src/` | App shell only — router, the `/` hub page, global CSS |
 | [density_heatmap/](density_heatmap/) | Standalone: bus + subway route density over population (not started) |
+
+Shared code lives at the narrowest scope that covers its consumers.
+`nyc-transit/shared/` holds what the maps share; nothing sits in a repo-root
+`shared/` until a second section needs it.
 
 ## Running
 
@@ -75,7 +78,7 @@ fixed path.
 ## Data sources
 
 - **MTA GTFS static** — full schedule as a ZIP of CSVs. Stop headways and subway
-  line geometry both come from here; shared loader in `shared/gtfs.js`.
+  line geometry both come from here; shared loader in `nyc-transit/shared/gtfs.js`.
 - **MTA GTFS-RT** — live protobuf feed, ~15–30 s refresh. Used by
   `archive/simple-navigation/` only. No API key needed — the feeds are public
   and CORS-enabled, so the browser reads them directly.

@@ -1,6 +1,6 @@
 # 24h Ridership
 
-Route: [`/ridership`](../src/App.tsx) · Component: [`RidershipMap.tsx`](RidershipMap.tsx)
+Route: [`/nyc-transit/ridership`](../../src/App.tsx) · Component: [`RidershipMap.tsx`](RidershipMap.tsx)
 
 Subway ridership pulsing through the city over a day — the morning wave, the
 evening reversal, the late-night collapse. Ridership is normalized to average

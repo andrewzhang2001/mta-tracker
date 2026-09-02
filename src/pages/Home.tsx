@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 const sections = [
   {
-    to: '/transit',
+    to: '/nyc-transit',
     title: 'NYC Transit Explorer',
     description: 'Four interactive maps on how the subway and bike network serve New York — access gaps, ridership over a day, crash outcomes after protected lanes, and network growth since 1997.',
     meta: '4 maps',

@@ -57,7 +57,7 @@ its own reads like a bug, so the page shows the MTA notice that explains it
   *estimated* rather than showing them as real-time.
 - **Stop IDs come from GTFS static**, not from the real-time feed. If a
   station's IDs ever change, pull `stops.txt` with `fetchGtfs()` from
-  [`shared/gtfs.js`](../../shared/gtfs.js) and match on `stop_name`. Suffixes
+  [`nyc-transit/shared/gtfs.js`](../../nyc-transit/shared/gtfs.js) and match on `stop_name`. Suffixes
   matter: `N` is Queens/uptown-bound, `S` is Brooklyn/downtown-bound.
 
 ## The Flask version

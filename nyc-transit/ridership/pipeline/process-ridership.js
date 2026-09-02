@@ -1,5 +1,5 @@
 // Fetches MTA hourly ridership for Sep 2024, split by day type, and outputs
-// ridership/data/ridership.json.
+// nyc-transit/ridership/data/ridership.json.
 //
 // Output format: [{id, name, lat, lng, lineColors, byDayHour: {weekday, friday, saturday, sunday}}]
 // Values are average ridership per day (sum / number of matching days in Sep 2024),
@@ -148,7 +148,7 @@ async function main() {
 
   mkdirSync(OUT_DIR, { recursive: true })
   writeFileSync(join(OUT_DIR, 'ridership.json'), JSON.stringify(stations))
-  console.log('Wrote ridership/data/ridership.json')
+  console.log('Wrote nyc-transit/ridership/data/ridership.json')
 }
 
 main().catch(err => { console.error(err); process.exit(1) })

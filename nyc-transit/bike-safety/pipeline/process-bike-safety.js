@@ -1,4 +1,4 @@
-// Builds bike-safety/data/bike-corridors.json: before/after traffic-crash injury data
+// Builds nyc-transit/bike-safety/data/bike-corridors.json: before/after traffic-crash injury data
 // for NYC streets that received protected bike lanes / road diets — the kind of
 // redesigns argued for in Janette Sadik-Khan's "Streetfight".
 //
@@ -298,7 +298,7 @@ async function main() {
   mkdirSync(OUT_DIR, { recursive: true })
   const path = join(OUT_DIR, 'bike-corridors.json')
   writeFileSync(path, JSON.stringify(out))
-  console.log(`\nWrote bike-safety/data/bike-corridors.json (${(JSON.stringify(out).length / 1024).toFixed(0)} KB)`)
+  console.log(`\nWrote nyc-transit/bike-safety/data/bike-corridors.json (${(JSON.stringify(out).length / 1024).toFixed(0)} KB)`)
 }
 
 main().catch((err) => { console.error(err); process.exit(1) })

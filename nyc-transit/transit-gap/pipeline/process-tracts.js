@@ -1,5 +1,5 @@
 // Downloads NYC census tract GeoJSON + ACS population, joins with stops.json,
-// and outputs transit-gap/data/tracts.geojson with per-tract access scores.
+// and outputs nyc-transit/transit-gap/data/tracts.geojson with per-tract access scores.
 //
 // Access score = expected minutes to board a train from the tract centroid:
 //   walking_min (centroid → nearest station at 5 km/h) + headway_min / 2
@@ -133,7 +133,7 @@ async function main() {
 
   const outPath = join(DATA_DIR, 'tracts.geojson')
   writeFileSync(outPath, JSON.stringify(tracts))
-  console.log(`Wrote transit-gap/data/tracts.geojson`)
+  console.log(`Wrote nyc-transit/transit-gap/data/tracts.geojson`)
 
   // Quick summary
   const scores = tracts.features.map(f => f.properties.access_min).filter(Boolean)

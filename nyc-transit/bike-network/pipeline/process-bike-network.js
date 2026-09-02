@@ -1,4 +1,4 @@
-// Builds bike-network/data/bike-network.geojson: every NYC bike-route segment, tagged
+// Builds nyc-transit/bike-network/data/bike-network.geojson: every NYC bike-route segment, tagged
 // with its install year and facility class, so the frontend can animate the
 // network growing over time and tally lane miles.
 //
@@ -138,7 +138,7 @@ async function main() {
   console.log(`Animated range ${FLOOR_YEAR}–${maxYear} · base (≤${FLOOR_YEAR}): ${fc.summary.baseMiles} mi`)
   const last = summary[summary.length - 1]
   console.log(`Cumulative by ${last.year}: protected ${last.protected}, painted ${last.painted}, greenway ${last.greenway} (total ${last.total} mi)`)
-  console.log(`Wrote bike-network/data/bike-network.geojson (${(json.length / 1024 / 1024).toFixed(1)} MB)`)
+  console.log(`Wrote nyc-transit/bike-network/data/bike-network.geojson (${(json.length / 1024 / 1024).toFixed(1)} MB)`)
 }
 
 main().catch((err) => { console.error(err); process.exit(1) })

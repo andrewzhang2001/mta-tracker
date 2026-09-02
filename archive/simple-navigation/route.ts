@@ -7,7 +7,7 @@
  *
  * Port of `route_config.py` from the Flask version of this app (in git history
  * at `simple_navigation/`). Stop IDs come from MTA GTFS static data — see
- * `shared/gtfs.js` for the downloader.
+ * `nyc-transit/shared/gtfs.js` for the downloader.
  */
 
 export type FeedName = 'ace' | 'bdfm' | 'g' | 'jz' | 'l' | 'nqrw' | '123456s' | 'si'
