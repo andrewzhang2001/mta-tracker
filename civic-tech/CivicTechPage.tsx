@@ -33,7 +33,7 @@ export default function CivicTechPage() {
           <Link to="/" style={s.back}>← All projects</Link>
           <h1 style={s.title}>Civic Tech Startups</h1>
           <p style={s.subtitle}>
-            Companies working on transit, urban planning, and civic infrastructure —
+            Companies working on transit, urban planning, and govtech more broadly —
             tracked while researching where to apply. Still in early discovery.
           </p>
         </header>
@@ -72,6 +72,7 @@ export default function CivicTechPage() {
             <thead>
               <tr>
                 <th style={{ ...s.th, ...s.colCompany }}>Company</th>
+                <th style={{ ...s.th, ...s.colTeam }}>Team</th>
                 <th style={{ ...s.th, ...s.colFocus }}>Focus</th>
                 <th style={{ ...s.th, ...s.colStage }}>Stage</th>
                 <th style={{ ...s.th, ...s.colStatus }}>Status</th>
@@ -88,6 +89,21 @@ export default function CivicTechPage() {
                     <span style={s.domain}>{bareDomain(c.website)}</span>
                     <p style={s.desc}>{c.description}</p>
                     {c.notes && <p style={s.notes}>{c.notes}</p>}
+                  </td>
+                  <td style={s.td}>
+                    {c.founders.length > 0 ? (
+                      <ul style={s.founderList}>
+                        {c.founders.map(f => (
+                          <li key={f.name}>
+                            <span style={s.founderName}>{f.name}</span>
+                            <span style={s.founderRole}>{f.role}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <span style={s.unknown}>Founders unknown</span>
+                    )}
+                    <span style={s.size}>{c.size} people</span>
                   </td>
                   <td style={s.td}>
                     <div style={s.tagRow}>
@@ -107,7 +123,7 @@ export default function CivicTechPage() {
               ))}
               {filtered.length === 0 && (
                 <tr>
-                  <td style={{ ...s.td, ...s.empty }} colSpan={5}>
+                  <td style={{ ...s.td, ...s.empty }} colSpan={6}>
                     No companies match these filters.
                   </td>
                 </tr>
@@ -200,7 +216,7 @@ const s: Record<string, React.CSSProperties> = {
   },
   table: {
     width: '100%',
-    minWidth: 760,
+    minWidth: 900,
     borderCollapse: 'collapse',
     tableLayout: 'fixed',
   },
@@ -214,11 +230,12 @@ const s: Record<string, React.CSSProperties> = {
     padding: '12px 16px',
     borderBottom: '1px solid #2a2a40',
   },
-  colCompany: { width: '42%' },
-  colFocus: { width: '22%' },
-  colStage: { width: '14%' },
-  colStatus: { width: '11%' },
-  colCareers: { width: '11%' },
+  colCompany: { width: '34%' },
+  colTeam: { width: '19%' },
+  colFocus: { width: '17%' },
+  colStage: { width: '12%' },
+  colStatus: { width: '9%' },
+  colCareers: { width: '9%' },
   td: {
     verticalAlign: 'top',
     padding: '16px',
@@ -250,6 +267,37 @@ const s: Record<string, React.CSSProperties> = {
     borderLeft: '2px solid #2f2f48',
     paddingLeft: 10,
     margin: '10px 0 0',
+  },
+  founderList: {
+    listStyle: 'none',
+    margin: 0,
+    padding: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 8,
+  },
+  founderName: {
+    display: 'block',
+    fontSize: 13,
+    color: '#d0d0e0',
+  },
+  founderRole: {
+    display: 'block',
+    fontSize: 11,
+    color: '#6a6a88',
+    marginTop: 1,
+  },
+  size: {
+    display: 'block',
+    fontSize: 11,
+    color: '#8888a8',
+    marginTop: 12,
+    paddingTop: 10,
+    borderTop: '1px solid #23233a',
+  },
+  unknown: {
+    fontSize: 12,
+    color: '#5a5a72',
   },
   tagRow: {
     display: 'flex',
