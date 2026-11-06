@@ -1,0 +1,1348 @@
+{
+  "source": {
+    "dataset": "MTA Statement of Operations: Beginning 2019",
+    "publisher": "NYC Open Data",
+    "file": "MTA_Statement_of_Operations__Beginning_2019_20261102.csv",
+    "rows": 264891,
+    "actualsThrough": "2026-09"
+  },
+  "agencies": {
+    "BT": "Bridges and Tunnels",
+    "CBDTP": "Central Business District Tolling Program",
+    "CRR": "Commuter Railroads (LIRR + Metro-North)",
+    "FMTAC": "First Mutual Transportation Assurance Company",
+    "GCMCOC": "Grand Central Madison Concourse Operating Company",
+    "LIRR": "Long Island Rail Road",
+    "MNR": "Metro-North Railroad",
+    "MTABC": "MTA Bus Company",
+    "MTAHQ": "MTA Headquarters",
+    "NYCT": "New York City Transit",
+    "Non-Agency Corporate Account": "Non-Agency Corporate Account",
+    "SIR": "Staten Island Railway"
+  },
+  "agencyNotes": {
+    "CRR": "Name inferred. The dataset reports debt service for the Long Island Rail Road and Metro-North combined under \"CRR\"."
+  },
+  "expenses": [
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "2 Broadway Certificates of Participation (2 Bdwy COPS w/o Int + Int)",
+      "group": "debt-service",
+      "amount": 58641.46
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Claims",
+      "group": "non-labor",
+      "amount": 400753.88
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Debt Service on Existing TBTA 2nd Subordinate Debt",
+      "group": "debt-service",
+      "amount": 803529.66
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Electric Power",
+      "group": "non-labor",
+      "amount": 5874405.51
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Fuel",
+      "group": "non-labor",
+      "amount": 2200207.85
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Health and Welfare",
+      "group": "labor",
+      "amount": 26822801.65
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Insurance",
+      "group": "non-labor",
+      "amount": 11428586.03
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Maintenance and Other Operating Contracts",
+      "group": "non-labor",
+      "amount": 137981627.33
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Materials and Supplies",
+      "group": "non-labor",
+      "amount": 5024545.37
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "OPEB Current Payments",
+      "group": "labor",
+      "amount": 36809460.81
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Other Business Expenses",
+      "group": "non-labor",
+      "amount": 53185367.33
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Other Fringe Benefits",
+      "group": "labor",
+      "amount": 12231712.05
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Overtime",
+      "group": "labor",
+      "amount": 31732156.62
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Payroll",
+      "group": "labor",
+      "amount": 107826531.49
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Pension",
+      "group": "labor",
+      "amount": 38264420.81
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Professional Services Contracts",
+      "group": "non-labor",
+      "amount": 27190252.89
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "Reimbursable Overhead",
+      "group": "labor",
+      "amount": -5718863
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "TBTA General Revenue Bonds",
+      "group": "debt-service",
+      "amount": 429877605.95
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "category": "TBTA Subordinate Revenue Bonds",
+      "group": "debt-service",
+      "amount": 2308028.4
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CBDTP",
+      "category": "Electric Power",
+      "group": "non-labor",
+      "amount": 278215.65
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CBDTP",
+      "category": "Health and Welfare",
+      "group": "labor",
+      "amount": 610208.91
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CBDTP",
+      "category": "Maintenance and Other Operating Contracts",
+      "group": "non-labor",
+      "amount": 81716370.92
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CBDTP",
+      "category": "Other Business Expenses",
+      "group": "non-labor",
+      "amount": 35184026.75
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CBDTP",
+      "category": "Other Fringe Benefits",
+      "group": "labor",
+      "amount": 399821.84
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CBDTP",
+      "category": "Payroll",
+      "group": "labor",
+      "amount": 3049083.51
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CBDTP",
+      "category": "Pension",
+      "group": "labor",
+      "amount": 519978.43
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CBDTP",
+      "category": "Professional Services Contracts",
+      "group": "non-labor",
+      "amount": 16392200.52
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CRR",
+      "category": "2 Broadway Certificates of Participation (2 Bdwy COPS w/o Int + Int)",
+      "group": "debt-service",
+      "amount": 391133.42
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CRR",
+      "category": "Debt Service for Payroll Mobility Tax Bonds",
+      "group": "debt-service",
+      "amount": 221820329.87
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CRR",
+      "category": "MTA Transportation Revenue Bond Anticipation Notes",
+      "group": "debt-service",
+      "amount": 0
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CRR",
+      "category": "Net Dedicated Tax Fund Bonds Debt Service",
+      "group": "debt-service",
+      "amount": 49861155.83
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CRR",
+      "category": "Net Transportation Revenue Bonds Debt Service",
+      "group": "debt-service",
+      "amount": 375495060.88
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CRR",
+      "category": "TBTA General Revenue Bonds",
+      "group": "debt-service",
+      "amount": 84348121.71
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CRR",
+      "category": "TBTA Subordinate Revenue Bonds",
+      "group": "debt-service",
+      "amount": 4595266.62
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "FMTAC",
+      "category": "Claims",
+      "group": "non-labor",
+      "amount": 206532000
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "FMTAC",
+      "category": "Insurance",
+      "group": "non-labor",
+      "amount": -177357000
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "FMTAC",
+      "category": "Other Business Expenses",
+      "group": "non-labor",
+      "amount": 3018000
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "FMTAC",
+      "category": "Other Exp Adjustments",
+      "group": "adjustments",
+      "amount": -30567000
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "GCMCOC",
+      "category": "Electric Power",
+      "group": "non-labor",
+      "amount": 4977562.99
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "GCMCOC",
+      "category": "Maintenance and Other Operating Contracts",
+      "group": "non-labor",
+      "amount": 81754807.18
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "GCMCOC",
+      "category": "Other Business Expenses",
+      "group": "non-labor",
+      "amount": 19818.9
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "GCMCOC",
+      "category": "Other Fringe Benefits",
+      "group": "labor",
+      "amount": 743067.44
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "GCMCOC",
+      "category": "Payroll",
+      "group": "labor",
+      "amount": 1447505.19
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "GCMCOC",
+      "category": "Professional Services Contracts",
+      "group": "non-labor",
+      "amount": 1704128.5
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Claims",
+      "group": "non-labor",
+      "amount": 7775028.06
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Electric Power",
+      "group": "non-labor",
+      "amount": 119365070.09
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Fuel",
+      "group": "non-labor",
+      "amount": 26282749.62
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Health and Welfare",
+      "group": "labor",
+      "amount": 169930940.63
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Insurance",
+      "group": "non-labor",
+      "amount": 32129272.94
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Maintenance and Other Operating Contracts",
+      "group": "non-labor",
+      "amount": 97545057.28
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Materials and Supplies",
+      "group": "non-labor",
+      "amount": 143443572.26
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "OPEB Current Payments",
+      "group": "labor",
+      "amount": 78680353.04
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Other Business Expenses",
+      "group": "non-labor",
+      "amount": 24231738.93
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Other Fringe Benefits",
+      "group": "labor",
+      "amount": 194912678.97
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Overtime",
+      "group": "labor",
+      "amount": 170772354.76
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Payroll",
+      "group": "labor",
+      "amount": 705565933.19
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Pension",
+      "group": "labor",
+      "amount": 195756039.39
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Professional Services Contracts",
+      "group": "non-labor",
+      "amount": 46368761.14
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "category": "Reimbursable Overhead",
+      "group": "labor",
+      "amount": -41772445.68
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Claims",
+      "group": "non-labor",
+      "amount": 5883714.39
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Electric Power",
+      "group": "non-labor",
+      "amount": 102064439.12
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Fuel",
+      "group": "non-labor",
+      "amount": 23777829.64
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Health and Welfare",
+      "group": "labor",
+      "amount": 143841922.77
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Insurance",
+      "group": "non-labor",
+      "amount": 31962929.88
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Maintenance and Other Operating Contracts",
+      "group": "non-labor",
+      "amount": 110798053.58
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Materials and Supplies",
+      "group": "non-labor",
+      "amount": 127750384.95
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "OPEB Current Payments",
+      "group": "labor",
+      "amount": 55248398.01
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Other Business Expenses",
+      "group": "non-labor",
+      "amount": 27631272.62
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Other Fringe Benefits",
+      "group": "labor",
+      "amount": 155218400.84
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Overtime",
+      "group": "labor",
+      "amount": 88997141.97
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Payroll",
+      "group": "labor",
+      "amount": 657021982.11
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Pension",
+      "group": "labor",
+      "amount": 134101145.88
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Professional Services Contracts",
+      "group": "non-labor",
+      "amount": 78565520.59
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "category": "Reimbursable Overhead",
+      "group": "labor",
+      "amount": -107767831.81
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Claims",
+      "group": "non-labor",
+      "amount": 160024054.1
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Debt Service for Payroll Mobility Tax Bonds",
+      "group": "debt-service",
+      "amount": 3874539.28
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Electric Power",
+      "group": "non-labor",
+      "amount": 1910981.76
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Fuel",
+      "group": "non-labor",
+      "amount": 29887863.23
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Health and Welfare",
+      "group": "labor",
+      "amount": 111070099.77
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Insurance",
+      "group": "non-labor",
+      "amount": 9048671.45
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "MTA Transportation Revenue Bond Anticipation Notes",
+      "group": "debt-service",
+      "amount": 0
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Maintenance and Other Operating Contracts",
+      "group": "non-labor",
+      "amount": 30856493.45
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Materials and Supplies",
+      "group": "non-labor",
+      "amount": 44058265.96
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Net Transportation Revenue Bonds Debt Service",
+      "group": "debt-service",
+      "amount": 3501359.08
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "OPEB Current Payments",
+      "group": "labor",
+      "amount": 34280899.1
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Other Business Expenses",
+      "group": "non-labor",
+      "amount": 7555631.99
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Other Fringe Benefits",
+      "group": "labor",
+      "amount": 69142049.42
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Overtime",
+      "group": "labor",
+      "amount": 96643368.2
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Payroll",
+      "group": "labor",
+      "amount": 347972399.43
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Pension",
+      "group": "labor",
+      "amount": 67402349
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Professional Services Contracts",
+      "group": "non-labor",
+      "amount": 38098383.12
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "category": "Reimbursable Overhead",
+      "group": "labor",
+      "amount": -2337796.7
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "2 Broadway Certificates of Participation (2 Bdwy COPS w/o Int + Int)",
+      "group": "debt-service",
+      "amount": 0
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Claims",
+      "group": "non-labor",
+      "amount": 2391403.68
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Electric Power",
+      "group": "non-labor",
+      "amount": 7831948.75
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Fuel",
+      "group": "non-labor",
+      "amount": 1230206.64
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Health and Welfare",
+      "group": "labor",
+      "amount": 92415955.47
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Insurance",
+      "group": "non-labor",
+      "amount": 4852080.59
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Maintenance and Other Operating Contracts",
+      "group": "non-labor",
+      "amount": 129762365.69
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Materials and Supplies",
+      "group": "non-labor",
+      "amount": 2472329.43
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "OPEB Current Payments",
+      "group": "labor",
+      "amount": 39080651.39
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Other Business Expenses",
+      "group": "non-labor",
+      "amount": 23587879.72
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Other Fringe Benefits",
+      "group": "labor",
+      "amount": 45775828.5
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Overtime",
+      "group": "labor",
+      "amount": 28516143.5
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Payroll",
+      "group": "labor",
+      "amount": 458225617.21
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Pension",
+      "group": "labor",
+      "amount": 99994891.83
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Professional Services Contracts",
+      "group": "non-labor",
+      "amount": 258754927.64
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "category": "Reimbursable Overhead",
+      "group": "labor",
+      "amount": -68359443.22
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "2 Broadway Certificates of Participation (2 Bdwy COPS w/o Int + Int)",
+      "group": "debt-service",
+      "amount": 119560.48
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Claims",
+      "group": "non-labor",
+      "amount": 645535804.04
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Debt Service for Payroll Mobility Tax Bonds",
+      "group": "debt-service",
+      "amount": 272141008.27
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Electric Power",
+      "group": "non-labor",
+      "amount": 385604462.5
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Fuel",
+      "group": "non-labor",
+      "amount": 121924503.77
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Health and Welfare",
+      "group": "labor",
+      "amount": 1331004321.25
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Insurance",
+      "group": "non-labor",
+      "amount": 86253247.84
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "MTA Transportation Revenue Bond Anticipation Notes",
+      "group": "debt-service",
+      "amount": 0
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Maintenance and Other Operating Contracts",
+      "group": "non-labor",
+      "amount": 331612722.73
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Materials and Supplies",
+      "group": "non-labor",
+      "amount": 368667571.07
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Net Dedicated Tax Fund Bonds Debt Service",
+      "group": "debt-service",
+      "amount": 240744470.5
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Net Transportation Revenue Bonds Debt Service",
+      "group": "debt-service",
+      "amount": 519128862.03
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "OPEB Current Payments",
+      "group": "labor",
+      "amount": 622264627.85
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Other Business Expenses",
+      "group": "non-labor",
+      "amount": 151487123.61
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Other Fringe Benefits",
+      "group": "labor",
+      "amount": 528958023.07
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Overtime",
+      "group": "labor",
+      "amount": 726326283.17
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Paratransit Service Contracts",
+      "group": "non-labor",
+      "amount": 717213661.96
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Payroll",
+      "group": "labor",
+      "amount": 3942897931.6
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Pension",
+      "group": "labor",
+      "amount": 1041491131.98
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Professional Services Contracts",
+      "group": "non-labor",
+      "amount": 313031845.18
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "Reimbursable Overhead",
+      "group": "labor",
+      "amount": -346716665.29
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "TBTA General Revenue Bonds",
+      "group": "debt-service",
+      "amount": 189475466.39
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "category": "TBTA Subordinate Revenue Bonds",
+      "group": "debt-service",
+      "amount": 8884910.36
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "Non-Agency Corporate Account",
+      "category": "Other Exp Adj-Top Level",
+      "group": "adjustments",
+      "amount": 222627144.89
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Claims",
+      "group": "non-labor",
+      "amount": 221138
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Debt Service for Payroll Mobility Tax Bonds",
+      "group": "debt-service",
+      "amount": 8162750.11
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Electric Power",
+      "group": "non-labor",
+      "amount": 6165867.28
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Fuel",
+      "group": "non-labor",
+      "amount": 362268.28
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Health and Welfare",
+      "group": "labor",
+      "amount": 10788591.75
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Insurance",
+      "group": "non-labor",
+      "amount": 2309510.47
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Maintenance and Other Operating Contracts",
+      "group": "non-labor",
+      "amount": 3113594.78
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Materials and Supplies",
+      "group": "non-labor",
+      "amount": 2465307.94
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Net Transportation Revenue Bonds Debt Service",
+      "group": "debt-service",
+      "amount": 1122321.08
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "OPEB Current Payments",
+      "group": "labor",
+      "amount": 3625419.69
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Other Business Expenses",
+      "group": "non-labor",
+      "amount": 986575.13
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Other Fringe Benefits",
+      "group": "labor",
+      "amount": 2473570.8
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Overtime",
+      "group": "labor",
+      "amount": 4204847.66
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Payroll",
+      "group": "labor",
+      "amount": 31512487.13
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Pension",
+      "group": "labor",
+      "amount": 7545971
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Professional Services Contracts",
+      "group": "non-labor",
+      "amount": 9400806.86
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "category": "Reimbursable Overhead",
+      "group": "labor",
+      "amount": 6539.96
+    }
+  ],
+  "revenue": [
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "line": "Other Revenue",
+      "amount": 36339244.95
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "BT",
+      "line": "Toll Revenue",
+      "amount": 2554140292.73
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CBDTP",
+      "line": "Other Revenue",
+      "amount": 3364468.22
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "CBDTP",
+      "line": "Toll Revenue",
+      "amount": 713099809.69
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "FMTAC",
+      "line": "Other Revenue",
+      "amount": 40801000
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "GCMCOC",
+      "line": "Other Revenue",
+      "amount": 2234338.14
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "line": "Farebox Revenue",
+      "amount": 695807318.83
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "LIRR",
+      "line": "Other Revenue",
+      "amount": 58239176.05
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "line": "Farebox Revenue",
+      "amount": 664220932.92
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MNR",
+      "line": "Other Revenue",
+      "amount": 75536203.53
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "line": "Farebox Revenue",
+      "amount": 184527098.88
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTABC",
+      "line": "Other Revenue",
+      "amount": 17061488.77
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "MTAHQ",
+      "line": "Other Revenue",
+      "amount": 52636581.49
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "line": "Farebox Revenue",
+      "amount": 3658952851.69
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "NYCT",
+      "line": "Other Revenue",
+      "amount": 3965362843.97
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "Non-Agency Corporate Account",
+      "line": "Other Revenue",
+      "amount": -10539795.6
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "line": "Farebox Revenue",
+      "amount": 3636142.49
+    },
+    {
+      "fiscalYear": 2025,
+      "scenario": "actual",
+      "agency": "SIR",
+      "line": "Other Revenue",
+      "amount": 4393442.68
+    }
+  ]
+}

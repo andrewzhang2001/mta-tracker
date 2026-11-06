@@ -25,6 +25,13 @@ const cards = [
     description: 'Watch NYC\'s bike lanes grow from 1997 to today — 178 to 1,276 lane miles — and the rise of protected lanes after 2007.',
     accent: 'linear-gradient(135deg, #14b8a6 0%, #2563eb 50%, #15803d 100%)',
   },
+  {
+    to: '/nyc-transit/budget-tracker',
+    title: 'MTA Budget Tracker',
+    description: 'Where the MTA\'s money goes. Each agency\'s FY2025 operating expenses and revenue, plus what the 2025–2029 capital plan budgets for it.',
+    accent: 'linear-gradient(135deg, #3987e5 0%, #c98500 50%, #d95926 100%)',
+    cta: 'View charts',
+  },
 ]
 
 export default function TransitExplorer() {
@@ -48,7 +55,7 @@ export default function TransitExplorer() {
               <div style={s.cardBody}>
                 <h2 style={s.cardTitle}>{card.title}</h2>
                 <p style={s.cardDesc}>{card.description}</p>
-                <span style={s.cardCta}>View map →</span>
+                <span style={s.cardCta}>{card.cta ?? 'View map'} →</span>
               </div>
             </div>
           </Link>

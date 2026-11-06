@@ -10,6 +10,7 @@ import TransitGapMap from '../nyc-transit/transit-gap/TransitGapMap'
 import RidershipMap from '../nyc-transit/ridership/RidershipMap'
 import CorridorSafetyMap from '../nyc-transit/bike-safety/CorridorSafetyMap'
 import BikeNetworkMap from '../nyc-transit/bike-network/BikeNetworkMap'
+import BudgetTrackerPage from '../nyc-transit/budget-tracker/BudgetTrackerPage'
 
 // Archived projects are lazy-loaded: they're rarely visited, and simple-navigation
 // pulls in protobufjs (~200 kB) that the main visualizations have no use for.
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/nyc-transit/ridership" element={<RidershipMap />} />
         <Route path="/nyc-transit/bike-safety" element={<CorridorSafetyMap />} />
         <Route path="/nyc-transit/bike-network" element={<BikeNetworkMap />} />
+        <Route path="/nyc-transit/budget-tracker" element={<BudgetTrackerPage />} />
         <Route
           path="/archive"
           element={<Suspense fallback={<Loading />}><ArchivePage /></Suspense>}

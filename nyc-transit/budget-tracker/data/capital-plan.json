@@ -1,0 +1,903 @@
+{
+  "source": {
+    "dataset": "MTA 2025-2029 Capital Plan: ACEP Projects",
+    "publisher": "NYC Open Data",
+    "file": "MTA_2025-2029_Capital_Plan_ACEP_Projects_20261103.csv",
+    "rows": 403,
+    "topLevelProjects": 304
+  },
+  "agencies": {
+    "BT": "Bridges and Tunnels",
+    "LIRR": "Long Island Rail Road",
+    "MNR": "Metro-North Railroad",
+    "MTA Interagency": "MTA Interagency",
+    "MTABC": "MTA Bus Company",
+    "Major Projects and Expansion": "Major Projects and Expansion",
+    "NYCT": "New York City Transit",
+    "SIR": "Staten Island Railway"
+  },
+  "categories": [
+    {
+      "period": "2025-2029",
+      "agency": "BT",
+      "category": "Buildings & Sites",
+      "amount": 294640000,
+      "projectCount": 15,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "REHABILITATION OF GIVB AND BVB FAÇADE",
+          "amount": 45850000
+        },
+        {
+          "title": "REHAB HCT VENTILATION BUILDINGS",
+          "amount": 34190000
+        },
+        {
+          "title": "RMB UPGRADES",
+          "amount": 24970000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "BT",
+      "category": "Miscellaneous",
+      "amount": 118140000,
+      "projectCount": 9,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "SBMP - RESERVE",
+          "amount": 20000000
+        },
+        {
+          "title": "MISCELLANEOUS",
+          "amount": 17860000
+        },
+        {
+          "title": "PRELIMINARY DESIGN",
+          "amount": 16380000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "BT",
+      "category": "Roadways & Decks",
+      "amount": 206740000,
+      "projectCount": 11,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "REPLCMNT OF MANHATTAN PLZ STR/ASSOC RAMPS",
+          "amount": 44110000
+        },
+        {
+          "title": "REPLCMNT OF SUSPENDED SPAN OVERLAYS",
+          "amount": 41620000
+        },
+        {
+          "title": "MANHATTAN PLAZA REHABILTATION",
+          "amount": 28490000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "BT",
+      "category": "Structural Painting",
+      "amount": 227480000,
+      "projectCount": 9,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "RK FACILITY-WIDE PAINTING PROGRAM",
+          "amount": 88960000
+        },
+        {
+          "title": "TN FACILITY-WIDE PAINTING PROGRAM",
+          "amount": 29220000
+        },
+        {
+          "title": "VN FACILITY-WIDE PAINTING PROGRAM",
+          "amount": 23260000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "BT",
+      "category": "Structures",
+      "amount": 1123960000,
+      "projectCount": 24,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "MISCELLANEOUS STRUCTURAL REHABILITATION",
+          "amount": 213490000
+        },
+        {
+          "title": "MAIN CABLE DEHUMIDIFICATION/RELATED IMPROV",
+          "amount": 117950000
+        },
+        {
+          "title": "MAIN CABLE DEHUMIDIFICATION/RELATED IMPROV.",
+          "amount": 99200000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "BT",
+      "category": "TSMO",
+      "amount": 231610000,
+      "projectCount": 8,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "TOLL COLLECTION SYSTEM REHAB/UPGRADES",
+          "amount": 104560000
+        },
+        {
+          "title": "ADV. TRAVELER INFO. SYSTEMS/VMS UPGRADES",
+          "amount": 38340000
+        },
+        {
+          "title": "SCADA SYSTEMS",
+          "amount": 28480000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "BT",
+      "category": "Utilities",
+      "amount": 797410000,
+      "projectCount": 22,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "INSTALLATION OF FIRE SUPPRESSION SYSTEM",
+          "amount": 114730000
+        },
+        {
+          "title": "INSTALLATION OF FIRE SUPPRESSION SYSTEM",
+          "amount": 114730000
+        },
+        {
+          "title": "POWER REDUNDANCY AND RESILIENCY",
+          "amount": 113190000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "LIRR",
+      "category": "Communications & Signals",
+      "amount": 505000000,
+      "projectCount": 9,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Signal System Renewals",
+          "amount": 202000000
+        },
+        {
+          "title": "PTC Federal Mandates",
+          "amount": 75000000
+        },
+        {
+          "title": "Communications SGR",
+          "amount": 63000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "LIRR",
+      "category": "Line Structures",
+      "amount": 600500000,
+      "projectCount": 5,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Replacement & Rehabilitation of Bridges",
+          "amount": 297000000
+        },
+        {
+          "title": "Painting, Drainage, & Waterproofing of Bridges",
+          "amount": 175000000
+        },
+        {
+          "title": "Atlantic Avenue Tunnel Structural Work",
+          "amount": 75000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "LIRR",
+      "category": "Miscellaneous",
+      "amount": 372000000,
+      "projectCount": 10,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Program Administration",
+          "amount": 165000000
+        },
+        {
+          "title": "Environmental Remediation",
+          "amount": 50000000
+        },
+        {
+          "title": "OCIP",
+          "amount": 40000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "LIRR",
+      "category": "Power",
+      "amount": 475500000,
+      "projectCount": 6,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Substation Replacements",
+          "amount": 360000000
+        },
+        {
+          "title": "Lighting Improvements",
+          "amount": 37000000
+        },
+        {
+          "title": "Substation Component Renewal",
+          "amount": 28000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "LIRR",
+      "category": "Rolling Stock",
+      "amount": 1573000000,
+      "projectCount": 4,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Dual-Mode Locomotives",
+          "amount": 753000000
+        },
+        {
+          "title": "M9A",
+          "amount": 660000000
+        },
+        {
+          "title": "Work Locomotives",
+          "amount": 100000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "LIRR",
+      "category": "Shops and Yards",
+      "amount": 168000000,
+      "projectCount": 6,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Rehabilitation of Employee Facilities: Various Loc",
+          "amount": 64000000
+        },
+        {
+          "title": "Shop Component Renewals",
+          "amount": 37000000
+        },
+        {
+          "title": "Small Business Mentoring Program - Employee Facs",
+          "amount": 30000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "LIRR",
+      "category": "Stations",
+      "amount": 1201000000,
+      "projectCount": 10,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Station Renewals: Various Locations",
+          "amount": 520000000
+        },
+        {
+          "title": "Station Components: Various Locations",
+          "amount": 317000000
+        },
+        {
+          "title": "Jamaica Station - Vertical Circulation",
+          "amount": 110000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "LIRR",
+      "category": "Track",
+      "amount": 1110000000,
+      "projectCount": 9,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Annual Track Program",
+          "amount": 660000000
+        },
+        {
+          "title": "Amtrak Territory Investments",
+          "amount": 100000000
+        },
+        {
+          "title": "Jamaica Capacity Improvements - Met Interlocking",
+          "amount": 100000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "MNR",
+      "category": "Comm & Signals",
+      "amount": 598000000,
+      "projectCount": 8,
+      "unbudgetedProjectCount": 1,
+      "largestProjects": [
+        {
+          "title": "Signal System Upgrades",
+          "amount": 426000000
+        },
+        {
+          "title": "PTC Federal Mandates",
+          "amount": 75000000
+        },
+        {
+          "title": "Network Infrastructure",
+          "amount": 40000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "MNR",
+      "category": "Miscellaneous",
+      "amount": 286000000,
+      "projectCount": 9,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "OCIP Insurance",
+          "amount": 70000000
+        },
+        {
+          "title": "Program Administration",
+          "amount": 70000000
+        },
+        {
+          "title": "Systemwide Security Initiatives",
+          "amount": 60000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "MNR",
+      "category": "Power",
+      "amount": 519500000,
+      "projectCount": 5,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Substations Improvements",
+          "amount": 390000000
+        },
+        {
+          "title": "R.O.W Power Improvements",
+          "amount": 64500000
+        },
+        {
+          "title": "Catenary Improvements",
+          "amount": 30000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "MNR",
+      "category": "Rolling Stock",
+      "amount": 1695900000,
+      "projectCount": 3,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "M9A Fleet",
+          "amount": 1080000000
+        },
+        {
+          "title": "Coach Replacement",
+          "amount": 460900000
+        },
+        {
+          "title": "West of Hudson Locomotive Replacement",
+          "amount": 155000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "MNR",
+      "category": "Shops & Yards",
+      "amount": 224900000,
+      "projectCount": 4,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Yard Improvements",
+          "amount": 149900000
+        },
+        {
+          "title": "Facilities Improvements",
+          "amount": 35000000
+        },
+        {
+          "title": "Small Business Mentoring Program - Shops & Yards",
+          "amount": 25000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "MNR",
+      "category": "Stations",
+      "amount": 958750000,
+      "projectCount": 6,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Station Rehabilitation",
+          "amount": 670000000
+        },
+        {
+          "title": "Station Component Replacement",
+          "amount": 120000000
+        },
+        {
+          "title": "ADA Accessibility Improvements",
+          "amount": 100000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "MNR",
+      "category": "Track & Structures",
+      "amount": 1721950000,
+      "projectCount": 15,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Annual Track Program",
+          "amount": 450000000
+        },
+        {
+          "title": "Slope Remediation",
+          "amount": 350000000
+        },
+        {
+          "title": "Drainage Improvements",
+          "amount": 340000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "MTA Interagency",
+      "category": "MTA Construction & Development",
+      "amount": 255000000,
+      "projectCount": 3,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Program Administration",
+          "amount": 175000000
+        },
+        {
+          "title": "Capital Program Support Services",
+          "amount": 60000000
+        },
+        {
+          "title": "Core / Corridor Planning Studies",
+          "amount": 20000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "MTA Interagency",
+      "category": "MTA Police Department",
+      "amount": 45300000,
+      "projectCount": 4,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "District Office Repairs and Replacement",
+          "amount": 20000000
+        },
+        {
+          "title": "Other Facility, Vehicle and Admin Support",
+          "amount": 10300000
+        },
+        {
+          "title": "Communication Infrastructure",
+          "amount": 10000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "MTABC",
+      "category": "MTA Bus",
+      "amount": 453710000,
+      "projectCount": 7,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Purchase 153 Standard Buses",
+          "amount": 159040000
+        },
+        {
+          "title": "Purchase 90 Articulated Buses",
+          "amount": 111970000
+        },
+        {
+          "title": "Depot Improvements & Equipment",
+          "amount": 105010000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "Major Projects and Expansion",
+      "category": "Grand Central Artery",
+      "amount": 1700000000,
+      "projectCount": 2,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Project Development",
+          "amount": 1100000000
+        },
+        {
+          "title": "Project Development",
+          "amount": 600000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "Major Projects and Expansion",
+      "category": "Interborough Express",
+      "amount": 2750000000,
+      "projectCount": 1,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Project Development",
+          "amount": 2750000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "Major Projects and Expansion",
+      "category": "Other Network Expansion",
+      "amount": 800000000,
+      "projectCount": 1,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Project Development",
+          "amount": 800000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Buses",
+      "amount": 3293160000,
+      "projectCount": 6,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Purchase 855 Standard Buses",
+          "amount": 849120000
+        },
+        {
+          "title": "Purchase 500 Standard ZEF Buses",
+          "amount": 797140000
+        },
+        {
+          "title": "Purchase 556 Articulated Buses",
+          "amount": 719560000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Depots",
+      "amount": 370430000,
+      "projectCount": 3,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Depot Component Repairs: Various Locations",
+          "amount": 193610000
+        },
+        {
+          "title": "Other Depot Work",
+          "amount": 126820000
+        },
+        {
+          "title": "Non-Revenue Shop Reconfiguration",
+          "amount": 50000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Line Equipment",
+      "amount": 731700000,
+      "projectCount": 4,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Pump Rooms: Various Locations",
+          "amount": 477380000
+        },
+        {
+          "title": "Other Line Equipment Work",
+          "amount": 150000000
+        },
+        {
+          "title": "Fan Plants: Various Locations",
+          "amount": 81670000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Line Structures",
+      "amount": 5636290000,
+      "projectCount": 3,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Subway Structure Repairs: Various Locations",
+          "amount": 3780450000
+        },
+        {
+          "title": "Elevated Structure Paint/Repair: Various Locs",
+          "amount": 1755840000
+        },
+        {
+          "title": "Rehabilitate Emergency Exits",
+          "amount": 100000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Misc./emergency",
+      "amount": 1582720000,
+      "projectCount": 11,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "OCIP and Other Insurance",
+          "amount": 423920000
+        },
+        {
+          "title": "Scope Development and Design",
+          "amount": 366010000
+        },
+        {
+          "title": "Subway Employee Facility Repairs: Various Locs",
+          "amount": 235670000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Passenger Stations",
+      "amount": 11930650000,
+      "projectCount": 8,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "ADA Station Investments",
+          "amount": 6911000000
+        },
+        {
+          "title": "Station Components: Various Locations",
+          "amount": 2158720000
+        },
+        {
+          "title": "Station Renewals: 10 Locations",
+          "amount": 758050000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Service Vehicles",
+      "amount": 613030000,
+      "projectCount": 3,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Purchase 45 Locomotives",
+          "amount": 554890000
+        },
+        {
+          "title": "Purchase Various Rubber Tire Vehicles",
+          "amount": 45790000
+        },
+        {
+          "title": "Purchase / Upgrade Various Work Train Cars",
+          "amount": 12350000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Shops & Yards",
+      "amount": 1647280000,
+      "projectCount": 6,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Livonia/240 St Shop Facilities Rehab",
+          "amount": 800000000
+        },
+        {
+          "title": "Shop Components: Various Locations",
+          "amount": 414140000
+        },
+        {
+          "title": "Yard Lighting / Improvements: Coney Island Complex",
+          "amount": 173020000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Signals & Communications",
+      "amount": 6906980000,
+      "projectCount": 12,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "CBTC: Various Lines",
+          "amount": 3189650000
+        },
+        {
+          "title": "Additional CBTC Work",
+          "amount": 1444960000
+        },
+        {
+          "title": "Station Information Systems",
+          "amount": 827890000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Subway Cars",
+      "amount": 7616980000,
+      "projectCount": 3,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Purchase New A-Division Cars",
+          "amount": 3950000000
+        },
+        {
+          "title": "Additional Rolling Stock Support",
+          "amount": 1891980000
+        },
+        {
+          "title": "Purchase 355 New B-Division Cars",
+          "amount": 1775000000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Track",
+      "amount": 3716780000,
+      "projectCount": 5,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Mainline Track Replacement",
+          "amount": 1949290000
+        },
+        {
+          "title": "Switch Replacement",
+          "amount": 785800000
+        },
+        {
+          "title": "Mainline Track Replacement (Stations & Other)",
+          "amount": 638340000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "NYCT",
+      "category": "Traction Power",
+      "amount": 2996010000,
+      "projectCount": 5,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Substation Renewals: Various Locations",
+          "amount": 1240160000
+        },
+        {
+          "title": "Substation Components: Various Locations",
+          "amount": 758620000
+        },
+        {
+          "title": "Rehab CBHs/ Enclosures: Various Locs",
+          "amount": 618340000
+        }
+      ]
+    },
+    {
+      "period": "2025-2029",
+      "agency": "SIR",
+      "category": "Staten Island Railway",
+      "amount": 343970000,
+      "projectCount": 10,
+      "unbudgetedProjectCount": 0,
+      "largestProjects": [
+        {
+          "title": "Paint Bridges: Various Locations",
+          "amount": 81840000
+        },
+        {
+          "title": "Track and Switch Replacement",
+          "amount": 55060000
+        },
+        {
+          "title": "ADA: Staten Island Railway",
+          "amount": 50000000
+        }
+      ]
+    }
+  ]
+}

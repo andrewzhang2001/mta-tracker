@@ -20,6 +20,7 @@ nyc-transit/                    →  /nyc-transit
 ├── ridership/                  →  /nyc-transit/ridership
 ├── transit-gap/                →  /nyc-transit/transit-gap
 ├── bike-safety/                →  /nyc-transit/bike-safety
+├── budget-tracker/             →  /nyc-transit/budget-tracker
 └── shared/                         used by 2+ maps, by nothing outside
 
 civic-tech/                     →  /civic-tech
@@ -35,7 +36,7 @@ So the folder path and the URL path are the same string. To change what
 
 | Folder | Route | What it is |
 |---|---|---|
-| [nyc-transit/](nyc-transit/) | `/nyc-transit` | Four maps on transit access, ridership, and bike infrastructure |
+| [nyc-transit/](nyc-transit/) | `/nyc-transit` | Four maps on transit access, ridership, and bike infrastructure, plus an MTA budget tracker |
 | [civic-tech/](civic-tech/) | `/civic-tech` | Hand-maintained list of civic tech companies, for a job search — no pipeline |
 | [carbon-footprint/](carbon-footprint/) | `/carbon-footprint` | CO₂ statistics building toward a case for transit and solar. Every figure carries its source; unverified figures show no number |
 | [archive/](archive/) | `/archive` | Retired projects — still runnable, no longer developed |
@@ -71,6 +72,8 @@ npm run data:ridership
 npm run data:bike-safety
 npm run data:bike-network
 npm run data:all             # all four
+npm run data:budget-tracker:operations -- <path to CSV>   # not in data:all; needs a downloaded CSV
+npm run data:budget-tracker:capital -- <path to CSV>
 ```
 
 Data is imported by the components with Vite's `?url` suffix
@@ -87,4 +90,5 @@ fixed path.
   `archive/simple-navigation/` only. No API key needed — the feeds are public
   and CORS-enabled, so the browser reads them directly.
 - **US Census** — TIGER tract boundaries + ACS 5-year population.
-- **NYC Open Data** — motor-vehicle collisions, bike routes, hourly ridership.
+- **NYC Open Data** — motor-vehicle collisions, bike routes, hourly ridership,
+  MTA Statement of Operations, MTA 2025–2029 Capital Plan.

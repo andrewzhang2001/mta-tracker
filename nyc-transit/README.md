@@ -11,6 +11,7 @@ nothing else — each map owns its own subfolder here.
 | [ridership/](ridership/) | `/nyc-transit/ridership` | Subway ridership over a 24h day, by day type |
 | [bike-safety/](bike-safety/) | `/nyc-transit/bike-safety` | Crash injuries before vs. after four protected-lane redesigns |
 | [bike-network/](bike-network/) | `/nyc-transit/bike-network` | Bike lane growth, 1997–today |
+| [budget-tracker/](budget-tracker/) | `/nyc-transit/budget-tracker` | MTA operating expenses and revenue (FY2025) and capital plan (2025–2029) by agency |
 
 ## shared/
 
@@ -21,7 +22,7 @@ Code used by more than one map in this section:
 | `shared/map/useMapLibre.ts` | all four maps | MapLibre instance setup, nav control, teardown |
 | `shared/map/MapChrome.tsx` | all four maps | Back link and loading overlay |
 | `shared/map/basemap.ts` | `useMapLibre` | Basemap style URL and control position |
-| `shared/gtfs.js` | `transit-gap`, `ridership` pipelines | MTA GTFS static download + CSV parsing |
+| `shared/gtfs.js` | `transit-gap`, `ridership`, `budget-tracker` pipelines | MTA GTFS static download + CSV parsing |
 
 These stay scoped to `nyc-transit/` because nothing outside the section uses
 them. Anything a second section needs moves up to a repo-root `shared/`.
@@ -36,4 +37,6 @@ npm run data:ridership
 npm run data:bike-safety
 npm run data:bike-network
 npm run data:all             # all four
+npm run data:budget-tracker:operations -- <path to CSV>   # not in data:all
+npm run data:budget-tracker:capital -- <path to CSV>
 ```

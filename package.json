@@ -12,7 +12,9 @@
     "data:ridership": "node nyc-transit/ridership/pipeline/process-ridership.js && node nyc-transit/ridership/pipeline/process-shapes.js",
     "data:bike-safety": "node nyc-transit/bike-safety/pipeline/process-bike-safety.js",
     "data:bike-network": "node nyc-transit/bike-network/pipeline/process-bike-network.js",
-    "data:all": "npm run data:transit-gap && npm run data:ridership && npm run data:bike-safety && npm run data:bike-network"
+    "data:all": "npm run data:transit-gap && npm run data:ridership && npm run data:bike-safety && npm run data:bike-network",
+    "data:budget-tracker:operations": "node nyc-transit/budget-tracker/pipeline/process-statement-of-operations.js",
+    "data:budget-tracker:capital": "node nyc-transit/budget-tracker/pipeline/process-capital-plan.js"
   },
   "dependencies": {
     "adm-zip": "^0.5.17",
