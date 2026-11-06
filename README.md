@@ -23,6 +23,9 @@ nyc-transit/                    →  /nyc-transit
 └── shared/                         used by 2+ maps, by nothing outside
 
 civic-tech/                     →  /civic-tech
+carbon-footprint/               →  /carbon-footprint
+├── driving-by-metro/           →  /carbon-footprint/driving-by-metro
+└── electric-vehicles/          →  /carbon-footprint/electric-vehicles
 archive/                        →  /archive
 ```
 
@@ -34,6 +37,7 @@ So the folder path and the URL path are the same string. To change what
 |---|---|---|
 | [nyc-transit/](nyc-transit/) | `/nyc-transit` | Four maps on transit access, ridership, and bike infrastructure |
 | [civic-tech/](civic-tech/) | `/civic-tech` | Hand-maintained list of civic tech companies, for a job search — no pipeline |
+| [carbon-footprint/](carbon-footprint/) | `/carbon-footprint` | CO₂ statistics building toward a case for transit and solar. Every figure carries its source; unverified figures show no number |
 | [archive/](archive/) | `/archive` | Retired projects — still runnable, no longer developed |
 
 Everything else:

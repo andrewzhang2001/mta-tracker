@@ -15,6 +15,13 @@ const sections = [
     meta: 'In progress',
     accent: 'linear-gradient(135deg, #14b8a6 0%, #6b9fff 50%, #a78bfa 100%)',
   },
+  {
+    to: '/carbon-footprint',
+    title: 'Carbon Footprint',
+    description: 'What the world emits, what comes back out, and what one person’s driving accounts for — building toward a case for public transit and solar, one verified number at a time.',
+    meta: 'In progress',
+    accent: 'linear-gradient(135deg, #166534 0%, #4ade80 50%, #facc15 100%)',
+  },
 ]
 
 export default function Home() {

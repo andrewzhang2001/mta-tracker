@@ -2,6 +2,9 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import CivicTechPage from '../civic-tech/CivicTechPage'
+import CarbonFootprintPage from '../carbon-footprint/CarbonFootprintPage'
+import DrivingByMetroPage from '../carbon-footprint/driving-by-metro/DrivingByMetroPage'
+import ElectricVehiclesPage from '../carbon-footprint/electric-vehicles/ElectricVehiclesPage'
 import TransitExplorer from '../nyc-transit/TransitExplorer'
 import TransitGapMap from '../nyc-transit/transit-gap/TransitGapMap'
 import RidershipMap from '../nyc-transit/ridership/RidershipMap'
@@ -19,6 +22,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/civic-tech" element={<CivicTechPage />} />
+        <Route path="/carbon-footprint" element={<CarbonFootprintPage />} />
+        <Route path="/carbon-footprint/driving-by-metro" element={<DrivingByMetroPage />} />
+        <Route path="/carbon-footprint/electric-vehicles" element={<ElectricVehiclesPage />} />
         <Route path="/nyc-transit" element={<TransitExplorer />} />
         <Route path="/nyc-transit/transit-gap" element={<TransitGapMap />} />
         <Route path="/nyc-transit/ridership" element={<RidershipMap />} />
