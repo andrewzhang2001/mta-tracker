@@ -214,7 +214,7 @@ function BreakdownRow({ node, swatchStyle, share, isOpen, isHighlighted, onHover
   )
 }
 
-const PIE_SIZE = 200
+const PIE_SIZE = 140
 const INDENT_PX = 14
 
 const layoutStyle: CSSProperties = {
