@@ -9,7 +9,7 @@ const SLICE_COLORS = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4', '#0
 const OTHER_COLOR = '#a3a3ad'
 const OTHER_ID = 'other'
 
-const isDrillable = (node: BudgetNode) => node.children.length >= 2
+const isExpandable = (node: BudgetNode) => node.children.length >= 2
 
 const colorOfRow = (index: number) => SLICE_COLORS[index] ?? OTHER_COLOR
 
@@ -17,155 +17,205 @@ const sumOf = (nodes: BudgetNode[]) => nodes.reduce((sum, node) => sum + node.am
 
 const isReduction = (node: BudgetNode) => node.amountUsd < 0
 
-/** Slices for the first six children, then one "Other" slice for the rest. */
-function slicesOf(children: BudgetNode[]): PieSlice[] {
-  const named = children.slice(0, SLICE_COLORS.length).map((child, index) => ({
+/**
+ * A node's children split by sign. Children are sorted largest first, so the
+ * increases keep their order and the reductions follow.
+ */
+function partsOf(node: BudgetNode) {
+  const increases = node.children.filter(child => !isReduction(child))
+  const reductions = node.children.filter(isReduction)
+  return { increases, reductions, increasesUsd: sumOf(increases) }
+}
+
+/** Slice that draws the increase at `index`: its own for the first six, else "Other". */
+const sliceIdOf = (index: number, node: BudgetNode) => (index < SLICE_COLORS.length ? node.id : OTHER_ID)
+
+/** Slice that draws `child` in `parent`'s pie; `null` for a reduction, which has none. */
+function sliceIdOfChild(parent: BudgetNode, child: BudgetNode) {
+  const index = partsOf(parent).increases.findIndex(candidate => candidate.id === child.id)
+  return index === -1 ? null : sliceIdOf(index, child)
+}
+
+/** Slices for the first six increases, then one "Other" slice for the rest. */
+function slicesOf(increases: BudgetNode[]): PieSlice[] {
+  const named = increases.slice(0, SLICE_COLORS.length).map((child, index) => ({
     id: child.id,
     label: child.label,
     amountUsd: child.amountUsd,
     color: SLICE_COLORS[index],
   }))
-  const rest = children.slice(SLICE_COLORS.length)
+  const rest = increases.slice(SLICE_COLORS.length)
   if (rest.length === 0) return named
-  const otherUsd = sumOf(rest)
-  return [...named, { id: OTHER_ID, label: `Other (${rest.length} items)`, amountUsd: otherUsd, color: OTHER_COLOR }]
+  return [...named, { id: OTHER_ID, label: `Other (${rest.length} items)`, amountUsd: sumOf(rest), color: OTHER_COLOR }]
+}
+
+/** A slice under the pointer, in the pie for the level at `depth`. */
+type Hover = { depth: number; sliceId: string } | null
+
+type LevelProps = {
+  /** Ancestors of the deepest open row; `openPath[d]` is the open row at depth `d`. */
+  openPath: BudgetNode[]
+  hovered: Hover
+  onHover: (hover: Hover) => void
+  onToggle: (depth: number, node: BudgetNode) => void
 }
 
 /**
- * Drill-down from a total to its line items: a list of the current level's
- * parts on the left, the same parts as a pie on the right.
+ * Accordion from a total to its line items. Opening a row lists its parts
+ * inline beneath it, indented, and closes any open sibling. The right column
+ * holds one pie per open level: the open row's slice stays lit and the rest dim.
  *
  * Parts can be negative when the tree holds the difference between two
  * scenarios. Those rows sit below the increases, take no color or share, and
  * stay out of the pie; shares and slices are of the increases alone.
  */
 export function BudgetBreakdown({ root }: { root: BudgetNode }) {
-  const [path, setPath] = useState<BudgetNode[]>([root])
-  const [hoveredId, setHoveredId] = useState<string | null>(null)
-  const current = path[path.length - 1]
-  // Children are sorted largest first, so the increases come before the reductions.
-  const increases = current.children.filter(node => !isReduction(node))
-  const reductions = current.children.filter(isReduction)
-  const increasesUsd = sumOf(increases)
-  const slices = slicesOf(increases)
+  const [openPath, setOpenPath] = useState<BudgetNode[]>([])
+  const [hovered, setHovered] = useState<Hover>(null)
 
-  const drillInto = (node: BudgetNode) => {
-    if (!isDrillable(node)) return
-    setPath([...path, node])
-    setHoveredId(null)
+  const toggle = (depth: number, node: BudgetNode) => {
+    if (!isExpandable(node)) return
+    const isOpen = openPath[depth]?.id === node.id
+    setOpenPath(isOpen ? openPath.slice(0, depth) : [...openPath.slice(0, depth), node])
+    setHovered(null)
   }
-  const goBackTo = (depth: number) => {
-    setPath(path.slice(0, depth + 1))
-    setHoveredId(null)
-  }
-  const selectSlice = (id: string) => {
-    const child = current.children.find(node => node.id === id)
-    if (child) drillInto(child)
-  }
-  // Hovering a row folded into "Other" highlights the Other slice.
-  const sliceIdOfRow = (index: number, node: BudgetNode) => (index < SLICE_COLORS.length ? node.id : OTHER_ID)
-  const hoverRow = (sliceId: string | null) => (isHovered: boolean) => setHoveredId(isHovered ? sliceId : null)
+  const levelProps: LevelProps = { openPath, hovered, onHover: setHovered, onToggle: toggle }
+  const levelsWithPies = [root, ...openPath]
 
   return (
     <section style={layoutStyle}>
       <div>
-        <Breadcrumbs path={path} onSelect={goBackTo} />
-        <div style={currentTotalStyle}>{formatUsd(current.amountUsd)}</div>
-        {reductions.length > 0 && (
-          <p style={netNoteStyle}>
-            {formatUsd(increasesUsd)} in increases, {formatUsd(sumOf(reductions))} in reductions
-          </p>
-        )}
-        <ol style={listStyle}>
-          {increases.map((node, index) => (
-            <BreakdownRow
-              key={node.id}
-              node={node}
-              swatchStyle={{ ...swatchStyle, background: colorOfRow(index) }}
-              shareOfParent={formatShare(node.amountUsd, increasesUsd)}
-              isHighlighted={hoveredId === sliceIdOfRow(index, node)}
-              onHover={hoverRow(sliceIdOfRow(index, node))}
-              onSelect={() => drillInto(node)}
-            />
-          ))}
-          {reductions.map(node => (
-            <BreakdownRow
-              key={node.id}
-              node={node}
-              swatchStyle={reductionSwatchStyle}
-              shareOfParent=""
-              isHighlighted={false}
-              onHover={hoverRow(null)}
-              onSelect={() => drillInto(node)}
-            />
-          ))}
-        </ol>
+        <div style={rootTotalStyle}>{formatUsd(root.amountUsd)}</div>
+        <BreakdownLevel node={root} depth={0} {...levelProps} />
       </div>
-      {slices.length >= 2 && (
-        <div style={pieColumnStyle}>
-          <PieChart slices={slices} highlightedId={hoveredId} onHover={setHoveredId} onSelect={selectSlice} />
-        </div>
-      )}
+      <div style={pieColumnStyle}>
+        {levelsWithPies.map((node, depth) => (
+          <LevelPie key={node.id} node={node} depth={depth} {...levelProps} />
+        ))}
+      </div>
     </section>
   )
 }
 
-function Breadcrumbs({ path, onSelect }: { path: BudgetNode[]; onSelect: (depth: number) => void }) {
+/** The rows for `node`'s children, with the open one's parts nested beneath it. */
+function BreakdownLevel({ node, depth, ...levelProps }: LevelProps & { node: BudgetNode; depth: number }) {
+  const { openPath, hovered, onHover, onToggle } = levelProps
+  const { increases, reductions, increasesUsd } = partsOf(node)
+  const isHoveredSlice = (sliceId: string) => hovered?.depth === depth && hovered.sliceId === sliceId
+
+  const rowOf = (child: BudgetNode, swatch: CSSProperties, share: string, sliceId: string | null) => {
+    const isOpen = openPath[depth]?.id === child.id
+    return (
+      <li key={child.id}>
+        <BreakdownRow
+          node={child}
+          swatchStyle={swatch}
+          share={share}
+          isOpen={isOpen}
+          isHighlighted={sliceId !== null && isHoveredSlice(sliceId)}
+          onHover={isHovered => onHover(isHovered && sliceId ? { depth, sliceId } : null)}
+          onToggle={() => onToggle(depth, child)}
+        />
+        {isOpen && (
+          <div style={nestedLevelStyle}>
+            <BreakdownLevel node={child} depth={depth + 1} {...levelProps} />
+          </div>
+        )}
+      </li>
+    )
+  }
+
   return (
-    <nav style={breadcrumbsStyle}>
-      {path.map((node, depth) => {
-        const isLast = depth === path.length - 1
-        return (
-          <span key={node.id}>
-            {isLast ? (
-              <span style={breadcrumbCurrentStyle}>{node.label}</span>
-            ) : (
-              <button type="button" style={breadcrumbLinkStyle} onClick={() => onSelect(depth)}>{node.label}</button>
-            )}
-            {!isLast && <span style={breadcrumbSeparatorStyle}> › </span>}
-          </span>
-        )
-      })}
-    </nav>
+    <>
+      {reductions.length > 0 && (
+        <p style={netNoteStyle}>
+          {formatUsd(increasesUsd)} in increases, {formatUsd(sumOf(reductions))} in reductions
+        </p>
+      )}
+      <ol style={listStyle}>
+        {increases.map((child, index) =>
+          rowOf(child, { ...swatchStyle, background: colorOfRow(index) }, formatShare(child.amountUsd, increasesUsd), sliceIdOf(index, child)),
+        )}
+        {reductions.map(child => rowOf(child, reductionSwatchStyle, '', null))}
+      </ol>
+    </>
+  )
+}
+
+/** Pie of `node`'s increases, lighting the open child's slice. Hidden below two slices. */
+function LevelPie({ node, depth, openPath, hovered, onHover, onToggle }: LevelProps & { node: BudgetNode; depth: number }) {
+  const slices = slicesOf(partsOf(node).increases)
+  if (slices.length < 2) return null
+
+  const openChild = openPath[depth]
+  const hoveredSliceId = hovered?.depth === depth ? hovered.sliceId : null
+  const highlightedId = hoveredSliceId ?? (openChild ? sliceIdOfChild(node, openChild) : null)
+  const selectSlice = (sliceId: string) => {
+    const child = node.children.find(candidate => candidate.id === sliceId)
+    if (child) onToggle(depth, child)
+  }
+
+  return (
+    <div style={pieLevelStyle}>
+      <div style={pieHeadingStyle}>
+        {node.label} · {formatUsd(node.amountUsd)}
+      </div>
+      <PieChart
+        slices={slices}
+        size={PIE_SIZE}
+        highlightedId={highlightedId}
+        onHover={sliceId => onHover(sliceId ? { depth, sliceId } : null)}
+        onSelect={selectSlice}
+      />
+    </div>
   )
 }
 
 type BreakdownRowProps = {
   node: BudgetNode
   swatchStyle: CSSProperties
-  shareOfParent: string
+  share: string
+  isOpen: boolean
   isHighlighted: boolean
   onHover: (isHovered: boolean) => void
-  onSelect: () => void
+  onToggle: () => void
 }
 
-function BreakdownRow({ node, swatchStyle, shareOfParent, isHighlighted, onHover, onSelect }: BreakdownRowProps) {
-  const drillable = isDrillable(node)
+function BreakdownRow({ node, swatchStyle, share, isOpen, isHighlighted, onHover, onToggle }: BreakdownRowProps) {
+  const expandable = isExpandable(node)
   const onlyChild = node.children.length === 1 ? node.children[0] : null
+  const isLit = isHighlighted || isOpen
   return (
-    <li>
-      <button
-        type="button"
-        disabled={!drillable}
-        style={{ ...rowStyle, ...(isHighlighted ? rowHighlightedStyle : {}), cursor: drillable ? 'pointer' : 'default' }}
-        onMouseEnter={() => onHover(true)}
-        onMouseLeave={() => onHover(false)}
-        onFocus={() => onHover(true)}
-        onBlur={() => onHover(false)}
-        onClick={onSelect}
-      >
-        <span style={swatchStyle} />
-        <span style={rowLabelStyle}>
-          {node.label}
-          {onlyChild && <span style={rowNoteStyle}>{onlyChild.label}</span>}
-        </span>
-        <span style={rowAmountStyle}>{formatUsd(node.amountUsd)}</span>
-        <span style={rowShareStyle}>{shareOfParent}</span>
-        <span style={chevronStyle}>{drillable ? '›' : ''}</span>
-      </button>
-    </li>
+    <button
+      type="button"
+      disabled={!expandable}
+      aria-expanded={expandable ? isOpen : undefined}
+      style={{
+        ...rowStyle,
+        ...(isLit ? rowHighlightedStyle : {}),
+        ...(isOpen ? rowOpenStyle : {}),
+        cursor: expandable ? 'pointer' : 'default',
+      }}
+      onMouseEnter={() => onHover(true)}
+      onMouseLeave={() => onHover(false)}
+      onFocus={() => onHover(true)}
+      onBlur={() => onHover(false)}
+      onClick={onToggle}
+    >
+      <span style={swatchStyle} />
+      <span style={rowLabelStyle}>
+        {node.label}
+        {onlyChild && <span style={rowNoteStyle}>{onlyChild.label}</span>}
+      </span>
+      <span style={rowAmountStyle}>{formatUsd(node.amountUsd)}</span>
+      <span style={rowShareStyle}>{share}</span>
+      <span style={{ ...chevronStyle, ...(isOpen ? chevronOpenStyle : {}) }}>{expandable ? '›' : ''}</span>
+    </button>
   )
 }
+
+const PIE_SIZE = 200
+const INDENT_PX = 14
 
 const layoutStyle: CSSProperties = {
   display: 'grid',
@@ -175,26 +225,38 @@ const layoutStyle: CSSProperties = {
   marginTop: 16,
 }
 
-const pieColumnStyle: CSSProperties = { position: 'sticky', top: 16 }
-
-const breadcrumbsStyle: CSSProperties = { fontSize: 13, color: '#5a5a70' }
-
-const breadcrumbLinkStyle: CSSProperties = {
-  background: 'none',
-  border: 'none',
-  padding: 0,
-  color: '#2a5fb0',
-  font: 'inherit',
-  cursor: 'pointer',
+// Scrolls on its own when the stacked pies outgrow the viewport.
+const pieColumnStyle: CSSProperties = {
+  position: 'sticky',
+  top: 16,
+  display: 'grid',
+  gap: 20,
+  maxHeight: 'calc(100vh - 32px)',
+  overflowY: 'auto',
 }
 
-const breadcrumbCurrentStyle: CSSProperties = { color: '#1a1a2e', fontWeight: 600 }
+const pieLevelStyle: CSSProperties = { display: 'grid', gap: 8, justifyItems: 'center' }
 
-const breadcrumbSeparatorStyle: CSSProperties = { color: '#a3a3ad' }
+const pieHeadingStyle: CSSProperties = {
+  maxWidth: PIE_SIZE,
+  color: '#1a1a2e',
+  fontSize: 13,
+  fontWeight: 600,
+  textAlign: 'center',
+}
 
-const currentTotalStyle: CSSProperties = { fontSize: 24, fontWeight: 600, fontVariantNumeric: 'tabular-nums', margin: '6px 0 10px' }
+const rootTotalStyle: CSSProperties = { fontSize: 24, fontWeight: 600, fontVariantNumeric: 'tabular-nums', margin: '6px 0 10px' }
 
-const listStyle: CSSProperties = { listStyle: 'none', display: 'grid', gap: 2 }
+const netNoteStyle: CSSProperties = { color: '#5a5a70', fontSize: 13, margin: '4px 0 6px' }
+
+const listStyle: CSSProperties = { listStyle: 'none', display: 'grid', gap: 2, margin: 0, padding: 0 }
+
+const nestedLevelStyle: CSSProperties = {
+  marginLeft: INDENT_PX,
+  paddingLeft: 10,
+  borderLeft: '2px solid #e4e4ea',
+  marginBottom: 6,
+}
 
 const rowStyle: CSSProperties = {
   display: 'grid',
@@ -215,18 +277,20 @@ const rowStyle: CSSProperties = {
 
 const rowHighlightedStyle: CSSProperties = { background: '#f1f1f5' }
 
+const rowOpenStyle: CSSProperties = { fontWeight: 600 }
+
 const swatchStyle: CSSProperties = { width: 12, height: 12, borderRadius: 3 }
 
 const reductionSwatchStyle: CSSProperties = { ...swatchStyle, boxSizing: 'border-box', border: `1.5px solid ${OTHER_COLOR}` }
 
-const netNoteStyle: CSSProperties = { color: '#5a5a70', fontSize: 13, margin: '-4px 0 10px' }
-
 const rowLabelStyle: CSSProperties = { display: 'grid', gap: 2 }
 
-const rowNoteStyle: CSSProperties = { color: '#5a5a70', fontSize: 12 }
+const rowNoteStyle: CSSProperties = { color: '#5a5a70', fontSize: 12, fontWeight: 400 }
 
 const rowAmountStyle: CSSProperties = { fontVariantNumeric: 'tabular-nums', fontWeight: 600, textAlign: 'right' }
 
-const rowShareStyle: CSSProperties = { fontVariantNumeric: 'tabular-nums', color: '#5a5a70', textAlign: 'right' }
+const rowShareStyle: CSSProperties = { fontVariantNumeric: 'tabular-nums', color: '#5a5a70', textAlign: 'right', fontWeight: 400 }
 
-const chevronStyle: CSSProperties = { color: '#a3a3ad', fontSize: 18 }
+const chevronStyle: CSSProperties = { color: '#a3a3ad', fontSize: 18, transition: 'transform 120ms' }
+
+const chevronOpenStyle: CSSProperties = { transform: 'rotate(90deg)' }
