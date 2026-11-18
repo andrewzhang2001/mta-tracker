@@ -3,7 +3,8 @@
 import { writeFileSync, mkdirSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { fetchGtfs, parseCSV } from '../../shared/gtfs.js'
+import { fetchGtfs } from '../../shared/gtfs.js'
+import { parseCSV } from '../../../shared/csv.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const OUT_DIR = join(__dirname, '../data')

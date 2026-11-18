@@ -1,0 +1,5 @@
+scenario,name,route,total_p65_musd,completion,service,trains_per_day,trainsets,hsr_stations,passing_track_miles,right_of_way_p30_musd,facilities_and_trainsets_p30_musd,program_wide_p30_musd
+merced-bakersfield,Merced to Bakersfield (early operating segment),Merced – Bakersfield,35662,Q4 2032,8 trains/day,8,6,4,18,2834,976,4614
+sf-bakersfield,San Francisco to Bakersfield,San Francisco – San Jose – Gilroy – Bakersfield,61232,Q4 2039,1 train/hour (+18 shuttles to Merced),18,11,8,34,6060,2221,5671
+sf-palmdale,Interim Stage: San Francisco to Palmdale,San Francisco – San Jose – Gilroy – Palmdale,96870,Q4 2039,"2 trains/hour, 1 express (+18 shuttles to Merced)",36,21,9,108,11460,3741,5768
+phase-1,Phase 1: San Francisco to Los Angeles/Anaheim,San Francisco – San Jose – Gilroy – Anaheim,126076,Q4 2039,"2 trains/hour, 1 express (+18 shuttles to Merced)",36,30,11,108,16218,4615,5828

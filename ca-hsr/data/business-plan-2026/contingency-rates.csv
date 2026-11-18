@@ -1,0 +1,33 @@
+scc,description,F2J,G-Wye,CVS Rail & Facilities,M-M,LGA,B-P,P-K,K-L,LA-A
+10.01,Guideway: At-grade exclusive right-of-way,,,,14,,16,17,,
+10.04,Guideway: Aerial structure,,17,,14,14,,17,,16
+10.05,Guideway: Built-up fill,,17,,,14,16,17,,
+10.06,Guideway: Underground cut & cover,,,,,,,17,,
+10.07,Guideway: Underground tunnel,,17,,,,17,17,,
+10.08,Guideway: Retained cut or fill,,,,14,,,17,,16
+10.09,Track: Direct fixation,,16,11,13,14,16,16,,
+10.11,Track: Ballasted,,16,11,13,14,16,16,16,16
+10.12,"Track: Special (switches, turnouts)",,,11,13,14,16,16,16,16
+20.01,"At-grade station, stop, shelter, mall, terminal, platform",16,16,14,17,,16,16,17,16
+20.02,"Aerial station, stop, shelter, mall, terminal, platform",,,14,,14,,,,
+30.01,"Administration Building: Office, sales, storage, revenue counting",,16,18,,,,,,
+30.02,Light Maintenance Facility,16,,18,,,,,,16
+30.04,Storage or Maintenance of Way Building,,,,,,16,,,
+40.01,"Demolition, Clearing, Earthwork",,,,21,16,16,16,,
+40.02,"Site Utilities, Utility Relocation",16,17,,14,13,16,16,,16
+40.03,"Hazardous material, contaminated soil removal/mitigation, ground water treatments",,17,,15,15,16,16,16,16
+40.04,"Environmental mitigation e.g. wetlands, historic /archeologic, parks",16,16,14,15,15,16,16,17,16
+40.05,"Site structures including retaining walls, soundwalls",,17,11,,15,16,16,,16
+40.06,"Pedestrian/bike access and accommodation, landscaping",,,,,,16,,,
+40.07,"Automobile, bus, van access ways including roads, parking lots",,17,,14,14,16,14,,14
+40.08,Temporary Facilities and other indirect costs during construction,16,17,14,16,16,16,16,16,16
+50.01,Train control and signals,,16,15,15,15,16,16,16,16
+50.03,Traction power supply: substations,,16,15,16,15,16,16,16,16
+50.04,Traction power distribution: catenary and third rail,,16,11,13,14,16,16,16,16
+50.05,Communications,,16,15,15,15,16,16,16,16
+60.01,Purchase or lease of real estate,19,21,17,17,17,21,22,19,23
+80.01,Project Development,11,11,12,12,9,11,11,11,11
+80.02,Engineering (not applicable to Small Starts),13,14,12,12,13,14,14,11,11
+80.03,Project Management for Design and Construction,12,14,17,17,14,15,14,14,15
+80.06,"Legal; Permits; Review Fees by other agencies, cities, etc.",13,13,14,12,12,13,13,12,12
+80.08,Startup,,12,16,16,16,12,12,12,12

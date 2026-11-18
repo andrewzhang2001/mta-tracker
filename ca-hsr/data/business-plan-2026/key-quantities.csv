@@ -1,0 +1,40 @@
+table,scenario,scc,description,unit,prior_estimate_source,prior_estimate,estimate_2026,variance
+18,merced-bakersfield,10.00,Aerial Guideway,route miles,2025 SPUR,9,0,-9
+18,merced-bakersfield,10.00,At-Grade Guideway,route miles,2025 SPUR,54,54,0
+18,merced-bakersfield,10.00,Bored Tunnels,route miles,2025 SPUR,0,0,0
+18,merced-bakersfield,10.00,Track,track feet,2025 SPUR,957478,949803,-7675
+18,merced-bakersfield,20.00,HSR Stations,each,2025 SPUR,4,4,0
+18,merced-bakersfield,30.00,Maintenance of Way Facility,each,2025 SPUR,1,1,0
+18,merced-bakersfield,30.00,Operational Control Center,each,2025 SPUR,1,1,0
+18,merced-bakersfield,30.00,Back up Operational Center,each,2025 SPUR,1,1,0
+18,merced-bakersfield,50.00,Traction Power Substation,each,2025 SPUR,4,4,0
+26,sf-bakersfield,10.00,Aerial Guideway,route miles,2025 SPUR,20,18,-2
+26,sf-bakersfield,10.00,At-Grade Guideway,route miles,2025 SPUR,112,117,5
+26,sf-bakersfield,10.00,Bored Tunnels,route miles,2025 SPUR,7,4,-3
+26,sf-bakersfield,10.00,Track,track feet,2025 SPUR,1446300,1445044,-1256
+26,sf-bakersfield,20.00,HSR Stations,each,2025 SPUR,8,8,0
+26,sf-bakersfield,30.00,Maintenance Facilities,each,2025 SPUR,2,2,0
+26,sf-bakersfield,30.00,Maintenance of Way Facility,each,2025 SPUR,1,1,0
+26,sf-bakersfield,30.00,Operational Control Center,each,2025 SPUR,1,1,0
+26,sf-bakersfield,50.00,Back up Operational Center,each,2025 SPUR,1,1,0
+26,sf-bakersfield,50.00,Traction Power Substation,each,2025 SPUR,6,6,0
+28,phase-1,10.00,Aerial Guideway,route miles,2024 BP,48,31,-17
+28,phase-1,10.00,At-Grade Guideway,route miles,2024 BP,213,195,-18
+28,phase-1,10.00,Bored Tunnels,route miles,2024 BP,53,23,-30
+28,phase-1,10.00,Track,track feet,2024 BP,3315840,2883427,-432413
+28,phase-1,20.00,HSR Stations,each,2024 BP,12,11,-1
+28,phase-1,30.00,Light Maintenance Facility,each,2024 BP,3,3,0
+28,phase-1,30.00,Maintenance of Way Facility,each,2024 BP,3,2,-1
+28,phase-1,30.00,Operational Control Center,each,2024 BP,1,1,0
+28,phase-1,50.00,Back up Operational Center,each,2024 BP,1,1,0
+28,phase-1,50.00,Traction Power Substation,each,2024 BP,12,12,0
+29,sf-palmdale,10.00,Aerial Guideway,route miles,2024 BP,41,30,-11
+29,sf-palmdale,10.00,At-Grade Guideway,route miles,2024 BP,176,181,5
+29,sf-palmdale,10.00,Bored Tunnels,route miles,2024 BP,26,10,-16
+29,sf-palmdale,10.00,Track,track feet,2024 BP,2587200,2289465,-297735
+29,sf-palmdale,20.00,HSR Stations,each,2024 BP,9,9,0
+29,sf-palmdale,30.00,Maintenance Facility,each,2024 BP,3,2,-1
+29,sf-palmdale,30.00,Maintenance of Way Facility,each,2024 BP,3,2,-1
+29,sf-palmdale,30.00,Operational Control Center,each,2024 BP,1,1,0
+29,sf-palmdale,50.00,Back up Operational Center,each,2024 BP,1,1,0
+29,sf-palmdale,50.00,Traction Power Substation,each,2024 BP,10,10,0

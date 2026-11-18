@@ -1,0 +1,151 @@
+scenario,appendix,scc,description,amount_usd
+merced-bakersfield,C.1.6,10.00,Central Valley Civils,10047731029
+merced-bakersfield,C.1.6,10.01,Guideway: At-grade exclusive right-of-way,392612017
+merced-bakersfield,C.1.6,10.04,Guideway: Aerial structure,1273914714
+merced-bakersfield,C.1.6,10.05,Guideway: Built-up fill,265280966
+merced-bakersfield,C.1.6,10.08,Guideway: Retained Cut or Fill,243172499
+merced-bakersfield,C.1.6,10.09,Track: Direct fixation,167650398
+merced-bakersfield,C.1.6,10.11,Track: Ballasted,1385182225
+merced-bakersfield,C.1.6,10.12,"Track: Special (switches, turnouts)",71441532
+merced-bakersfield,C.1.6,20.01,"At-grade station, stop, shelter, mall, terminal, platform",1022233209
+merced-bakersfield,C.1.6,20.02,"Aerial station, stop, shelter, mall, terminal, platform",269574731
+merced-bakersfield,C.1.6,30.01,"Administration Building: Office, sales, storage, revenue counting",13361396
+merced-bakersfield,C.1.6,30.02,Light Maintenance Facility,385405460
+merced-bakersfield,C.1.6,40.01,"Demolition, Clearing, Earthwork",44564902
+merced-bakersfield,C.1.6,40.02,"Site Utilities, Utility Relocation",571650737
+merced-bakersfield,C.1.6,40.03,"Haz. Matl, Contaminated Soil removal/mitigation, Ground Water Treatments",9982974
+merced-bakersfield,C.1.6,40.04,"Environmental Mitigation, e.g. Wetlands, Historic/Archeologic, Parks",459150431
+merced-bakersfield,C.1.6,40.05,"Site Structures including Retaining Walls, Sound Walls",782274195
+merced-bakersfield,C.1.6,40.06,"Pedestrian / bike access and accommodation, landscaping",874608400
+merced-bakersfield,C.1.6,40.07,"Automobile, bus, van accessways including roads, parking lots",618379751
+merced-bakersfield,C.1.6,40.08,Temp Facilities and Other Indirects,145946616
+merced-bakersfield,C.1.6,50.01,Train control and signals,638313820
+merced-bakersfield,C.1.6,50.03,Traction power supply: substations,896608950
+merced-bakersfield,C.1.6,50.04,Traction power distribution: catenary and third rail,533344921
+merced-bakersfield,C.1.6,50.05,Communications,596847981
+merced-bakersfield,C.1.6,60.01,Purchase or lease of Real Estate,2834447892
+merced-bakersfield,C.1.6,70.03,Commuter Rail,530209529
+merced-bakersfield,C.1.6,80.01,Preliminary Engineering,1258915023
+merced-bakersfield,C.1.6,80.02,Engineering,629673168
+merced-bakersfield,C.1.6,80.03,Project Management for Design and Construction,3294612879
+merced-bakersfield,C.1.6,80.04,Construction Administration & Management,938736439
+merced-bakersfield,C.1.6,80.05,Professional Liability and other Non-Construction Insurance,110694500
+merced-bakersfield,C.1.6,80.06,"Legal; Permits; Review Fees by other agencies, cities, etc.",1001022048
+merced-bakersfield,C.1.6,80.07,"Surveys, Testing, Investigation, Inspection",7524143
+merced-bakersfield,C.1.6,80.08,Start up,10261030
+merced-bakersfield,C.1.6,90.00,Contingency,3336215830
+merced-bakersfield,C.1.6,,TOTAL,35661546336
+sf-bakersfield,C.2.8,10.00,Central Valley Civils & State Roads,10047731029
+sf-bakersfield,C.2.8,10.01,Guideway: At-grade exclusive right-of-way,392612017
+sf-bakersfield,C.2.8,10.04,Guideway: Aerial structure,6218013442
+sf-bakersfield,C.2.8,10.05,Guideway: Built-up fill,2672738007
+sf-bakersfield,C.2.8,10.07,Guideway: Underground Tunnel,1516929578
+sf-bakersfield,C.2.8,10.08,Guideway: Retained Cut or Fill,243172499
+sf-bakersfield,C.2.8,10.09,Track: Direct fixation,1079844859
+sf-bakersfield,C.2.8,10.11,Track: Ballasted,1812589527
+sf-bakersfield,C.2.8,10.12,"Track: Special (switches, turnouts)",75377519
+sf-bakersfield,C.2.8,20.01,"At-grade station, stop, shelter, mall, terminal, platform",2135768426
+sf-bakersfield,C.2.8,20.02,"Aerial station, stop, shelter, mall, terminal, platform",414493673
+sf-bakersfield,C.2.8,30.01,"Administration Building: Office, sales, storage, revenue counting",226600724
+sf-bakersfield,C.2.8,30.02,Light Maintenance Facility,712261542
+sf-bakersfield,C.2.8,40.01,"Demolition, Clearing, Earthwork",44564902
+sf-bakersfield,C.2.8,40.02,"Site Utilities, Utility Relocation",980146590
+sf-bakersfield,C.2.8,40.03,"Haz. Matl, Contaminated Soil removal/mitigation, Ground Water Treatments",61195406
+sf-bakersfield,C.2.8,40.04,"Environmental Mitigation, e.g. Wetlands, Historic/Archeologic, Parks",678755056
+sf-bakersfield,C.2.8,40.05,"Site Structures including Retaining Walls, Sound Walls",1195269668
+sf-bakersfield,C.2.8,40.06,"Pedestrian / bike access and accommodation, landscaping",874608400
+sf-bakersfield,C.2.8,40.07,"Automobile, bus, van accessways including roads, parking lots",1464499312
+sf-bakersfield,C.2.8,40.08,Temp Facilities and Other Indirects,373810802
+sf-bakersfield,C.2.8,50.01,Train control and signals,954826976
+sf-bakersfield,C.2.8,50.03,Traction power supply: substations,1755911176
+sf-bakersfield,C.2.8,50.04,Traction power distribution: catenary and third rail,900412434
+sf-bakersfield,C.2.8,50.05,Communications,636084647
+sf-bakersfield,C.2.8,60.01,Purchase or lease of Real Estate,6059862081
+sf-bakersfield,C.2.8,70.03,Commuter Rail,891955275
+sf-bakersfield,C.2.8,80.01,Preliminary Engineering,1518631415
+sf-bakersfield,C.2.8,80.02,Engineering,1437995739
+sf-bakersfield,C.2.8,80.03,Project Management for Design and Construction,4885877616
+sf-bakersfield,C.2.8,80.04,Construction Administration & Management,938736439
+sf-bakersfield,C.2.8,80.05,Professional Liability and other Non-Construction Insurance,183713008
+sf-bakersfield,C.2.8,80.06,"Legal; Permits; Review Fees by other agencies, cities, etc.",1067731747
+sf-bakersfield,C.2.8,80.07,"Surveys, Testing, Investigation, Inspection",7524143
+sf-bakersfield,C.2.8,80.08,Start up,14735170
+sf-bakersfield,C.2.8,90.00,Contingency,6756731283
+sf-bakersfield,C.2.8,,TOTAL,61231712127
+phase-1,C.3.12,10,Central Valley Civils & State Roads,10047731029
+phase-1,C.3.12,10.01,Guideway: At-grade exclusive right-of-way,6243001734
+phase-1,C.3.12,10.04,Guideway: Aerial structure,8927923835
+phase-1,C.3.12,10.05,Guideway: Built-up fill,7340626963
+phase-1,C.3.12,10.06,Guideway: Underground cut & cover,8772357
+phase-1,C.3.12,10.07,Guideway: Underground Tunnel,10799799757
+phase-1,C.3.12,10.08,Guideway: Retained Cut or Fill,1114700466
+phase-1,C.3.12,10.09,Track: Direct fixation,2128566248
+phase-1,C.3.12,10.11,Track: Ballasted,4309365589
+phase-1,C.3.12,10.12,"Track: Special (switches, turnouts)",403336474
+phase-1,C.3.12,20.01,"At-grade station, stop, shelter, mall, terminal, platform",2719226740
+phase-1,C.3.12,20.02,"Aerial station, stop, shelter, mall, terminal, platform",1097337905
+phase-1,C.3.12,30.01,"Administration Building: Office, sales, storage, revenue counting",226600724
+phase-1,C.3.12,30.02,Light Maintenance Facility,934067903
+phase-1,C.3.12,30.04,Storage or Maintenance of Way Building,212129343
+phase-1,C.3.12,40.01,"Demolition, Clearing, Earthwork",282558795
+phase-1,C.3.12,40.02,"Site Utilities, Utility Relocation",1929830605
+phase-1,C.3.12,40.03,"Haz. Matl, Contaminated Soil removal/mitigation, Ground Water Treatments",866991565
+phase-1,C.3.12,40.04,"Environmental Mitigation, e.g. Wetlands, Historic/Archeologic, Parks",1381405921
+phase-1,C.3.12,40.05,"SCC 2026 BP SCC Description Minor Estimate Site Structures including Retaining Walls, Sound Walls",2851928606
+phase-1,C.3.12,40.06,"Pedestrian / bike access and accommodation, landscaping",1020999450
+phase-1,C.3.12,40.07,"Automobile, bus, van accessways including roads, parking lots",2768866113
+phase-1,C.3.12,40.08,Temp Facilities and Other Indirects,1111467829
+phase-1,C.3.12,50.01,Train control and signals,2105199199
+phase-1,C.3.12,50.03,Traction power supply: substations,3357159473
+phase-1,C.3.12,50.04,Traction power distribution: catenary and third rail,2240978270
+phase-1,C.3.12,50.05,Communications,885035851
+phase-1,C.3.12,60.01,Purchase or lease of Real Estate,16218135502
+phase-1,C.3.12,70.03,Commuter Rail,2279956008
+phase-1,C.3.12,80.01,Preliminary Engineering,2165940301
+phase-1,C.3.12,80.02,Engineering,3452968514
+phase-1,C.3.12,80.03,Project Management for Design and Construction,6460551975
+phase-1,C.3.12,80.04,Construction Administration & Management,938736439
+phase-1,C.3.12,80.05,Professional Liability and other Non-Construction Insurance,340349866
+phase-1,C.3.12,80.06,"Legal; Permits; Review Fees by other agencies, cities, etc.",1243020548
+phase-1,C.3.12,80.07,"Surveys, Testing, Investigation, Inspection",7524143
+phase-1,C.3.12,80.08,Start up,31116542
+phase-1,C.3.12,90.00,Contingency,15622288698
+phase-1,C.3.12,,TOTAL,126076197280
+sf-palmdale,C.4.9,10,Central Valley Civils & State Roads,10047731029
+sf-palmdale,C.4.9,10.01,Guideway: At-grade exclusive right-of-way,6195263307
+sf-palmdale,C.4.9,10.04,Guideway: Aerial structure,7101973265
+sf-palmdale,C.4.9,10.05,Guideway: Built-up fill,7169368868
+sf-palmdale,C.4.9,10.07,Guideway: Underground Tunnel,4183338516
+sf-palmdale,C.4.9,10.08,Guideway: Retained Cut or Fill,243172499
+sf-palmdale,C.4.9,10.09,Track: Direct fixation,2021733175
+sf-palmdale,C.4.9,10.11,Track: Ballasted,2762410040
+sf-palmdale,C.4.9,10.12,"Track: Special (switches, turnouts)",103338486
+sf-palmdale,C.4.9,20.01,"At-grade station, stop, shelter, mall, terminal, platform",2176077407
+sf-palmdale,C.4.9,20.02,"Aerial station, stop, shelter, mall, terminal, platform",1097337905
+sf-palmdale,C.4.9,30.01,"Administration Building: Office, sales, storage, revenue counting",226600724
+sf-palmdale,C.4.9,30.02,Light Maintenance Facility,747417311
+sf-palmdale,C.4.9,30.04,Storage or Maintenance of Way Building,212129343
+sf-palmdale,C.4.9,40.01,"Demolition, Clearing, Earthwork",182367242
+sf-palmdale,C.4.9,40.02,"Site Utilities, Utility Relocation",1749119177
+sf-palmdale,C.4.9,40.03,"Haz. Matl, Contaminated Soil removal/mitigation, Ground Water Treatments",115875402
+sf-palmdale,C.4.9,40.04,"Environmental Mitigation, e.g. Wetlands, Historic/Archeologic, Parks",1063896903
+sf-palmdale,C.4.9,40.05,"Site Structures including Retaining Walls, Sound Walls",2233799684
+sf-palmdale,C.4.9,40.06,"Pedestrian / bike access and accommodation, landscaping",1020999450
+sf-palmdale,C.4.9,40.07,"Automobile, bus, van accessways including roads, parking lots",2241928374
+sf-palmdale,C.4.9,40.08,Temp Facilities and Other Indirects,841463426
+sf-palmdale,C.4.9,50.01,Train control and signals,1398377893
+sf-palmdale,C.4.9,50.03,Traction power supply: substations,2362918396
+sf-palmdale,C.4.9,50.04,Traction power distribution: catenary and third rail,1436795573
+sf-palmdale,C.4.9,50.05,Communications,709836841
+sf-palmdale,C.4.9,60.01,Purchase or lease of Real Estate,11460315493
+sf-palmdale,C.4.9,70.03,Commuter Rail,1615815598
+sf-palmdale,C.4.9,80.01,Preliminary Engineering,1864218933
+sf-palmdale,C.4.9,80.02,Engineering,2539211854
+sf-palmdale,C.4.9,80.03,Project Management for Design and Construction,5765580550
+sf-palmdale,C.4.9,80.04,Construction Administration & Management,938736439
+sf-palmdale,C.4.9,80.05,Professional Liability and other Non-Construction Insurance,280029996
+sf-palmdale,C.4.9,80.06,"Legal; Permits; Review Fees by other agencies, cities, etc.",1166062859
+sf-palmdale,C.4.9,80.07,"Surveys, Testing, Investigation, Inspection",7524143
+sf-palmdale,C.4.9,80.08,Start up,21087936
+sf-palmdale,C.4.9,90.00,Contingency,11566189850
+sf-palmdale,C.4.9,,TOTAL,96870043884

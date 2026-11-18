@@ -1,0 +1,101 @@
+table,title,scope_element,row_type,confidence,prior_estimate_source,prior_estimate_musd,estimate_2026_musd,spent_musd,spent_as_of
+2,119-Mile Central Valley Segment,Central Valley Construction,item,P65,2025 SPUR,11334,11494,9149,2026-02-28
+2,119-Mile Central Valley Segment,Central Valley Right-of-Way,item,P65,2025 SPUR,1857,1827,1566,2026-02-28
+2,119-Mile Central Valley Segment,State Road Projects (SR99 & SR46),item,P65,2025 SPUR,468,468,318,2026-02-28
+2,119-Mile Central Valley Segment,Track & Systems and Commodities,item,P65,2025 SPUR,2745,3486,115,2026-02-28
+2,119-Mile Central Valley Segment,Project Reserve,item,P65,2025 SPUR,46,46,0,2026-02-28
+2,119-Mile Central Valley Segment,Interim Use,item,P65,2025 SPUR,162,162,54,2026-02-28
+2,119-Mile Central Valley Segment,Unallocated Contingency,item,P65,2025 SPUR,318,318,0,2026-02-28
+2,119-Mile Central Valley Segment,Subtotal Central Valley Segment Construction,subtotal,P65,2025 SPUR,16930,17800,11202,2026-02-28
+2,119-Mile Central Valley Segment,"Project Development, Management, and Support",item,P65,2025 SPUR,177,177,177,2026-02-28
+2,119-Mile Central Valley Segment,Program Wide Support and Other,item,P65,2025 SPUR,2091,2137,939,2026-02-28
+2,119-Mile Central Valley Segment,Total,total,P65,2025 SPUR,19198,20115,12318,2026-02-28
+3,Merced to Bakersfield,Central Valley Segment,item,P65,2025 SPUR,19198,20115,12318,2026-02-28
+3,Merced to Bakersfield,Project Development Balance,item,P65,2025 SPUR,127,127,127,2026-02-28
+3,Merced to Bakersfield,Merced Extension,item,P65,2025 SPUR,3177,2539,107,2026-02-28
+3,Merced to Bakersfield,Merced Extension – Utility Relocation,item,P65,2025 SPUR,336,287,0,2026-02-28
+3,Merced to Bakersfield,Merced Extension – Right-of-Way,item,P65,2025 SPUR,555,565,7,2026-02-28
+3,Merced to Bakersfield,Bakersfield Extension,item,P65,2025 SPUR,3135,1984,74,2026-02-28
+3,Merced to Bakersfield,Bakersfield Extension – Utility Relocation,item,P65,2025 SPUR,396,276,0,2026-02-28
+3,Merced to Bakersfield,Bakersfield Extension – Right-of-Way,item,P65,2025 SPUR,739,280,14,2026-02-28
+3,Merced to Bakersfield,Stations,item,P65,2025 SPUR,1051,1106,63,2026-02-28
+3,Merced to Bakersfield,Track & Systems and Commodities Balance,item,P65,2025 SPUR,1478,1427,0,2026-02-28
+3,Merced to Bakersfield,Solar and Utility Interconnection,item,P65,2025 SPUR,75,162,0,2026-02-28
+3,Merced to Bakersfield,Trainsets and Facilities,item,P65,2025 SPUR,839,976,0,2026-02-28
+3,Merced to Bakersfield,Program Wide Support and Contingency Balance,item,P65,2025 SPUR,1550,1726,616,2026-02-28
+3,Merced to Bakersfield,Subtotal Merced to Bakersfield,subtotal,P65,2025 SPUR,32654,31568,13325,2026-02-28
+3,Merced to Bakersfield,Project Development Balance (Phase 1),item,P65,2025 SPUR,543,543,525,2026-02-28
+3,Merced to Bakersfield,Program Wide Support and Other,item,P65,2025 SPUR,2254,2252,344,2026-02-28
+3,Merced to Bakersfield,Bookend,item,P65,2025 SPUR,1298,1298,854,2026-02-28
+3,Merced to Bakersfield,Total,total,P65,2025 SPUR,36750,35662,15041,2026-02-28
+4,San Francisco to Bakersfield,San Francisco to Gilroy Blended Approach,item,P65,2025 SPUR,593,1273,,2026-02-28
+4,San Francisco to Bakersfield,Gilroy to Central Valley Wye,item,P65,2025 SPUR,18702,18619,,2026-02-28
+4,San Francisco to Bakersfield,Merced to Bakersfield,item,P65,2025 SPUR,29552,31568,13325,2026-02-28
+4,San Francisco to Bakersfield,Merced to Bakersfield Balance,item,P65,2025 SPUR,,900,,2026-02-28
+4,San Francisco to Bakersfield,"Program Wide Support, Trainsets, and Other Balance",item,P65,2025 SPUR,9256,8872,1716,2026-02-28
+4,San Francisco to Bakersfield,Total,total,P65,2025 SPUR,58102,61232,15041,2026-02-28
+5,Phase 1 San Francisco to Los Angeles/Anaheim,San Francisco to Gilroy Blended Approach,item,P65,2024 BP,15140,1291,,2026-02-28
+5,Phase 1 San Francisco to Los Angeles/Anaheim,Gilroy to Central Valley Wye,item,P65,2024 BP,19363,18866,,2026-02-28
+5,Phase 1 San Francisco to Los Angeles/Anaheim,Merced to Bakersfield,item,P65,2024 BP,30784,31568,13325,2026-02-28
+5,Phase 1 San Francisco to Los Angeles/Anaheim,Merced to Bakersfield Balance,item,P65,2024 BP,,4325,,2026-02-28
+5,Phase 1 San Francisco to Los Angeles/Anaheim,Bakersfield to Palmdale,item,P65,2024 BP,20740,26351,,2026-02-28
+5,Phase 1 San Francisco to Los Angeles/Anaheim,Palmdale to Burbank,item,P65,2024 BP,24428,15936,,2026-02-28
+5,Phase 1 San Francisco to Los Angeles/Anaheim,Burbank to L.A.,item,P65,2024 BP,3405,861,,2026-02-28
+5,Phase 1 San Francisco to Los Angeles/Anaheim,L.A. to Anaheim,item,P65,2024 BP,3352,7607,,2026-02-28
+5,Phase 1 San Francisco to Los Angeles/Anaheim,"Program Wide Support, Trainsets, and Other Balance",item,P65,2024 BP,10722,19272,1716,2026-02-28
+5,Phase 1 San Francisco to Los Angeles/Anaheim,Total,total,P65,2024 BP,127933,126076,15041,2026-02-28
+6,Interim Stage: San Francisco – Palmdale,San Francisco to Gilroy Blended Approach,item,P65,2025 SPUR,593,1291,,2026-02-28
+6,Interim Stage: San Francisco – Palmdale,Gilroy to Central Valley Wye,item,P65,2025 SPUR,18702,18866,,2026-02-28
+6,Interim Stage: San Francisco – Palmdale,Merced to Bakersfield,item,P65,2025 SPUR,31692,31568,13325,2026-02-28
+6,Interim Stage: San Francisco – Palmdale,Merced to Bakersfield Balance,item,P65,2025 SPUR,,4302,,2026-02-28
+6,Interim Stage: San Francisco – Palmdale,Bakersfield to Palmdale,item,P65,2025 SPUR,25602,26351,,2026-02-28
+6,Interim Stage: San Francisco – Palmdale,"Program Wide Support, Trainsets, and Other Balance",item,P65,2025 SPUR,14258,14492,1716,2026-02-28
+6,Interim Stage: San Francisco – Palmdale,Total,total,P65,2025 SPUR,90847,96870,15041,2026-02-28
+19,M-M and LGA Civil Estimates,M-M Civils,item,P30,2025 SPUR,3177,2539,102,2025-12-31
+19,M-M and LGA Civil Estimates,LGA Civils,item,P30,2025 SPUR,3135,1984,71,2025-12-31
+19,M-M and LGA Civil Estimates,Total,total,P30,2025 SPUR,6312,4523,173,2025-12-31
+20,Track and Systems Estimate,119-mile CVS Track & Systems and Commodities,item,P30,2025 SPUR,2745,3486,96,2025-12-31
+20,Track and Systems Estimate,Track & Systems and Commodities Balance,item,P30,2025 SPUR,1478,1427,0,2025-12-31
+20,Track and Systems Estimate,Total,total,P30,2025 SPUR,4298,5075,96,2025-12-31
+21,Merced to Bakersfield Early Operating Segment Stations Costs,Merced Station,item,P30,2025 SPUR,221,137,14,2025-12-31
+21,Merced to Bakersfield Early Operating Segment Stations Costs,Fresno Station,item,P30,2025 SPUR,277,339,20,2025-12-31
+21,Merced to Bakersfield Early Operating Segment Stations Costs,Kings Tulare Station,item,P30,2025 SPUR,319,327,12,2025-12-31
+21,Merced to Bakersfield Early Operating Segment Stations Costs,Bakersfield Station,item,P30,2025 SPUR,234,217,13,2025-12-31
+21,Merced to Bakersfield Early Operating Segment Stations Costs,Station Right of Way,item,P30,2025 SPUR,,87,0,2025-12-31
+21,Merced to Bakersfield Early Operating Segment Stations Costs,Total,total,P30,2025 SPUR,1051,1106,59,2025-12-31
+22,Utility Interconnects and Clean Energy Costs,119-mile CVS Solar and Utility Interconnections,item,P30,2025 SPUR,224,427,0,2025-12-31
+22,Utility Interconnects and Clean Energy Costs,Merced Extension Solar and Utility Interconnection,item,P30,2025 SPUR,75,162,0,2025-12-31
+22,Utility Interconnects and Clean Energy Costs,Total,total,P30,2025 SPUR,299,589,0,2025-12-31
+23,Maintenance Facilities and Trainsets Costs,Trainsets and Facilities,item,P30,2025 SPUR,839,976,0,2025-12-31
+23,Maintenance Facilities and Trainsets Costs,Total,total,P30,2025 SPUR,839,976,0,2025-12-31
+24,M-B Program Wide Support Costs,"Project Development, Program Wide Support, and Other",item,P65,2025 SPUR,7269,7488,2761,2025-12-31
+24,M-B Program Wide Support Costs,Total,total,P65,2025 SPUR,7269,7488,2761,2025-12-31
+31,SB-198 119-Mile Central Valley Segment,Central Valley Construction,item,P65,2025 SPUR,11334,11494,9149,2026-02-28
+31,SB-198 119-Mile Central Valley Segment,Central Valley Right-of-Way,item,P65,2025 SPUR,1857,1827,1566,2026-02-28
+31,SB-198 119-Mile Central Valley Segment,State Road Projects (SR99 & SR46),item,P65,2025 SPUR,468,468,318,2026-02-28
+31,SB-198 119-Mile Central Valley Segment,Track & Systems and Commodities,item,P65,2025 SPUR,2745,5233,115,2026-02-28
+31,SB-198 119-Mile Central Valley Segment,Project Reserve,item,P65,2025 SPUR,46,46,0,2026-02-28
+31,SB-198 119-Mile Central Valley Segment,Interim Use,item,P65,2025 SPUR,162,162,54,2026-02-28
+31,SB-198 119-Mile Central Valley Segment,Unallocated Contingency,item,P65,2025 SPUR,318,318,0,2026-02-28
+31,SB-198 119-Mile Central Valley Segment,Subtotal Central Valley Segment Construction,subtotal,P65,2025 SPUR,16930,19547,11202,2026-02-28
+31,SB-198 119-Mile Central Valley Segment,"Project Development, Management, and Support",item,P65,2025 SPUR,177,177,177,2026-02-28
+31,SB-198 119-Mile Central Valley Segment,Program Wide Support and Other,item,P65,2025 SPUR,2091,2344,939,2026-02-28
+31,SB-198 119-Mile Central Valley Segment,Total,total,P65,2025 SPUR,19198,22068,12318,2026-02-28
+32,SB-198 Merced to Bakersfield,Central Valley Segment,item,P65,2025 SPUR,19198,22068,12318,2026-02-28
+32,SB-198 Merced to Bakersfield,Project Development Balance,item,P65,2025 SPUR,127,127,127,2026-02-28
+32,SB-198 Merced to Bakersfield,Merced Extension,item,P65,2025 SPUR,3177,4503,107,2026-02-28
+32,SB-198 Merced to Bakersfield,Merced Extension Utility Relocation,item,P65,2025 SPUR,336,287,0,2026-02-28
+32,SB-198 Merced to Bakersfield,Merced Extension Right-of-Way,item,P65,2025 SPUR,555,729,7,2026-02-28
+32,SB-198 Merced to Bakersfield,Bakersfield Extension,item,P65,2025 SPUR,3135,5163,74,2026-02-28
+32,SB-198 Merced to Bakersfield,Bakersfield Extension Utility Relocation,item,P65,2025 SPUR,396,276,0,2026-02-28
+32,SB-198 Merced to Bakersfield,Bakersfield Extension Right-of-Way,item,P65,2025 SPUR,739,979,14,2026-02-28
+32,SB-198 Merced to Bakersfield,Stations,item,P65,2025 SPUR,1051,2229,63,2026-02-28
+32,SB-198 Merced to Bakersfield,Track & Systems and Commodities Balance,item,P65,2025 SPUR,1478,2491,0,2026-02-28
+32,SB-198 Merced to Bakersfield,Solar and Utility Interconnection,item,P65,2025 SPUR,75,172,0,2026-02-28
+32,SB-198 Merced to Bakersfield,Trainsets and Facilities,item,P65,2025 SPUR,839,975,0,2026-02-28
+32,SB-198 Merced to Bakersfield,Program Wide Support and Contingency Balance,item,P65,2025 SPUR,1550,2604,616,2026-02-28
+32,SB-198 Merced to Bakersfield,Subtotal Merced to Bakersfield,subtotal,P65,2025 SPUR,32654,42603,13325,2026-02-28
+32,SB-198 Merced to Bakersfield,Project Development Balance (Phase 1),item,P65,2025 SPUR,543,543,525,2026-02-28
+32,SB-198 Merced to Bakersfield,Program Wide Support and Other,item,P65,2025 SPUR,2254,3210,344,2026-02-28
+32,SB-198 Merced to Bakersfield,Bookend,item,P65,2025 SPUR,1298,1298,847,2026-02-28
+32,SB-198 Merced to Bakersfield,Total,total,P65,2025 SPUR,36750,47654,15041,2026-02-28

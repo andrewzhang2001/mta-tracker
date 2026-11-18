@@ -6,6 +6,8 @@ import CarbonFootprintPage from '../carbon-footprint/CarbonFootprintPage'
 import DrivingByMetroPage from '../carbon-footprint/driving-by-metro/DrivingByMetroPage'
 import ElectricVehiclesPage from '../carbon-footprint/electric-vehicles/ElectricVehiclesPage'
 import TransitExplorer from '../nyc-transit/TransitExplorer'
+import CaHsrPage from '../ca-hsr/CaHsrPage'
+import PhasePage from '../ca-hsr/phase/PhasePage'
 import TransitGapMap from '../nyc-transit/transit-gap/TransitGapMap'
 import RidershipMap from '../nyc-transit/ridership/RidershipMap'
 import CorridorSafetyMap from '../nyc-transit/bike-safety/CorridorSafetyMap'
@@ -32,6 +34,8 @@ export default function App() {
         <Route path="/nyc-transit/bike-safety" element={<CorridorSafetyMap />} />
         <Route path="/nyc-transit/bike-network" element={<BikeNetworkMap />} />
         <Route path="/nyc-transit/budget-tracker" element={<BudgetTrackerPage />} />
+        <Route path="/ca-hsr" element={<CaHsrPage />} />
+        <Route path="/ca-hsr/:scenario" element={<PhasePage />} />
         <Route
           path="/archive"
           element={<Suspense fallback={<Loading />}><ArchivePage /></Suspense>}

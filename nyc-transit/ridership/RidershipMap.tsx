@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import maplibregl from 'maplibre-gl'
-import { useMapLibre } from '../shared/map/useMapLibre'
+import { useMapLibre } from '../../shared/map/useMapLibre'
 import { BackLink, LoadingOverlay } from '../shared/map/MapChrome'
 import ridershipUrl from './data/ridership.json?url'
 import subwayLinesUrl from './data/subway-lines.geojson?url'

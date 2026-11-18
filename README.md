@@ -23,6 +23,7 @@ nyc-transit/                    →  /nyc-transit
 ├── budget-tracker/             →  /nyc-transit/budget-tracker
 └── shared/                         used by 2+ maps, by nothing outside
 
+ca-hsr/                         →  /ca-hsr
 civic-tech/                     →  /civic-tech
 carbon-footprint/               →  /carbon-footprint
 ├── driving-by-metro/           →  /carbon-footprint/driving-by-metro
@@ -37,6 +38,7 @@ So the folder path and the URL path are the same string. To change what
 | Folder | Route | What it is |
 |---|---|---|
 | [nyc-transit/](nyc-transit/) | `/nyc-transit` | Four maps on transit access, ridership, and bike infrastructure, plus an MTA budget tracker |
+| [ca-hsr/](ca-hsr/) | `/ca-hsr` | Map of California with markers for selected cities; 2026 Business Plan cost tables as CSV |
 | [civic-tech/](civic-tech/) | `/civic-tech` | Hand-maintained list of civic tech companies, for a job search — no pipeline |
 | [carbon-footprint/](carbon-footprint/) | `/carbon-footprint` | CO₂ statistics building toward a case for transit and solar. Every figure carries its source; unverified figures show no number |
 | [archive/](archive/) | `/archive` | Retired projects — still runnable, no longer developed |
@@ -45,12 +47,14 @@ Everything else:
 
 | Folder | What it is |
 |---|---|
+| `shared/` | Code used by 2+ sections: MapLibre hook, basemap, map back link, CSV parser |
 | `src/` | App shell only — router, the `/` hub page, global CSS |
 | [density_heatmap/](density_heatmap/) | Standalone: bus + subway route density over population (not started) |
 
 Shared code lives at the narrowest scope that covers its consumers.
-`nyc-transit/shared/` holds what the maps share; nothing sits in a repo-root
-`shared/` until a second section needs it.
+`nyc-transit/shared/` holds what the NYC maps share. The repo-root `shared/`
+holds what more than one section uses — currently the MapLibre setup in
+`shared/map/`, used by `nyc-transit/` and `ca-hsr/`.
 
 ## Running
 

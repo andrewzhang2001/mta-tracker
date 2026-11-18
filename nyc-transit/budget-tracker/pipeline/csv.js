@@ -1,7 +1,7 @@
 // CSV reading shared by this feature's pipelines. Every check stops the process
 // before any output is written.
 import { readFileSync } from 'fs'
-import { parseCSVLine } from '../../shared/gtfs.js'
+import { parseCSVLine } from '../../../shared/csv.js'
 
 const AMOUNT_PATTERN = /^-?[\d,]+(\.\d+)?$/
 

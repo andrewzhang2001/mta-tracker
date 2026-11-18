@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react'
 import type { GeoJSONSource, LngLatBoundsLike } from 'maplibre-gl'
-import { useMapLibre } from '../shared/map/useMapLibre'
+import { useMapLibre } from '../../shared/map/useMapLibre'
 import { BackLink, LoadingOverlay } from '../shared/map/MapChrome'
 import corridorsUrl from './data/bike-corridors.json?url'
 

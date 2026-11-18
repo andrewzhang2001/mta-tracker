@@ -9,6 +9,13 @@ const sections = [
     accent: 'linear-gradient(135deg, #0d47a1 0%, #42a5f5 50%, #a50026 100%)',
   },
   {
+    to: '/ca-hsr',
+    title: 'California High-Speed Rail',
+    description: 'A page on California High-Speed Rail.',
+    meta: 'In progress',
+    accent: 'linear-gradient(135deg, #b45309 0%, #f59e0b 50%, #0ea5e9 100%)',
+  },
+  {
     to: '/civic-tech',
     title: 'Civic Tech Startups',
     description: 'A working database of companies building transit, urban planning, and civic infrastructure tools — tracked while researching where to apply.',

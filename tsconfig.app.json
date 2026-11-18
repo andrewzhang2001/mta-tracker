@@ -18,5 +18,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "nyc-transit", "civic-tech", "archive"]
+  "include": ["src", "shared", "nyc-transit", "ca-hsr", "civic-tech", "archive"]
 }

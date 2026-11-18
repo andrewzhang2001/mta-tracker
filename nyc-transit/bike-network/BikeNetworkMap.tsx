@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
-import { useMapLibre } from '../shared/map/useMapLibre'
+import { useMapLibre } from '../../shared/map/useMapLibre'
 import { BackLink, LoadingOverlay } from '../shared/map/MapChrome'
 import bikeNetworkUrl from './data/bike-network.geojson?url'
 

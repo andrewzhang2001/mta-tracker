@@ -1,23 +1,7 @@
 import type { CSSProperties } from 'react'
-import { Link } from 'react-router-dom'
+import { MapBackLink } from '../../../shared/map/MapBackLink'
 
-// Overlay chrome shared by every map: the link home and the loading card.
-
-// `right: 52` clears the NavigationControl, which sits at top-right.
-const backLinkStyle: CSSProperties = {
-  position: 'absolute',
-  top: 16,
-  right: 52,
-  background: 'rgba(255,255,255,0.95)',
-  color: '#1a1a2e',
-  textDecoration: 'none',
-  fontSize: 12,
-  fontWeight: 500,
-  padding: '6px 12px',
-  borderRadius: 6,
-  boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-  zIndex: 10,
-}
+// Overlay chrome shared by every NYC map: the link home and the loading card.
 
 const loadingStyle: CSSProperties = {
   position: 'absolute',
@@ -32,7 +16,7 @@ const loadingStyle: CSSProperties = {
 }
 
 export function BackLink() {
-  return <Link to="/nyc-transit" style={backLinkStyle}>← All maps</Link>
+  return <MapBackLink to="/nyc-transit" label="← All maps" />
 }
 
 export function LoadingOverlay({ message }: { message: string }) {

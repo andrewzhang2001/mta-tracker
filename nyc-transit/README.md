@@ -19,13 +19,13 @@ Code used by more than one map in this section:
 
 | File | Used by | What it is |
 |---|---|---|
-| `shared/map/useMapLibre.ts` | all four maps | MapLibre instance setup, nav control, teardown |
-| `shared/map/MapChrome.tsx` | all four maps | Back link and loading overlay |
-| `shared/map/basemap.ts` | `useMapLibre` | Basemap style URL and control position |
-| `shared/gtfs.js` | `transit-gap`, `ridership`, `budget-tracker` pipelines | MTA GTFS static download + CSV parsing |
+| `shared/map/MapChrome.tsx` | all four maps | Back link to `/nyc-transit` and loading overlay |
+| `shared/gtfs.js` | `transit-gap`, `ridership` pipelines | MTA GTFS static download |
 
 These stay scoped to `nyc-transit/` because nothing outside the section uses
-them. Anything a second section needs moves up to a repo-root `shared/`.
+them. Anything a second section needs moves up to a repo-root `shared/` — the
+MapLibre setup (`useMapLibre`, basemap, `MapBackLink`) and CSV parsing
+(`shared/csv.js`) already live there, since `ca-hsr/` uses them too.
 
 ## Rebuilding data
 
