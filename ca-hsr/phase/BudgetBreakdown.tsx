@@ -13,6 +13,10 @@ const isDrillable = (node: BudgetNode) => node.children.length >= 2
 
 const colorOfRow = (index: number) => SLICE_COLORS[index] ?? OTHER_COLOR
 
+const sumOf = (nodes: BudgetNode[]) => nodes.reduce((sum, node) => sum + node.amountUsd, 0)
+
+const isReduction = (node: BudgetNode) => node.amountUsd < 0
+
 /** Slices for the first six children, then one "Other" slice for the rest. */
 function slicesOf(children: BudgetNode[]): PieSlice[] {
   const named = children.slice(0, SLICE_COLORS.length).map((child, index) => ({
@@ -23,19 +27,27 @@ function slicesOf(children: BudgetNode[]): PieSlice[] {
   }))
   const rest = children.slice(SLICE_COLORS.length)
   if (rest.length === 0) return named
-  const otherUsd = rest.reduce((sum, child) => sum + child.amountUsd, 0)
+  const otherUsd = sumOf(rest)
   return [...named, { id: OTHER_ID, label: `Other (${rest.length} items)`, amountUsd: otherUsd, color: OTHER_COLOR }]
 }
 
 /**
- * Drill-down from a scenario total to its line items: a list of the current
- * level's parts on the left, the same parts as a pie on the right.
+ * Drill-down from a total to its line items: a list of the current level's
+ * parts on the left, the same parts as a pie on the right.
+ *
+ * Parts can be negative when the tree holds the difference between two
+ * scenarios. Those rows sit below the increases, take no color or share, and
+ * stay out of the pie; shares and slices are of the increases alone.
  */
 export function BudgetBreakdown({ root }: { root: BudgetNode }) {
   const [path, setPath] = useState<BudgetNode[]>([root])
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   const current = path[path.length - 1]
-  const slices = slicesOf(current.children)
+  // Children are sorted largest first, so the increases come before the reductions.
+  const increases = current.children.filter(node => !isReduction(node))
+  const reductions = current.children.filter(isReduction)
+  const increasesUsd = sumOf(increases)
+  const slices = slicesOf(increases)
 
   const drillInto = (node: BudgetNode) => {
     if (!isDrillable(node)) return
@@ -52,21 +64,38 @@ export function BudgetBreakdown({ root }: { root: BudgetNode }) {
   }
   // Hovering a row folded into "Other" highlights the Other slice.
   const sliceIdOfRow = (index: number, node: BudgetNode) => (index < SLICE_COLORS.length ? node.id : OTHER_ID)
+  const hoverRow = (sliceId: string | null) => (isHovered: boolean) => setHoveredId(isHovered ? sliceId : null)
 
   return (
     <section style={layoutStyle}>
       <div>
         <Breadcrumbs path={path} onSelect={goBackTo} />
         <div style={currentTotalStyle}>{formatUsd(current.amountUsd)}</div>
+        {reductions.length > 0 && (
+          <p style={netNoteStyle}>
+            {formatUsd(increasesUsd)} in increases, {formatUsd(sumOf(reductions))} in reductions
+          </p>
+        )}
         <ol style={listStyle}>
-          {current.children.map((node, index) => (
+          {increases.map((node, index) => (
             <BreakdownRow
               key={node.id}
               node={node}
-              color={colorOfRow(index)}
-              shareOfParent={formatShare(node.amountUsd, current.amountUsd)}
+              swatchStyle={{ ...swatchStyle, background: colorOfRow(index) }}
+              shareOfParent={formatShare(node.amountUsd, increasesUsd)}
               isHighlighted={hoveredId === sliceIdOfRow(index, node)}
-              onHover={isHovered => setHoveredId(isHovered ? sliceIdOfRow(index, node) : null)}
+              onHover={hoverRow(sliceIdOfRow(index, node))}
+              onSelect={() => drillInto(node)}
+            />
+          ))}
+          {reductions.map(node => (
+            <BreakdownRow
+              key={node.id}
+              node={node}
+              swatchStyle={reductionSwatchStyle}
+              shareOfParent=""
+              isHighlighted={false}
+              onHover={hoverRow(null)}
               onSelect={() => drillInto(node)}
             />
           ))}
@@ -103,14 +132,14 @@ function Breadcrumbs({ path, onSelect }: { path: BudgetNode[]; onSelect: (depth:
 
 type BreakdownRowProps = {
   node: BudgetNode
-  color: string
+  swatchStyle: CSSProperties
   shareOfParent: string
   isHighlighted: boolean
   onHover: (isHovered: boolean) => void
   onSelect: () => void
 }
 
-function BreakdownRow({ node, color, shareOfParent, isHighlighted, onHover, onSelect }: BreakdownRowProps) {
+function BreakdownRow({ node, swatchStyle, shareOfParent, isHighlighted, onHover, onSelect }: BreakdownRowProps) {
   const drillable = isDrillable(node)
   const onlyChild = node.children.length === 1 ? node.children[0] : null
   return (
@@ -125,7 +154,7 @@ function BreakdownRow({ node, color, shareOfParent, isHighlighted, onHover, onSe
         onBlur={() => onHover(false)}
         onClick={onSelect}
       >
-        <span style={{ ...swatchStyle, background: color }} />
+        <span style={swatchStyle} />
         <span style={rowLabelStyle}>
           {node.label}
           {onlyChild && <span style={rowNoteStyle}>{onlyChild.label}</span>}
@@ -187,6 +216,10 @@ const rowStyle: CSSProperties = {
 const rowHighlightedStyle: CSSProperties = { background: '#f1f1f5' }
 
 const swatchStyle: CSSProperties = { width: 12, height: 12, borderRadius: 3 }
+
+const reductionSwatchStyle: CSSProperties = { ...swatchStyle, boxSizing: 'border-box', border: `1.5px solid ${OTHER_COLOR}` }
+
+const netNoteStyle: CSSProperties = { color: '#5a5a70', fontSize: 13, margin: '-4px 0 10px' }
 
 const rowLabelStyle: CSSProperties = { display: 'grid', gap: 2 }
 

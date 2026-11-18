@@ -17,7 +17,7 @@ Both maps draw their lines and markers from [`phaseMap.ts`](phaseMap.ts).
 | Route | Component | What it shows |
 |---|---|---|
 | `/ca-hsr` | [`CaHsrPage.tsx`](CaHsrPage.tsx) | The map |
-| `/ca-hsr/:scenario` | [`phase/PhasePage.tsx`](phase/PhasePage.tsx) | On the left, a map zoomed to the phase's section ([`phase/SectionMap.tsx`](phase/SectionMap.tsx)). On the right, the phase's added cost by segment, then a drill-down of the full scenario (segment → cost category → line item, from `line-items.csv`) with a pie of the current level |
+| `/ca-hsr/:scenario` | [`phase/PhasePage.tsx`](phase/PhasePage.tsx) | On the left, a map zoomed to the phase's section ([`phase/SectionMap.tsx`](phase/SectionMap.tsx)). On the right, the phase's added cost by segment, then a drill-down of that added cost (segment → cost category → line item) with a pie of the current level. Each line item is its `line-items.csv` amount in this scenario minus the previous one; lines that cost less show as negative rows, outside the pie. The first phase has no previous scenario, so its drill-down is the full scenario |
 
 `:scenario` is a slug from `scenarios.csv`, e.g. `/ca-hsr/sf-palmdale`.
 

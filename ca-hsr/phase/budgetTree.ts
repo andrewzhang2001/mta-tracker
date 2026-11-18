@@ -43,25 +43,64 @@ function groupBy<T>(items: T[], keyOf: (item: T) => string): [string, T[]][] {
   return [...groups]
 }
 
+type LineItem = { segment: string; scc: string; description: string; amountUsd: number }
+
+function lineItemsOf(scenario: string): LineItem[] {
+  const items = lineItems
+    .filter(row => row.scenario === scenario)
+    .map(row => ({ segment: row.segment, scc: row.scc, description: row.description, amountUsd: Number(row.amount_usd) }))
+  if (items.length === 0) throw new Error(`line-items.csv has no rows for ${scenario}`)
+  return items
+}
+
+const lineItemKey = (item: LineItem) => `${item.segment}/${item.scc}`
+
 /**
- * Scenario → Appendix C segment → SCC major category → line item, built from
+ * Each line item's amount in `scenario` minus its amount in `baseScenario`,
+ * matched by segment and SCC code. A line only in `baseScenario` counts as
+ * negative. Lines whose amount is unchanged are dropped.
+ */
+function lineItemChanges(scenario: string, baseScenario: string): LineItem[] {
+  const baseItems = new Map(lineItemsOf(baseScenario).map(item => [lineItemKey(item), item]))
+  const currentItems = lineItemsOf(scenario)
+  const currentKeys = new Set(currentItems.map(lineItemKey))
+
+  const changedItems = currentItems.map(item => ({
+    ...item,
+    amountUsd: item.amountUsd - (baseItems.get(lineItemKey(item))?.amountUsd ?? 0),
+  }))
+  const removedItems = [...baseItems.values()]
+    .filter(item => !currentKeys.has(lineItemKey(item)))
+    .map(item => ({ ...item, amountUsd: -item.amountUsd }))
+  return [...changedItems, ...removedItems].filter(item => Math.round(item.amountUsd) !== 0)
+}
+
+type BudgetTreeOptions = {
+  scenario: string
+  /** Label of the root node. */
+  label: string
+  /** When given, every amount is `scenario` minus this scenario. */
+  baseScenario?: string
+}
+
+/**
+ * Root → Appendix C segment → SCC major category → line item, built from
  * line-items.csv. Each node's amount is the sum of its line items.
  */
-export function buildBudgetTree(scenario: string, scenarioName: string): BudgetNode {
-  const scenarioItems = lineItems.filter(item => item.scenario === scenario)
-  if (scenarioItems.length === 0) throw new Error(`line-items.csv has no rows for ${scenario}`)
+export function buildBudgetTree({ scenario, label, baseScenario }: BudgetTreeOptions): BudgetNode {
+  const items = baseScenario ? lineItemChanges(scenario, baseScenario) : lineItemsOf(scenario)
 
-  const segments = groupBy(scenarioItems, item => item.segment).map(([segment, segmentItems]) => {
+  const segments = groupBy(items, item => item.segment).map(([segment, segmentItems]) => {
     const categories = groupBy(segmentItems, item => item.scc.slice(0, 2)).map(([code, categoryItems]) => {
       const leaves = categoryItems.map(item => ({
         id: `${segment}/${item.scc}`,
         label: `${item.scc} ${item.description}`,
-        amountUsd: Number(item.amount_usd),
+        amountUsd: item.amountUsd,
         children: [],
       }))
       return branch(`${segment}/${code}`, `${code} ${SCC_CATEGORY_NAMES[code] ?? 'Other'}`, leaves)
     })
     return branch(segment, segment, categories)
   })
-  return branch(scenario, scenarioName, segments)
+  return branch(scenario, label, segments)
 }

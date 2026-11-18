@@ -34,7 +34,13 @@ function PhaseBreakdown({ phase }: { phase: Phase }) {
     musd: segmentCostMusd(phase.scenario, segment),
   }))
   const newSegmentsMusd = newSegmentCosts.reduce((total, { musd }) => total + musd, 0)
-  const isFirstPhase = phase === phases[0]
+  const previousPhase = phases[phases.indexOf(phase) - 1]
+  const isFirstPhase = previousPhase === undefined
+  const budgetTree = buildBudgetTree({
+    scenario: phase.scenario,
+    label: isFirstPhase ? phase.scenarioName : `Added by ${phase.label}`,
+    baseScenario: previousPhase?.scenario,
+  })
 
   return (
     <div style={layoutStyle}>
@@ -68,11 +74,15 @@ function PhaseBreakdown({ phase }: { phase: Phase }) {
           </>
         )}
 
-        <h2 style={sectionHeadingStyle}>
-          {isFirstPhase ? 'Budget breakdown' : `Full scenario breakdown: ${phase.scenarioName}`}
-        </h2>
-        <p style={noteStyle}>P65, year-of-expenditure dollars, from Appendix C. Click a row or slice to go a level deeper.</p>
-        <BudgetBreakdown root={buildBudgetTree(phase.scenario, phase.scenarioName)} />
+        <h2 style={sectionHeadingStyle}>{isFirstPhase ? 'Budget breakdown' : 'Breakdown of the added cost'}</h2>
+        <p style={noteStyle}>
+          P65, year-of-expenditure dollars, from Appendix C.
+          {previousPhase && (
+            <> Each amount is {phase.scenarioName} minus {previousPhase.scenarioName}, line by line; negative rows cost less here.</>
+          )}
+          {' '}Click a row or slice to go a level deeper.
+        </p>
+        <BudgetBreakdown root={budgetTree} />
       </div>
     </div>
   )
