@@ -5,6 +5,7 @@ import segmentTotalsCsv from '../data/business-plan-2026/segment-totals.csv?raw'
 import { phases, type Phase } from '../data/phases'
 import { formatBillions } from '../format'
 import { BudgetBreakdown } from './BudgetBreakdown'
+import { SectionMap } from './SectionMap'
 import { buildBudgetTree } from './budgetTree'
 
 const segmentTotals = parseCSV(segmentTotalsCsv)
@@ -36,39 +37,44 @@ function PhaseBreakdown({ phase }: { phase: Phase }) {
   const isFirstPhase = phase === phases[0]
 
   return (
-    <>
-      <h1 style={titleStyle}>
-        <span style={{ ...swatchStyle, background: phase.color }} />
-        {phase.label}
-      </h1>
-      <p style={subtitleStyle}>{phase.stops.join(' · ')}</p>
+    <div style={layoutStyle}>
+      <aside style={mapColumnStyle}>
+        <SectionMap phase={phase} />
+      </aside>
+      <div style={contentColumnStyle}>
+        <h1 style={titleStyle}>
+          <span style={{ ...swatchStyle, background: phase.color }} />
+          {phase.label}
+        </h1>
+        <p style={subtitleStyle}>{phase.stops.join(' · ')}</p>
 
-      <dl style={statsStyle}>
-        <Stat label={isFirstPhase ? 'Cost' : 'Added cost'} value={formatBillions(phase.addedMusd)} />
-        <Stat label="Scenario total" value={formatBillions(phase.totalMusd)} />
-      </dl>
+        <dl style={statsStyle}>
+          <Stat label={isFirstPhase ? 'Cost' : 'Added cost'} value={formatBillions(phase.addedMusd)} />
+          <Stat label="Scenario total" value={formatBillions(phase.totalMusd)} />
+        </dl>
 
-      {!isFirstPhase && (
-        <>
-          <h2 style={sectionHeadingStyle}>Where the added cost goes ($M, P65)</h2>
-          <table style={tableStyle}>
-            <tbody>
-              {newSegmentCosts.map(({ segment, musd }) => (
-                <CostRow key={segment} label={segment} musd={musd} />
-              ))}
-              <CostRow label="Program-wide costs and changes to earlier track" musd={phase.addedMusd - newSegmentsMusd} />
-              <CostRow label="Total" musd={phase.addedMusd} isTotal />
-            </tbody>
-          </table>
-        </>
-      )}
+        {!isFirstPhase && (
+          <>
+            <h2 style={sectionHeadingStyle}>Where the added cost goes ($M, P65)</h2>
+            <table style={tableStyle}>
+              <tbody>
+                {newSegmentCosts.map(({ segment, musd }) => (
+                  <CostRow key={segment} label={segment} musd={musd} />
+                ))}
+                <CostRow label="Program-wide costs and changes to earlier track" musd={phase.addedMusd - newSegmentsMusd} />
+                <CostRow label="Total" musd={phase.addedMusd} isTotal />
+              </tbody>
+            </table>
+          </>
+        )}
 
-      <h2 style={sectionHeadingStyle}>
-        {isFirstPhase ? 'Budget breakdown' : `Full scenario breakdown: ${phase.scenarioName}`}
-      </h2>
-      <p style={noteStyle}>P65, year-of-expenditure dollars, from Appendix C. Click a row or slice to go a level deeper.</p>
-      <BudgetBreakdown root={buildBudgetTree(phase.scenario, phase.scenarioName)} />
-    </>
+        <h2 style={sectionHeadingStyle}>
+          {isFirstPhase ? 'Budget breakdown' : `Full scenario breakdown: ${phase.scenarioName}`}
+        </h2>
+        <p style={noteStyle}>P65, year-of-expenditure dollars, from Appendix C. Click a row or slice to go a level deeper.</p>
+        <BudgetBreakdown root={buildBudgetTree(phase.scenario, phase.scenarioName)} />
+      </div>
+    </div>
   )
 }
 
@@ -94,7 +100,7 @@ function CostRow({ label, musd, isTotal = false }: { label: string; musd: number
 const pageStyle: CSSProperties = {
   height: '100%',
   overflowY: 'auto',
-  maxWidth: 960,
+  maxWidth: 1320,
   margin: '0 auto',
   padding: '24px 20px 48px',
   color: '#1a1a2e',
@@ -103,7 +109,20 @@ const pageStyle: CSSProperties = {
 
 const backLinkStyle: CSSProperties = { color: '#5a5a70', fontSize: 13, textDecoration: 'none' }
 
-const titleStyle: CSSProperties = { display: 'flex', alignItems: 'center', gap: 12, fontSize: 28, marginTop: 16 }
+const layoutStyle: CSSProperties = {
+  display: 'grid',
+  gridTemplateColumns: 'minmax(280px, 380px) minmax(0, 1fr)',
+  gap: 32,
+  alignItems: 'start',
+  marginTop: 16,
+}
+
+// Sticks to the top of the scrolling page while the budget scrolls past.
+const mapColumnStyle: CSSProperties = { position: 'sticky', top: 0, height: 'min(560px, calc(100vh - 96px))' }
+
+const contentColumnStyle: CSSProperties = { minWidth: 0 }
+
+const titleStyle: CSSProperties = { display: 'flex', alignItems: 'center', gap: 12, fontSize: 28, marginTop: 0 }
 
 const swatchStyle: CSSProperties = { width: 28, height: 6, borderRadius: 3, flexShrink: 0 }
 

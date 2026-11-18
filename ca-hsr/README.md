@@ -12,10 +12,12 @@ section's added cost and the running total.
 Hovering near a line highlights that phase; clicking it, or its legend row,
 opens the phase's budget page.
 
+Both maps draw their lines and markers from [`phaseMap.ts`](phaseMap.ts).
+
 | Route | Component | What it shows |
 |---|---|---|
 | `/ca-hsr` | [`CaHsrPage.tsx`](CaHsrPage.tsx) | The map |
-| `/ca-hsr/:scenario` | [`phase/PhasePage.tsx`](phase/PhasePage.tsx) | One phase's added cost by segment, then a drill-down of the full scenario (segment → cost category → line item, from `line-items.csv`) with a pie of the current level |
+| `/ca-hsr/:scenario` | [`phase/PhasePage.tsx`](phase/PhasePage.tsx) | On the left, a map zoomed to the phase's section ([`phase/SectionMap.tsx`](phase/SectionMap.tsx)). On the right, the phase's added cost by segment, then a drill-down of the full scenario (segment → cost category → line item, from `line-items.csv`) with a pie of the current level |
 
 `:scenario` is a slug from `scenarios.csv`, e.g. `/ca-hsr/sf-palmdale`.
 
