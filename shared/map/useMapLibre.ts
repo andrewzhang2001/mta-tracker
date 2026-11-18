@@ -15,6 +15,17 @@ type UseMapLibreOptions = {
 }
 
 /**
+ * On maps 640px wide or narrower, MapLibre shows attribution as an ⓘ button
+ * whose credits start expanded and collapse only on the first drag. Removing
+ * `maplibregl-compact-show` collapses them to the button; clicking it still
+ * expands them.
+ */
+function collapseCompactAttribution(container: HTMLElement) {
+  container.querySelector('.maplibregl-ctrl-attrib.maplibregl-compact')
+    ?.classList.remove('maplibregl-compact-show')
+}
+
+/**
  * Creates the MapLibre instance every visualization starts from: shared basemap,
  * a NavigationControl, and teardown on unmount.
  *
@@ -45,6 +56,7 @@ export function useMapLibre({ center, zoom, onLoad, onCleanup }: UseMapLibreOpti
     map.current.addControl(new maplibregl.NavigationControl(), NAV_CONTROL_POSITION)
 
     map.current.on('load', () => {
+      collapseCompactAttribution(containerRef.current!)
       void onLoadRef.current?.(map.current!)
     })
 
